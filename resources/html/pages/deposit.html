@@ -1,0 +1,176 @@
+<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script>
+    (function() {
+	Stripe.setPublishableKey('pk_test_ycTWO6DcB7xxy6YMhpHWjiZV');
+    })();
+</script>
+<div class="deposit container">
+		<div class="profile">
+			<div class="cl-title width70">
+				<h1 class="colorbaff pay-head">Deposit Funds</h1>
+			</div>
+			<div class="incap-menu width70">
+				<div class="settings">
+					<div class="row">
+						<div class="col-md-3 line40 line60">Fund Available</div>
+						<div class="col-md-7">
+							<span class="text-center bgbaff">
+								{{if this.funds:}}${{-this.funds}}{{else:}}$0.00{{end}}
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">&nbsp;</div>
+						<div class="col-md-7">
+							<div class="alert-danger payment-errors"></div>
+							{{-this.msg}}
+							<div id="credit_card_success" class="alert alert-success nodisplay">
+									You have successfully deposited an amount of <span id="amount_deposited"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">&nbsp;</div>
+						<div class="col-md-7 rdstyle">
+							<div class="col-md-8 paddL0 paddR0">
+								<input id="stripe" type="radio" name="radio" value="stripe" checked="checked"><label for="stripe"><span><span></span></span><div id="str-ipe">Credit Card/Debit Card</div></label>
+							</div>
+							<div class="col-md-4 paddL0">
+								<input id="paypal" type="radio" name="radio" value="paypal"><label for="paypal"><span><span></span></span><div id="pay-pal">PayPal</div></label>
+							</div>
+							<!--<div class="col-md-7 paddL0">
+								<input type="radio" id="stripe" value="stripe" name="method" checked>
+								<label for="stripe"><span class="dp-icon">Credit Card/Debit Card</span></label>
+							</div>
+							<div class="col-md-5 paddL0">
+								<input type="radio" id="paypal" value="paypal" name="method">
+								<label for="paypal"><span class="dp-icon">Paypal</span></label>
+							</div>-->
+						</div>
+					</div>
+					<div class="row"><br>
+						<div id="d-creditcard" class="col-md-12">
+							<form action="" method="post" id="payment-form">
+								<div class="row">
+									<div class="col-md-3 line40">Amount</div>
+									<div class="col-md-7">
+										<input class="pay-control numbersonly" type="text" name="amount" id="camount" placeholder="$" >
+										<div class="error" id="error_camount">Required, Please enter amount to deposit.</div><br>
+									</div>
+								</div>
+								<div class="row">
+								    <div class="col-md-3 line40">Card Number</div>
+								    <div class="col-md-7">
+									    <input class="pay-control numbersonly" type="text" name="credit_crd" data-stripe="number" id="credit_crd" placeholder="xxxx-xxxx-xxxx-xxxx" >
+									    <div class="error" id="error_credit_crd">Required, Please enter your credit card number.</div><br>
+								    </div>
+								</div>
+								<div class="row">
+								    <div class="col-md-3 line40">Expiration</div>
+								    <div class="col-md-2 paddR0">
+									    <input type="text" name="exmonth" id="exmonth" class="pay-control numbersonly" placeholder="Month" data-stripe="exp-month">
+								    </div>
+								    <div class="col-md-2 paddR0">
+									    <input type="text" name="exyear" id="exyear" class="pay-control numbersonly" placeholder="Year" data-stripe="exp-year">
+								    </div>
+								</div>
+								<div class="row"><br>
+									<div class="col-md-3 line40">Security Code</div>
+									<div class="col-md-2 paddR0">
+										<input class="pay-control numbersonly" type="text" name="cvc" data-stripe="cvc" id="cvc" placeholder="CVV" >
+										<div class="error" id="error_cvc">Required, Please enter.</div><br>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">&nbsp;</div>
+									<div class="col-md-7"><input type="submit" id="depositStripe" name="stripe_action" value="Deposit Now"  class="btn btn-default save-btn bgbaff"></div>
+								</div>
+							</form>
+						</div>
+						
+						<div id="d-paypal" class="col-md-12 nodisplay">
+							<form action="" method="post">
+								<div class="row">
+									<div class="col-md-3 line40"><b>Amount:</b></div>
+									<div class="col-md-7">
+										<input class="pay-control numbersonly" type="text" name="amount" id="pamount" placeholder="$">
+										<div class="error" id="error_pamount">Please enter amount.</div><br>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">&nbsp;</div>
+									<div class="col-md-7"><input type="submit" name="paypal_action" onclick="doPaypalAction()" value="Deposit Now" class="btn btn-default save-btn bgbaff"></div>
+								</div>
+							</form>
+						</div>
+					</div>
+					
+						<div class="row nodisplay"><br>
+							<div class="col-md-3"><b>Deposit By:</b></div>
+							<div class="col-md-7">
+								<select name="byid" id="pay_type" class="form-control" onchange="showMethod()">
+									<option value="">Select Deposit Method</option>
+									<option value="1">By Paypal</option>
+									<option value="2">By Credit Card</option>
+								</select>
+							</div>
+						</div><br>
+				</div>
+             </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    
+   // $('#payment-form').submit(function(){alert('hi')});input:radio[name="postage"]
+   $("#str-ipe").css("color", "#00baff");
+   $('#stripe').change(function(){
+        if ( $(this).is(':checked') ) {
+			$("#pay-pal").css("color", "#c6c6c6");
+			$("#str-ipe").css("color", "#00baff");
+            $("#pay_type").val("2");
+			showMethod();
+        }
+    });
+   $('#paypal').change(function(){
+        if ( $(this).is(':checked') ) {
+			$("#pay-pal").css("color", "#00baff");
+			$("#str-ipe").css("color", "#c6c6c6");
+            $("#pay_type").val("1");
+			showMethod();
+        }
+    });
+
+
+
+$('#payment-form').submit(function(e) {
+		if (validate_form([['camount','numeric'], ['credit_crd','numeric'], ['cvc','numeric']])){
+				Stripe.card.createToken({
+				    number: $('#credit_crd').val(),
+				    cvc: $('#cvc').val(),
+				    exp_month: $('#exmonth').val(),
+				    exp_year: $('#exyear').val()
+				}, stripeResponseHandler);
+				e.preventDefault();
+		}
+});
+
+function stripeResponseHandler(status, response) {
+  var $form = $('#payment-form');
+
+  if (response.error) {
+    // Show the errors on the form
+    $form.find('.payment-errors').text(response.error.message);
+    $form.find('button').prop('disabled', false);
+  } else {
+    // response contains id and card, which contains additional card details
+    var token = response.id;
+    // Insert the token into the form so it gets submitted to the server
+    $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+    // and submit
+     $form.get(0).submit();
+  }
+}
+
+</script>

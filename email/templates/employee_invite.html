@@ -1,0 +1,7 @@
+Hi{{if isset this.name:}} <b>{{-this.name}}</b>{{end}}, 
+<br><br>
+<b>{{-this.inviter}}</b> invited you to <b>{{-this.business.name}}</b> at VBOX:<br>
+<b><a href="http://{{-global.app.domain}}/businesses/employees/invite/answer?code={{-this.code}}&answer=accept&email={{-this.email}}">Accept Invitation</a></b> | <a href="http://{{-global.app.domain}}/businesses/employees/invite/answer?code={{-this.code}}&answer=decline" style="color: #888;">decline</a>
+<br><br>
+Thanks,<br>
+VBOX
