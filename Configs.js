@@ -1,5 +1,13 @@
 module.exports = function Configs() {
-    Configs.prototype.domain = '192.241.239.235';
+    if (process.env.NODE_ENV === 'development'){
+        Configs.prototype.domain = 'localhost';
+        Configs.prototype.port = '4040';
+
+    }else{
+        Configs.prototype.domain = '192.241.239.235'; //whatever is the ip of the server it is hosted on
+        Configs.prototype.port = '80';
+    }
+
     Configs.prototype.mysql = {
         connectionLimit : 10,
         host     : 'localhost',
