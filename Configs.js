@@ -26,9 +26,9 @@ module.exports = function Configs() {
     };
     Configs.prototype.charges = {
         "charge_after" : "60", // 60 seconds
-        "charge" : "0.05", //0.05$
-    }
-}
+        "charge" : "0.05" //0.05$
+    };
+};
 //Configs.prototype.paypal= {
 //        "port" : 5000,
 //        "api" : {
