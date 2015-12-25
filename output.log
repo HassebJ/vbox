@@ -88,3 +88,12 @@ Error: listen EADDRINUSE
 
 info    - EasyRTC: EasyRTC Server Ready For Connections (v1.0.14)
 App.notFound
+24 Dec 11:51:08 - [33m[nodemon] 1.7.1[39m
+24 Dec 11:51:08 - [33m[nodemon] to restart at any time, enter `rs`[39m
+24 Dec 11:51:08 - [33m[nodemon] watching: *.*[39m
+24 Dec 11:51:08 - [32m[nodemon] starting `node /root/vbox/easy.js`[39m
+Application started on port 80
+info: socket.io started
+info    - EasyRTC: Starting EasyRTC Server (v1.0.14) on Node (v0.10.37)
+info    - EasyRTC: EasyRTC Server Ready For Connections (v1.0.14)
+App.notFound
