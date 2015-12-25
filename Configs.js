@@ -1,5 +1,13 @@
 module.exports = function Configs() {
-    Configs.prototype.domain = '192.241.239.235';
+    if (process.env.NODE_ENV === 'development'){
+        Configs.prototype.domain = '52.10.209.67';
+        Configs.prototype.port = '4040';
+
+    }else{
+        Configs.prototype.domain = '52.10.209.67'; //whatever is the ip of the server it is hosted on
+        Configs.prototype.port = '80';
+    }
+
     Configs.prototype.mysql = {
         connectionLimit : 10,
         host     : 'localhost',
@@ -18,9 +26,9 @@ module.exports = function Configs() {
     };
     Configs.prototype.charges = {
         "charge_after" : "60", // 60 seconds
-        "charge" : "0.05", //0.05$
-    }
-}
+        "charge" : "0.05" //0.05$
+    };
+};
 //Configs.prototype.paypal= {
 //        "port" : 5000,
 //        "api" : {
