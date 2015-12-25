@@ -4,7 +4,7 @@ module.exports = function Configs() {
         Configs.prototype.port = '4040';
 
     }else{
-        Configs.prototype.domain = '52.10.209.67'; //whatever is the ip of the server it is hosted on
+        Configs.prototype.domain = '192.241.239.235'; //whatever is the ip of the server it is hosted on
         Configs.prototype.port = '80';
     }
 
