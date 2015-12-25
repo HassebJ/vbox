@@ -1,5 +1,3 @@
-node_modules/*
 .git/
 vbox123.zip
 .idea/
-!node_modules/diet
