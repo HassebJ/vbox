@@ -1,11 +1,15 @@
 var cred = {
-    username  : 'babarkhan7311-facilitator_api1.gmail.com',
-    password  : 'ZN9KB3YVL52RBCBZ',
-    signature : 'An5ns1Kso7MWUdW4ErQKJJJ4qi4-AfCKnPe.b93Tep4KeS7PTfMKMymQ'
+    username  : 'leoash842_api1.hotmail.com',
+    password  : 'ZLN6UR4S6GQWPTW7',
+    signature : 'AFcWxV21C7fd0v3bYYYRCpSSRl31AeYpfVnZTjGV6bYHu6Q2sj1M7jKf'
 };
-
+//var cred = {
+//    username  : 'babarkhan7311-facilitator_api1.gmail.com',
+//    password  : 'ZN9KB3YVL52RBCBZ',
+//    signature : 'An5ns1Kso7MWUdW4ErQKJJJ4qi4-AfCKnPe.b93Tep4KeS7PTfMKMymQ'
+//};
 var opts = {
-    sandbox : true,
+    sandbox : false,
     version : '78.0'
 };
 app.get('/company/pricing', function(request, response, mysql){
@@ -128,7 +132,7 @@ app.post('/company/deposit', function(req, res, mysql){
         var wallet = new Wallet();
         console.log("========================================doStripeAction=================================");
 		var error= false;
-		var stripe = require("stripe")("sk_test_BQokikJOvBiI2HlWgH4olfQ2");
+		var stripe = require("stripe")("sk_live_VI4s2mvoa1rvJlyLAL5x7eVm");
                 var amount = req.body.amount;
                 var stripeToken = req.body.stripeToken;
 		var amountInCents = amount * Number(100);
