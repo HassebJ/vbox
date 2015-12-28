@@ -23,7 +23,7 @@ app = new Application.setup({
 	mysql: configs.mysql
 });
 
-app.www(true);
+
 var connectedUsers = [];
 sockets = [];
 people = [];
@@ -47,7 +47,7 @@ app.ready(function(){
 	app.use('email');
 });
 
-
+app.www(true);
 
 
 
