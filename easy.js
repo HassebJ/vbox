@@ -13,7 +13,6 @@ var paypal = require('paypal-rest-sdk');
 sys         = require("util");
 var shared_dir = "resources/chat/shared/";
 var Configs = require('./Configs.js');
-var facebook = require('./passport/facebook');
 var configs = new Configs();
 var domain = configs.domain;
 var domain_url = "http://"+domain;
