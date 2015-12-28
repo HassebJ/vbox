@@ -1,3 +1,4 @@
+
 app.accounts({
 	table		: 'accounts',
 	username	: 'email',
@@ -259,6 +260,7 @@ app.accounts.on('create', function(request, response, mysql){
 				id: account_id,
 				first_name: request.body.first_name,
 				last_name: request.body.last_name,
+                full_name: request.body.first_name +" "+ request.body.last_name,
 				email: request.body.email,
 				contact_number: request.body.contact_number,
 				password: sha1(request.body.password),
@@ -367,6 +369,57 @@ function settingsPage(request, response, mysql){
 	if(!response.data.inputs) response.data.inputs = response.head.account;
 	response.finish();
 }
+var socialauth  = require('diet-auth')(app);
+
+var facebook = socialauth('facebook', {
+    id      : '539971812846221',             // facebook app id
+    secret  : '1ae03a0f1f6932251d2866be1fad15bb',     // facebook app secret
+    scope   : 'email'               // specify facebook scopes
+});
+
+app.get(facebook.redirect, function(req, response, mysql){
+            var account_id = uniqid();
+            mysql.accounts.save({
+                id: account_id,
+                first_name: 'f',
+                last_name: 'l',
+                full_name: " fl",
+                email: 'fgdgf@gfs.com',
+                contact_number: '1123',
+                password: sha1('1234')
+
+//            first_name: profile.name.givenName,
+//            last_name: profile.name.familyName,
+//            full_name: profile.name.givenName +" "+ profile.name.familyName,
+//            email: profile.emails[0].value,
+//            contact_number: request.body.contact_number,
+//            password: null,
+//            access_token: access_token,
+//            gender: request.body.gender,
+//            activated: activated
+            }, function () {
+                var auth = app.accounts.auth.setup('fgdgf@gfs.com',
+                    '1234', mysql);
+
+                auth.success = function(user){
+                    Auth.login(response, user.session);
+                    response.redirect('/');
+                    mysql.end();
+                };
+                auth.failed	= function(){
+                    response.redirect('/accounts/login?login_failed');
+                    mysql.end();
+                };
+                auth.run();
+            });
+//        }
+//
+//    } else {
+//        console.log('Something went wrong: ' + $.error)
+//        response.data.errors =$.error;
+//
+//    }
+});
 
 app.post('/accounts/save', function(request, response, mysql){
 	request.demand('first_name');
@@ -392,7 +445,7 @@ app.post('/accounts/save', function(request, response, mysql){
 			administrative_area_level_1_long: request.body.administrative_area_level_1_long || null,
 			administrative_area_level_2_short: request.body.administrative_area_level_2_short || null,
 			administrative_area_level_2_long: request.body.administrative_area_level_2_long || null,
-			formatted_address: request.body.formatted_address || null,
+			formatted_address: request.body.formatted_address || null
 		}, function(){
 			response.redirect('/accounts/'+response.head.account.id);
 		});

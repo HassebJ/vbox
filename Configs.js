@@ -1,7 +1,7 @@
 module.exports = function Configs() {
     if (process.env.NODE_ENV === 'development'){
-        Configs.prototype.domain = '52.10.209.67';
-        Configs.prototype.port = '4040';
+        Configs.prototype.domain = 'localhost';
+        Configs.prototype.port = '80';
 
     }else{
         Configs.prototype.domain = '192.241.239.235'; //whatever is the ip of the server it is hosted on

@@ -13,15 +13,15 @@ var paypal = require('paypal-rest-sdk');
 sys         = require("util");
 var shared_dir = "resources/chat/shared/";
 var Configs = require('./Configs.js');
+var facebook = require('./passport/facebook');
 var configs = new Configs();
 var domain = configs.domain;
 var domain_url = "http://"+domain;
 app = new Application.setup({
-	domain: domain,
+	domain: configs.domain,
 	path: __dirname,
 	public: __dirname+'/resources',
-	mysql: configs.mysql,
-    port: configs.port
+	mysql: configs.mysql
 });
 var connectedUsers = [];
 sockets = [];
@@ -40,12 +40,14 @@ var rtc = easyrtc.listen(app, socketServer);
 
 
 
-
 app.ready(function(){
 	app.use('objects');
 	app.use('routes');
 	app.use('email');
 });
+
+
+
 
 
 var mysql = require('mysql');

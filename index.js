@@ -405,9 +405,10 @@ function convertDate(date){
 sys         = require("util");
 
 app = new Application.setup({
-	domain: '192.241.239.235',
+	domain: 'localhost',
 	path: __dirname,
 	public: __dirname+'/resources',
+    port:4040,
 	mysql: {
 		host: 'localhost',
 		user: 'root',
