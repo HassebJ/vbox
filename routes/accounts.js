@@ -1,3 +1,7 @@
+var request = require('request');
+var qs = require('querystring');
+
+
 
 app.accounts({
 	table		: 'accounts',
@@ -369,56 +373,179 @@ function settingsPage(request, response, mysql){
 	if(!response.data.inputs) response.data.inputs = response.head.account;
 	response.finish();
 }
-var socialauth  = require('diet-auth')(app);
+//var socialauth  = require('diet-auth')(app);
 
-var facebook = socialauth('facebook', {
-    id      : '539971812846221',             // facebook app id
-    secret  : '1ae03a0f1f6932251d2866be1fad15bb',     // facebook app secret
-    scope   : 'email'               // specify facebook scopes
+
+var service = {};
+service.id = '539971812846221';
+service.secret = '1ae03a0f1f6932251d2866be1fad15bb';
+service.app = app;
+service.response =  app.domain + 'auth/facebook/response';
+service.dialog = '/auth/facebook';
+service.redirect = '/auth/facebook/redirect';
+service.redirect_uri = 'http://'+ app.domain+service.redirect ;
+service.scopes = '&scope=email';
+
+service.access_token = function(code, callback){
+    request('https://graph.facebook.com/oauth/access_token?'
+            + 'client_id='+this.id
+            + '&redirect_uri='+this.redirect_uri
+            + '&client_secret='+this.secret
+            + '&code='+code,
+        function(error, httpResponse, body){
+            callback(error, body);
+        });
+};
+
+service.inspect_access_token = function(access_token, callback){
+    var service = this;
+    request('https://graph.facebook.com/debug_token?'
+            + 'access_token='+access_token,
+        function(error, httpResponse, body){
+            callback(error, body);
+        });
+};
+
+app.get(service.dialog, function(req, res){
+//        console.log($);
+    res.redirect('https://www.facebook.com/dialog/oauth'
+        + '?client_id='+service.id
+        + '&redirect_uri='+service.redirect_uri+service.scopes);
 });
+//var facebook = socialauth('facebook', {
+//    id      : '539971812846221',             // facebook app id
+//    secret  : '1ae03a0f1f6932251d2866be1fad15bb',     // facebook app secret
+//    scope   : 'email'               // specify facebook scopes
+//});
 
-app.get(facebook.redirect, function(req, response, mysql){
-            var account_id = uniqid();
-            mysql.accounts.save({
-                id: account_id,
-                first_name: 'f',
-                last_name: 'l',
-                full_name: " fl",
-                email: 'fgdgf@gfs.com',
-                contact_number: '1123',
-                password: sha1('1234')
+app.get(service.redirect, function(req, res, mysql){
 
-//            first_name: profile.name.givenName,
-//            last_name: profile.name.familyName,
-//            full_name: profile.name.givenName +" "+ profile.name.familyName,
-//            email: profile.emails[0].value,
-//            contact_number: request.body.contact_number,
-//            password: null,
-//            access_token: access_token,
-//            gender: request.body.gender,
-//            activated: activated
-            }, function () {
-                var auth = app.accounts.auth.setup('fgdgf@gfs.com',
-                    '1234', mysql);
+    if(req.query.code){
 
-                auth.success = function(user){
-                    Auth.login(response, user.session);
-                    response.redirect('/');
-                    mysql.end();
-                };
-                auth.failed	= function(){
-                    response.redirect('/accounts/login?login_failed');
-                    mysql.end();
-                };
-                auth.run();
-            });
-//        }
-//
-//    } else {
-//        console.log('Something went wrong: ' + $.error)
-//        response.data.errors =$.error;
-//
-//    }
+        // 3. get token
+        service.access_token(req.query.code, function(access_token_error, access_token_body){
+            var access_token = qs.parse(access_token_body).access_token;
+            console.log("access token" + access_token);
+            if(access_token){
+                request('https://graph.facebook.com/v2.0/me?fields=first_name,last_name,gender,locale,email&access_token='+access_token,
+                    function(error, http, me_body){
+                        req.error = error;
+                        if(me_body){
+                            console.log("user body" + me_body);
+//                            console.log(me_body.email);
+                            var user = JSON.parse(me_body);
+//                            console.log("json" + user.email);
+                            res.passed = true;
+                            res.data.tokens = qs.parse(access_token_body);
+                            mysql.accounts.get('email', user.email, function(rows){
+                                if(rows && rows.length) {
+//                                    res.error('email', 'already exists');
+//                                    res.data.page = 'login';
+//                                    res.data.errors = res.errors;
+//                                    res.data.scripts = [scripts.page(res)];
+//                                    res.finish();
+
+                                    var auth = app.accounts.auth.setup(user.email,
+                                        user.id, mysql);
+
+                                    auth.success = function(user){
+                                        Auth.login(res, user.session);
+                                        res.redirect('/');
+                                        mysql.end();
+                                    };
+                                    auth.failed	= function(){
+                                        res.redirect('/accounts/login?login_failed');
+                                        mysql.end();
+                                    };
+                                    auth.run();
+                                }else{
+                                        var account_id = uniqid();
+                                        mysql.accounts.save({
+                                            id: account_id,
+                                            first_name: user.first_name,
+                                            last_name: user.last_name,
+                                            full_name: user.first_name + ' '+user.last_name,
+                                            email: user.email,
+                                            gender: user.gender,
+                                            password: sha1(user.id)
+
+                            //            first_name: profile.name.givenName,
+                            //            last_name: profile.name.familyName,
+                            //            full_name: profile.name.givenName +" "+ profile.name.familyName,
+                            //            email: profile.emails[0].value,
+                            //            contact_number: request.body.contact_number,
+                            //            password: null,
+                            //            access_token: access_token,
+                            //            gender: request.body.gender,
+                            //            activated: activated
+                                        }, function () {
+                                            var auth = app.accounts.auth.setup(user.email,
+                                                user.id, mysql);
+
+                                            auth.success = function(user){
+                                                Auth.login(res, user.session);
+                                                res.redirect('/');
+                                                mysql.end();
+                                            };
+                                            auth.failed	= function(){
+                                                res.redirect('/accounts/login?login_failed');
+                                                mysql.end();
+                                            };
+                                            auth.run();
+                                        });
+                                }
+
+                            });
+//                            $.return();
+                        } else {
+                            res.passed = false;
+                            if(!error) {
+                                req.error = 'User not found.';
+                            }
+                            res.data.page = 'login';
+                            res.data.errors = req.errors;
+                            res.data.scripts = [scripts.page(res)];
+                            res.finish();
+//                            $.return();
+                        }
+                        //$.redirect(service.response+'?passed=true&'+access_token_body+'&'+qs.stringify({user:me_body}));
+                    });
+            } else {
+                res.data.page = 'login';
+                res.data.errors = JSON.parse(access_token_body);
+                res.data.scripts = [scripts.page(res)];
+                req.error = JSON.parse(access_token_body);
+                res.passed = false;
+                res.finish();
+
+//                $.return();
+                //$.redirect(service.response+'?passed=false&error='+JSON.stringify(error));
+
+            }
+        });
+    } else if (req.query.token) {
+        service.inspect_access_token(access_token, req.query.token, function(inspect_error, inspect_body){
+            if(!inspect_error){
+                res.passed = true;
+                Object.merge(res.data, qs.parse(inspect_body));
+//                response.return();
+                //$.redirect(service.response+'?passed=true&'+inspect_body);
+            } else {
+                res.passed = false;
+                res.error = qs.parse(inspect_error);
+//                $.return();
+                //$.redirect(service.response+'?passed=false&'+inspect_error);
+            }
+        });
+    } else if (red.query.error) {
+        req.passed = false;
+        res.data.page = 'login';
+        res.data.errors = JSON.parse(access_token_body);
+        res.data.scripts = [scripts.page(res)];
+        req.error = JSON.parse(access_token_body);
+        res.passed = false;
+        res.finish();
+    }
 });
 
 app.post('/accounts/save', function(request, response, mysql){
