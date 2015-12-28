@@ -23,6 +23,8 @@ app = new Application.setup({
 	public: __dirname+'/resources',
 	mysql: configs.mysql
 });
+
+app.www(true);
 var connectedUsers = [];
 sockets = [];
 people = [];
