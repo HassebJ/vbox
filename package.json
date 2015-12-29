@@ -19,6 +19,7 @@
     "express": "^4.13.3",
     "formidable": "^1.0.15",
     "git": "^0.1.5",
+    "googleapis": "^2.1.7",
     "htmltidy": "0.0.6",
     "jsdom": "^0.11.0",
     "mime": "^1.2.9",

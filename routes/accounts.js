@@ -224,13 +224,6 @@ app.accounts.on('login', function(request, response, mysql){
 	}
 });
 
-app.get('/accounts/verify/:id', function(request, response, mysql){
-    if(request.passed) {
-        mysql('UPDATE accounts SET activated = 1 WHERE id = ' + mysql.escape(request.params.id),function(){
-
-        });
-    }
-});
 
 app.accounts.on('create', function(request, response, mysql){
 	request.demand('first_name');
@@ -384,17 +377,17 @@ function settingsPage(request, response, mysql){
 //var socialauth  = require('diet-auth')(app);
 
 
-var service = {};
-service.id = '539971812846221';
-service.secret = '1ae03a0f1f6932251d2866be1fad15bb';
-service.app = app;
-service.response =  app.domain + 'auth/facebook/response';
-service.dialog = '/auth/facebook';
-service.redirect = '/auth/facebook/redirect';
-service.redirect_uri = 'http://'+ app.domain+service.redirect ;
-service.scopes = '&scope=email';
+var fbservice = {};
+fbservice.id = '539971812846221';
+fbservice.secret = '1ae03a0f1f6932251d2866be1fad15bb';
+fbservice.app = app;
+fbservice.response =  app.domain + 'auth/facebook/response';
+fbservice.dialog = '/auth/facebook';
+fbservice.redirect = '/auth/facebook/redirect';
+fbservice.redirect_uri = 'http://'+ app.domain+fbservice.redirect ;
+fbservice.scopes = '&scope=email';
 
-service.access_token = function(code, callback){
+fbservice.access_token = function(code, callback){
     request('https://graph.facebook.com/oauth/access_token?'
             + 'client_id='+this.id
             + '&redirect_uri='+this.redirect_uri
@@ -405,8 +398,8 @@ service.access_token = function(code, callback){
         });
 };
 
-service.inspect_access_token = function(access_token, callback){
-    var service = this;
+fbservice.inspect_access_token = function(access_token, callback){
+    var fbservice = this;
     request('https://graph.facebook.com/debug_token?'
             + 'access_token='+access_token,
         function(error, httpResponse, body){
@@ -414,11 +407,11 @@ service.inspect_access_token = function(access_token, callback){
         });
 };
 
-app.get(service.dialog, function(req, res){
+app.get(fbservice.dialog, function(req, res){
 //        console.log($);
     res.redirect('https://www.facebook.com/dialog/oauth'
-        + '?client_id='+service.id
-        + '&redirect_uri='+service.redirect_uri+service.scopes);
+        + '?client_id='+fbservice.id
+        + '&redirect_uri='+fbservice.redirect_uri+fbservice.scopes);
 });
 //var facebook = socialauth('facebook', {
 //    id      : '539971812846221',             // facebook app id
@@ -426,12 +419,12 @@ app.get(service.dialog, function(req, res){
 //    scope   : 'email'               // specify facebook scopes
 //});
 
-app.get(service.redirect, function(req, res, mysql){
+app.get(fbservice.redirect, function(req, res, mysql){
 
     if(req.query.code){
 
         // 3. get token
-        service.access_token(req.query.code, function(access_token_error, access_token_body){
+        fbservice.access_token(req.query.code, function(access_token_error, access_token_body){
             var access_token = qs.parse(access_token_body).access_token;
             console.log("access token" + access_token);
             if(access_token){
@@ -517,7 +510,7 @@ app.get(service.redirect, function(req, res, mysql){
                             res.finish();
 //                            $.return();
                         }
-                        //$.redirect(service.response+'?passed=true&'+access_token_body+'&'+qs.stringify({user:me_body}));
+                        //$.redirect(fbservice.response+'?passed=true&'+access_token_body+'&'+qs.stringify({user:me_body}));
                     });
             } else {
                 res.data.page = 'login';
@@ -528,25 +521,25 @@ app.get(service.redirect, function(req, res, mysql){
                 res.finish();
 
 //                $.return();
-                //$.redirect(service.response+'?passed=false&error='+JSON.stringify(error));
+                //$.redirect(fbservice.response+'?passed=false&error='+JSON.stringify(error));
 
             }
         });
     } else if (req.query.token) {
-        service.inspect_access_token(access_token, req.query.token, function(inspect_error, inspect_body){
+        fbservice.inspect_access_token(access_token, req.query.token, function(inspect_error, inspect_body){
             if(!inspect_error){
                 res.passed = true;
                 Object.merge(res.data, qs.parse(inspect_body));
 //                response.return();
-                //$.redirect(service.response+'?passed=true&'+inspect_body);
+                //$.redirect(fbservice.response+'?passed=true&'+inspect_body);
             } else {
                 res.passed = false;
                 res.error = qs.parse(inspect_error);
 //                $.return();
-                //$.redirect(service.response+'?passed=false&'+inspect_error);
+                //$.redirect(fbservice.response+'?passed=false&'+inspect_error);
             }
         });
-    } else if (red.query.error) {
+    } else if (req.query.error) {
         req.passed = false;
         res.data.page = 'login';
         res.data.errors = JSON.parse(access_token_body);
@@ -556,6 +549,7 @@ app.get(service.redirect, function(req, res, mysql){
         res.finish();
     }
 });
+
 
 app.post('/accounts/save', function(request, response, mysql){
 	request.demand('first_name');
