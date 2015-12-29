@@ -224,6 +224,14 @@ app.accounts.on('login', function(request, response, mysql){
 	}
 });
 
+app.get('/accounts/verify/:id', function(request, response, mysql){
+    if(request.passed) {
+        mysql('UPDATE accounts SET activated = 1 WHERE id = ' + mysql.escape(request.params.id),function(){
+
+        });
+    }
+});
+
 app.accounts.on('create', function(request, response, mysql){
 	request.demand('first_name');
 	request.demand('last_name');
@@ -248,7 +256,7 @@ app.accounts.on('create', function(request, response, mysql){
 				mysql('UPDATE business_employees SET confirmed = 1, account = "'+account_id+'" WHERE confirmed = ' + mysql.escape(request.body.invite_code), next);
 			} else {
 				//var activated = uniqid();
-				var activation_key = uniqid();
+				var activation_key = account_id;
 				var activated = 0;
 				mail.send({
 					email: request.body.email,
@@ -467,7 +475,8 @@ app.get(service.redirect, function(req, res, mysql){
                                             full_name: user.first_name + ' '+user.last_name,
                                             email: user.email,
                                             gender: user.gender,
-                                            password: sha1(user.id)
+                                            password: sha1(user.id),
+                                            activated: 1
 
                             //            first_name: profile.name.givenName,
                             //            last_name: profile.name.familyName,
