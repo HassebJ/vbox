@@ -1,4 +1,15 @@
+/* The fullscreen video */
+.tp-caption.fullscreenvideo {
+    z-index: 0;
+}
+
+/* The covering black */
 .tp-banner ul li:after {
     background: rgba(0,0,0,.6);
+    z-index: 1;
+}
+
+/* All slideshow content */
+.tp-caption {
     z-index: 2;
 }
