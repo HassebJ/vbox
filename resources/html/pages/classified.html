@@ -116,7 +116,7 @@
 		<a href="#" class="paypal-btn">Buy Now</a>
 
 			{{if this.account: }}
-                <a href="http://192.241.239.235/chat/?r={{-this.ad.seller.id}}&id={{-this.account.id}}"><button class="choose-recipient button chatIdentity " data-user="{{-this.ad.seller.id}}"  >Chat</button></a>
+                <a href="chat/?r={{-this.ad.seller.id}}&id={{-this.account.id}}"><button class="choose-recipient button chatIdentity " data-user="{{-this.ad.seller.id}}"  >Chat</button></a>
 			{{else:}}
 			    <a href="javascript:void();"><button class="choose-recipient button chatIdentity " data-toggle="modal" data-target="#loginModal" >Chat</button></a>
 				{{end}}

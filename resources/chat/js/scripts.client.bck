@@ -1,4 +1,4 @@
-var site_url = "http://192.241.239.235/";
+var site_url = window.location.hostname;
 var avatars_path = site_url+"uploads/profiles/original/";
 var shared_dir = "shared/";
 var id_account = false;
