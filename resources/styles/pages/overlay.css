@@ -1,0 +1,4 @@
+.tp-banner ul li:after {
+    background: rgba(0,0,0,.6);
+    z-index: 2;
+}
