@@ -13,3 +13,7 @@
 .tp-caption {
     z-index: 2;
 }
+#fill:hover{
+    background-color:#00baff;
+    color: #ffffff;
+}

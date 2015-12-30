@@ -47,13 +47,13 @@
 	background:#198CCE;
 	color:#fff;
 }
-::-webkit-scrollbar{
-	width:10px;
-	background:#f7f9f9;
-}
-::-webkit-scrollbar-thumb{
-	background:-webkit-gradient(linear,left top,right bottom,from(#198CCE),to(#198CCE));
-	background:linear-gradient(top,#F71414,#E58189);
+/*::-webkit-scrollbar{*/
+	/*width:10px;*/
+	/*background:#f7f9f9;*/
+/*}*/
+/*::-webkit-scrollbar-thumb{*/
+	/*background:-webkit-gradient(linear,left top,right bottom,from(#198CCE),to(#198CCE));*/
+	/*background:linear-gradient(top,#F71414,#E58189);*/
 }
 ::-webkit-input-placeholder{
 	-webkit-transition:text-indent .5s ease,color .5s ease;

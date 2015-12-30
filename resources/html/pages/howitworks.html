@@ -14,7 +14,11 @@
 		<img src="../../images/how3.png" alt="">
 		<p>To Post a free Classified Ad user has to register. User can simply go to Sign Up button to fill the form or if clicks on the Post Free Ad button, it will take them to the Sign In form where they can register as New User. After filling the registration form and submitting it, a verification email is sent to the provided email where user can confirm their accounts. After creating account successfully user can log in to the account and can post a Free Ad with the required particulars. Users can also manage their wall activities by sharing different things of interest such as images, links and videos. They can also follow other users or business to get the latest information and news about their favorite businesses. </p>
 
-		<p>If you are ready to register or post a Free Ad, please <a href="#">click here</a></p>
+		<p>If you are ready to register or post a Free Ad, please {{if this.account:}}
+            <a href="/">click here</a>
+            {{else:}}
+            <a href="/accounts/login">click here</a>
+            {{end}}</p>
 	</div>
 	<div class="work-box">
 		<h3>Business User</h3>

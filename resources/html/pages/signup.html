@@ -77,9 +77,22 @@
 			<div class="break short"></div>
 			
 			<!-- actions -->
-			<div id="signup-actions">
-				<button type="submit" class="accept">create account</button>
-			</div>
+        <div id="signup-actions">
+            <button type="submit" class="col-lg-12">Sign Up</button>
+            <!--a href="/">Are you a business?</a-->
+        </div>
+        <br>
+
+        <div class="input-holder signsocial">
+            <button type="button" class="col-lg-5" onclick="window.location.href='/auth/facebook';" style="height:50px; background: url(../../images/signface.png)"></button>
+            <!--<a href="auth/facebook" class="col-lg-5"><img src="../../images/signface.png" alt=""></a>-->
+            <span class="col-lg-2"></span>
+            <button type="button" class="col-lg-5" onclick="window.location.href='/auth/google';" style="height:50px; background: url(../../images/signgoogle.png)"></button>
+            <!--<a href="auth/google" class="col-lg-5"><img src="../../images/signgoogle.png" alt=""></a>-->
+        </div>
+        <br>
+        <br>
+        <br>
 		{{-@end}}
 	</div>
 </div>
