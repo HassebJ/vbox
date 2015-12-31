@@ -440,10 +440,10 @@ app.get(fbservice.redirect, function(req, res, mysql){
                             res.data.tokens = qs.parse(access_token_body);
                             mysql.accounts.get('email', user.email, function(rows){
                                 if(rows && rows.length) {
-                                    if(rows[0].is_social == 1){
-                                        res.error('email', 'already exists');
+                                    if(rows[0].is_social !== 1){
+                                        req.error('email', 'already exists');
                                         res.data.page = 'login';
-                                        res.data.errors = res.errors;
+                                        res.data.errors = req.errors;
                                         res.data.scripts = [scripts.page(res)];
                                         res.finish();
 

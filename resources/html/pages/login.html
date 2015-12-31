@@ -16,7 +16,7 @@
 			</div>
 			<script>document.getElementById('login_email').focus()</script>
 			{{if this.query.error or (objectLength this.errors):}}
-				<div class="error" style="display: none;">Email or pasword is incorrect.</div>
+				<div class="error" style="display: none;">Email or password is incorrect OR email already exists.</div>
 			{{end}}
 			
 			<a href="/accounts/forgotPassword">Forgot Password</a>

@@ -49,16 +49,17 @@ app.get(gpservice.redirect, function(req, res, mysql){
                     console.log("data:" + me_body);
                     var user = me_body;
                     console.log("email:" + user.emails[0].value);
-                    res.data.user = user;
-                    res.passed = true;
-                    res.data.tokens = tokens;
+//                    res.data.user = user;
+//                    res.passed = true;
+//                    res.data.tokens = tokens;
                     mysql.accounts.get('email', user.emails[0].value, function(rows){
                         if(rows && rows.length) {
 
-                            if(rows[0].is_social == 1){
-                                    res.error('email', 'already exists');
-                                    res.data.page = 'login';
-                                    res.data.errors = res.errors;
+                            if(rows[0].is_social !== 1){
+                                    req.error('email', 'already exists');
+//                                req.error = 'User not found.';
+                                res.data.page = 'login';
+                                    res.data.errors = req.errors;
                                     res.data.scripts = [scripts.page(res)];
                                     res.finish();
 
@@ -114,6 +115,10 @@ app.get(gpservice.redirect, function(req, res, mysql){
                 } else {
                     res.passed = false;
                     res.error = profileError;
+                    res.data.page = 'login';
+                    res.data.errors = res.errors;
+                    res.data.scripts = [scripts.page(res)];
+                    res.finish();
 //                        $.return();
                 }
             });
@@ -122,6 +127,10 @@ app.get(gpservice.redirect, function(req, res, mysql){
 
             res.passed = false;
             res.error = token_error;
+            res.data.page = 'login';
+            res.data.errors = res.errors;
+            res.data.scripts = [scripts.page(res)];
+            res.finish();
 //                res.return();
         }
     });
