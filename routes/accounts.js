@@ -440,13 +440,16 @@ app.get(fbservice.redirect, function(req, res, mysql){
                             res.data.tokens = qs.parse(access_token_body);
                             mysql.accounts.get('email', user.email, function(rows){
                                 if(rows && rows.length) {
-//                                    res.error('email', 'already exists');
-//                                    res.data.page = 'login';
-//                                    res.data.errors = res.errors;
-//                                    res.data.scripts = [scripts.page(res)];
-//                                    res.finish();
+                                    if(rows[0].is_social == 1){
+                                        res.error('email', 'already exists');
+                                        res.data.page = 'login';
+                                        res.data.errors = res.errors;
+                                        res.data.scripts = [scripts.page(res)];
+                                        res.finish();
 
-                                    var auth = app.accounts.auth.setup(user.email,
+                                }else{
+
+                                    var auth = app.accounts.auth.setup(user.emails[0].value,
                                         user.id, mysql);
 
                                     auth.success = function(user){
@@ -459,6 +462,7 @@ app.get(fbservice.redirect, function(req, res, mysql){
                                         mysql.end();
                                     };
                                     auth.run();
+                                }
                                 }else{
                                         var account_id = uniqid();
                                         mysql.accounts.save({
@@ -469,7 +473,8 @@ app.get(fbservice.redirect, function(req, res, mysql){
                                             email: user.email,
                                             gender: user.gender,
                                             password: sha1(user.id),
-                                            activated: 1
+                                            activated: 1,
+                                            is_social:1
 
                             //            first_name: profile.name.givenName,
                             //            last_name: profile.name.familyName,

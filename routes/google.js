@@ -54,25 +54,31 @@ app.get(gpservice.redirect, function(req, res, mysql){
                     res.data.tokens = tokens;
                     mysql.accounts.get('email', user.emails[0].value, function(rows){
                         if(rows && rows.length) {
-//                                    res.error('email', 'already exists');
-//                                    res.data.page = 'login';
-//                                    res.data.errors = res.errors;
-//                                    res.data.scripts = [scripts.page(res)];
-//                                    res.finish();
 
-                            var auth = app.accounts.auth.setup(user.emails[0].value,
-                                user.id, mysql);
+                            if(rows[0].is_social == 1){
+                                    res.error('email', 'already exists');
+                                    res.data.page = 'login';
+                                    res.data.errors = res.errors;
+                                    res.data.scripts = [scripts.page(res)];
+                                    res.finish();
 
-                            auth.success = function(user){
-                                Auth.login(res, user.session);
-                                res.redirect('/');
-                                mysql.end();
-                            };
-                            auth.failed	= function(){
-                                res.redirect('/accounts/login?login_failed');
-                                mysql.end();
-                            };
-                            auth.run();
+                            }else{
+
+                                var auth = app.accounts.auth.setup(user.emails[0].value,
+                                    user.id, mysql);
+
+                                auth.success = function(user){
+                                    Auth.login(res, user.session);
+                                    res.redirect('/');
+                                    mysql.end();
+                                };
+                                auth.failed	= function(){
+                                    res.redirect('/accounts/login?login_failed');
+                                    mysql.end();
+                                };
+                                auth.run();
+                            }
+
                         }else{
                             var account_id = uniqid();
                             mysql.accounts.save({
@@ -83,7 +89,8 @@ app.get(gpservice.redirect, function(req, res, mysql){
                                 email: user.emails[0].value,
                                 gender: user.gender,
                                 password: sha1(user.id),
-                                activated: 1
+                                activated: 1,
+                                is_social:1
                             }, function () {
 
                                 var auth = app.accounts.auth.setup(user.emails[0].value,
