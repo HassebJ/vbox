@@ -56,7 +56,7 @@ app.get(gpservice.redirect, function(req, res, mysql){
                         if(rows && rows.length) {
 
                             if(rows[0].is_social !== 1){
-                                    req.error('email', 'already exists');
+                                req.error = 'email already exists';
 //                                req.error = 'User not found.';
                                 res.data.page = 'login';
                                     res.data.errors = req.errors;

@@ -380,6 +380,10 @@ function settingsPage(request, response, mysql){
 var fbservice = {};
 fbservice.id = '539971812846221';
 fbservice.secret = '1ae03a0f1f6932251d2866be1fad15bb';
+
+//test app
+//fbservice.id = '541870319323037';
+//fbservice.secret = '560c3837ec5f8165bfd7a1e782b51ffe';
 fbservice.app = app;
 fbservice.response =  app.domain + 'auth/facebook/response';
 fbservice.dialog = '/auth/facebook';
@@ -441,7 +445,7 @@ app.get(fbservice.redirect, function(req, res, mysql){
                             mysql.accounts.get('email', user.email, function(rows){
                                 if(rows && rows.length) {
                                     if(rows[0].is_social !== 1){
-                                        req.error('email', 'already exists');
+                                        req.error = 'email already exists';
                                         res.data.page = 'login';
                                         res.data.errors = req.errors;
                                         res.data.scripts = [scripts.page(res)];
@@ -449,7 +453,7 @@ app.get(fbservice.redirect, function(req, res, mysql){
 
                                 }else{
 
-                                    var auth = app.accounts.auth.setup(user.emails[0].value,
+                                    var auth = app.accounts.auth.setup(user.email,
                                         user.id, mysql);
 
                                     auth.success = function(user){
