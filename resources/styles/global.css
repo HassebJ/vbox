@@ -149,7 +149,7 @@ a:active{
 input[type="text"], input[type="password"], input[type="email"], textarea{
 	background: #fff;
 	border: 1px solid #FFF;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+	/*box-shadow: 0 1px 2px rgba(0,0,0,0.3);*/
 	border-radius: 0px;
 	outline: none;
 	padding: 7px 13px;
@@ -1238,7 +1238,7 @@ body.contact #header .wrap{ max-width:1140px !important;}
   color: #fff;
   display: block;
   width: 100%;
-  padding: 10px !important;
+  padding: 6px !important;
   font-size: 24px !important;
   box-shadow: none !important;
   border: none !important;
@@ -1272,7 +1272,7 @@ body.contact #header .wrap{ max-width:1140px !important;}
   line-height: 40px;
   color: #898989;
   font-weight: 600;
-  font-size: 22px;
+  font-size: 18px;
 }
 .line60 {
   line-height: 60px !important;
@@ -1296,7 +1296,8 @@ body.contact #header .wrap{ max-width:1140px !important;}
   padding-left: 0 !important;
 }
 .pay-head {
-  font-size: 50px;
+  font-size: 40px;
+    font-weight: 800;
   text-align: center;
   margin-bottom: 25px;
   padding-top: 40px;
@@ -1359,6 +1360,6 @@ body.contact #header .wrap{ max-width:1140px !important;}
   background-image :         linear-gradient(rgb(0,230,255),rgb(0,185,255));
 }
 #pay-pal, #str-ipe {
-  font-size: 24px;
+  font-size: 17px;
   display: inline-block;
 }

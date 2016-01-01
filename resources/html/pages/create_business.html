@@ -1,16 +1,24 @@
 <div class="center">
 	<div class="center-in">
 		{{-@post '/businesses/create', enctype:'multipart/form-data' }}
-			<h1>Create Business</h1>
+        <div>
+            <!--<span class="col-lg-1"></span>-->
+
+            <h1><img src="/assets/briefcase.png" width="40px" height="40px" style="padding-bottom: 8px">  &nbsp&nbsp    Create Business</h1>
+
+        </div>
+			<!--<h1>Create Business</h1>-->
 			<!--<div class="break"></div>-->
         <br>
-        <br>
+        <br><br>
+
 			<fieldset>	
 				<h3>Name</h3>
 				{{-this.input 'Write a short title', 'name', 'text'}}
 			</fieldset>
 			<fieldset>	
 				<h3>Description</h3>
+
 				{{-this.textarea 'Describe breiefly what are you offering', 'description'}}
 			</fieldset>
 			<fieldset>	

@@ -54,8 +54,16 @@ body{ background:#f2f1ef !Important;}
 }
 
 #content.classifieds_place form{
-	max-width: 500px; background:rgba(0, 0, 0, 0.1);
-	margin: 0 auto; border:1px solid #bababa; padding:20px 35px;
+	max-width: 500px;
+    /*background:rgba(0, 0, 0, 0.1);*/
+	margin: 0 auto;
+    /*border:1px solid #bababa; */
+    padding:20px 35px;
+}
+input[type="radio"] {
+    -webkit-appearance: checkbox !important; /* Chrome, Safari, Opera */
+    -moz-appearance: checkbox !important;    /* Firefox */
+    -ms-appearance: checkbox !important;     /* not currently supported */
 }
 
 #content.classifieds_place form input[type="text"], 
