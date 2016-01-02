@@ -390,7 +390,7 @@ input {
 #header.inner-header .right .link{  color:#7b7b7b; font-family: "Flaticon"; margin:0; padding:22px 20px 22px; border-right:1px solid #d6d6d6;}
 #header.inner-header .right .link:hover{ color: #00baff;}
 #header .right .signup{ margin-left:34px;
-    /*border:2px solid #00baff !important; */
+    border:2px solid #00baff !important;
     margin:15px 0 0 20px !important; line-height:20px; border-radius:2px; padding:4px 20px 8px !important;}
 #header.inner-header img.white{ display:none;}
 #header.home-header img.gray{ display:none;}
