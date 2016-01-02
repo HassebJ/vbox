@@ -151,7 +151,7 @@ input[type="text"], input[type="password"], input[type="email"], textarea{
 	border: 1px solid #FFF;
 	/*box-shadow: 0 1px 2px rgba(0,0,0,0.3);*/
 	border-radius: 0px;
-	outline: none;
+	/*outline: none;*/
 	padding: 7px 13px;
 	font-size: 15px;
 	font-family: Lato, Lucida Grande, Tahoma;
@@ -159,7 +159,9 @@ input[type="text"], input[type="password"], input[type="email"], textarea{
 	box-sizing: border-box;
 }
 
-#signup input[type="text"], #signup input[type="password"], #signup input[type="email"]{ border:none; border-left:6px solid #29b6f6;}
+#signup input[type="text"], #signup input[type="password"], #signup input[type="email"]{ border:none;
+    /*border-left:6px solid #29b6f6;*/
+}
 
 input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus{
 	box-shadow:0 0 3px #4cd3ff;
@@ -167,6 +169,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 	background: #FFF;
 	position: relative;
 	z-index: 1;
+    outline: #4cd3ff !important;
 }
 
 input:disabled, textarea:disabled{
@@ -226,13 +229,19 @@ label{
 .modal-header button.close{ color:#333 !Important;}
 
 .button:hover, button:hover, input[type="submit"]:hover{
+    background: #00baff !important;
 	box-shadow: 0 1px 0 rgba(0,0,0,0.1), inset 0 -2px rgba(0,0,0,0.2), inset 0 0 0 100px rgba(255,255,255,0.2);
 	color: #FFF;
 	text-decoration: none;
 }
 .button:active, button:active, input[type="submit"]:active{
+    background: #00baff !important;
 	box-shadow: 0 1px 0 rgba(0,0,0,0.1), inset 0 -2px rgba(0,0,0,0.2), inset 0 0 0 100px rgba(0,0,0,0.2);
 	color: #FFF;
+}
+
+input {
+    outline:#00baff !important;
 }
 
 .button.green, button.green, input[type="submit"].green{ background: #12a851; }
@@ -380,7 +389,9 @@ label{
 #header.inner-header .link{ padding:18px 20px 19px; color:#7b7b7b; border-left:1px solid #d6d6d6; }
 #header.inner-header .right .link{  color:#7b7b7b; font-family: "Flaticon"; margin:0; padding:22px 20px 22px; border-right:1px solid #d6d6d6;}
 #header.inner-header .right .link:hover{ color: #00baff;}
-#header .right .signup{ margin-left:34px; border:2px solid #00baff !important; margin:15px 0 0 20px !important; line-height:20px; border-radius:2px; padding:4px 20px 8px !important;}
+#header .right .signup{ margin-left:34px;
+    /*border:2px solid #00baff !important; */
+    margin:15px 0 0 20px !important; line-height:20px; border-radius:2px; padding:4px 20px 8px !important;}
 #header.inner-header img.white{ display:none;}
 #header.home-header img.gray{ display:none;}
 
@@ -1137,7 +1148,9 @@ body.contact #header .wrap{ max-width:1140px !important;}
 #content.invitation h1{ color: #00baff; font-size: 41px; font-weight: 400;} 
 #content.invitation p{  clear: both; color: #a5a5a5; font-size: 20px; font-weight: bold; line-height: 26px;
     margin: 0;}
-#content.invitation input[type="email"]{ background:#F1F1F1; margin:15px 0; height:40px; padding:5px 10px; border:none; border-left:5px solid #00BAFF; width:350px;}
+#content.invitation input[type="email"]{ background:#F1F1F1; margin:15px 0; height:40px; padding:5px 10px; border:none;
+    /*border-left:5px solid #00BAFF;*/
+    width:350px;}
 #content.invitation input[type="submit"]{ background:#00baff; display:inline-block; float:none; padding:5px 20px; border:none; font-size:15px; height:40px;}
 
 
@@ -1208,7 +1221,8 @@ body.contact #header .wrap{ max-width:1140px !important;}
 
 .dropdown-opener .dropdown-toggle{ display:inline-block; background:url(../images/dropqrrow.png) no-repeat right 27px; background-size:12px auto; padding:0 20px 0 0;}
 
-.dropdown-opener .dropdown-menu:after{ position:absolute; content:""; top:-9px; left:19px; border-bottom:10px solid #fff; border-left:9px solid rgba(0,0,0,0); border-right:9px solid rgba(0,0,0,0);}
+.dropdown-opener .dropdown-menu:after{ position:absolute; content:""; top:-9px; left:19px; border-bottom:10px solid #fff;
+    border-left:9px solid rgba(0,0,0,0); border-right:9px solid rgba(0,0,0,0);}
 .dropdown-menu{ left:7px; min-width:100%; max-height: 550px; overflow: auto;}
 .dropdown-menu .businesses a{ padding:0; display:inline-block; width:100%}
 
@@ -1260,10 +1274,10 @@ body.contact #header .wrap{ max-width:1140px !important;}
   color: #555;
   background-color: #fff;
   background-image: none;
-  border: 1px solid #ccc !important;
-  border-radius: 4px !important;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075) !important;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075) !important;
+  /*border: 1px solid #ccc !important;*/
+  /*border-radius: 4px !important;*/
+  /*-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075) !important;*/
+  /*box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075) !important;*/
   -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
