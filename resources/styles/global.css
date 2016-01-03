@@ -166,7 +166,7 @@ input[type="text"], input[type="password"], input[type="email"], textarea{
 }
 
 input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus{
-	box-shadow:0 0 3px #4cd3ff;
+	/*box-shadow:0 0 3px #4cd3ff;*/
 	border:1px solid #4cd3ff;
 	background: #FFF;
 	position: relative;
