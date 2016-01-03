@@ -157,6 +157,8 @@ input[type="text"], input[type="password"], input[type="email"], textarea{
 	font-family: Lato, Lucida Grande, Tahoma;
 	-webkit-transition: box-shadow 30ms ease-in-out;
 	box-sizing: border-box;
+    border-radius: 4px !important;
+    border: 2px solid #ccc !important;
 }
 
 #signup input[type="text"], #signup input[type="password"], #signup input[type="email"]{ border:none;
