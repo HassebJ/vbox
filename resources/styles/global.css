@@ -1057,8 +1057,12 @@ input {
 .about-list li:last-child{ margin-right:0;}
 .about-list li a{ display:block; padding:17px 15% 0; color:#00baff; min-height:165px;}
 .about-list li span{ display:block; font-size:17px; line-height:23px; padding:20px 0 0;}
-.main-contactsec { float:left; width:100%; border:2px solid #dedede; }
-.main-contactsec .whitebox{ padding:60px 2% 20px 5%; width:100%; background:#fff;}
+.main-contactsec { float:left; width:100%;
+    /*border:2px solid #dedede; */
+}
+.main-contactsec .whitebox{ padding:60px 2% 20px 5%; width:100%;
+    /*background:#fff;*/
+}
 .main-contactsec .row{ margin:0; padding:20px 3%;}
 .main-contactsec h4{ padding:0 0 5px; color: #333;}
 .main-contactsec .social-sec{ margin:25px 0 0;}
