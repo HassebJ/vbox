@@ -4,7 +4,7 @@ module.exports = function Configs() {
         Configs.prototype.port = '80';
 
     }else{
-        Configs.prototype.domain = 'www.veebox.io'; //whatever is the ip of the server it is hosted on
+        Configs.prototype.domain = '192.241.239.235'; //whatever is the ip of the server it is hosted on
         Configs.prototype.port = '80';
     }
 
