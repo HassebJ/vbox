@@ -156,7 +156,7 @@ $( document ).ready(function() {
 							</h1>
 							<div id="toggle-example" class="collapse">
                                 <div class="form-group filter">
-                                    <label class="control-label col-xs-12 col-md-3 col-lg-2 col-sm-3" style="padding-left: 14px !important">Type</label><div class="col-md-9 col-lg-10 col-sm-9">{{-this.select placeholder:' Classified Type', name:'classified_type', options:[[1, 'Private Classified'], [2, 'Business Classified']] }}</div>
+                                    <label class="control-label col-xs-12 col-md-3 col-lg-2 col-sm-3" style="padding-left: 14px !important">Type</label><div class="col-md-9 col-lg-10 col-sm-9">{{-this.select placeholder:' Classified Type', name:'classified_type', options:[[1, 'Business Classified'], [2, 'Private Classified']] }}</div>
                                 </div>
                                 <div class="form-group filter">
                                     <label class="control-label col-xs-12 col-md-3 col-lg-2 col-sm-3" style="padding-left: 14px !important">Age</label><div class="col-md-9 col-lg-10 col-sm-9">{{-this.select placeholder:' Age of Classified', name:'age', options:[[1, 'One Day'], [2, 'One Week'], [3, 'One Month'], [4, 'All Old']] }}</div>
@@ -613,8 +613,8 @@ $( document ).ready(function() {
 $('#slider').slider({
     range: true,
     min: 0,
-    max: 1000000,
-    values: [ 0, 1000000 ],
+    max: 100000000,
+    values: [ 0, 100000000 ],
     slide: function(event, ui) {
         
         $('.ui-slider-handle:eq(0) .price-range-min').html('$' + ui.values[ 0 ]);

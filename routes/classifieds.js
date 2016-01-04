@@ -153,6 +153,24 @@ app.get('/classifieds', function(request, response, mysql){
             checkWhere = true;
             }
 		}
+        if(query.classified_type) {
+            var type = query.classified_type;
+            if (type === '1') {//day
+                if (firstAnd == 1) WHERE += ' AND ';
+                WHERE += "seller_type <= '" + (type) + "'";
+                firstAnd = 1;
+                checkWhere = true;
+            } else if (age === '2') {//week
+                if (firstAnd == 1) WHERE += ' AND ';
+                var diff = 7 * 24 * 60 * 60 * 1000;
+                age = new Date(new Date(Date.now().getTime()) + diff).getTime();
+                WHERE += "time_created <= '" + (age) + "'";
+                firstAnd = 1;
+                checkWhere = true;
+            }
+        }
+
+
         if(query.age){
             var age = query.age;
             if(age ==='1') {//day
