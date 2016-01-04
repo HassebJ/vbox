@@ -9,8 +9,9 @@ app.get('/classifieds', function(request, response, mysql){
 	// Construct Input Data
 	var query = request.query;
 
-	
+//    query.distance = 100000000;
 	console.log(query);
+
 		var i = 1;
 		var customQuery = '';
 		var check = false;

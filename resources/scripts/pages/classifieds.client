@@ -145,7 +145,7 @@ function geocoder(lat,lng){
 		map.setZoom(14);
 	}
 			if(lat==1)
-		map.setZoom(1);
+		map.setZoom(10);
 function filterAds(map){
 console.log("mapis");
 console.log(map);

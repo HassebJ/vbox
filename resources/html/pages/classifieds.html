@@ -105,8 +105,8 @@ $( document ).ready(function() {
 						
 						{{-this.input 'price', 'Price', 'hidden'}}
 						{{-this.input 'priceEndText', 'PriceEndText', 'hidden'}}
-						<!--{{-this.input 'distance', 'Distance', 'hidden'}}-->
-						<!--{{-this.input 'distanceEndText', 'DistanceEndText', 'hidden'}}-->
+						{{-this.input 'distance', 'Distance', 'hidden'}}
+						{{-this.input 'distanceEndText', 'DistanceEndText', 'hidden'}}
 						</div>
 					</div>
 					
@@ -642,8 +642,8 @@ $('#slider').slider({
 $('#distance').slider({
     range: true,
     min: 0,
-    max: 10000,
-    values: [ 0, 10000 ],
+    max: 100,
+    values: [ 0, 100 ],
     slide: function(event, ui) {
         
         $('.ui-slider-handle:eq(0) .price-range-min').html('$' + ui.values[ 0 ]);
