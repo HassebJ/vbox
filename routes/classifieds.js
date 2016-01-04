@@ -153,6 +153,38 @@ app.get('/classifieds', function(request, response, mysql){
             checkWhere = true;
             }
 		}
+        if(query.age){
+            var age = query.age;
+            if(age ==='1') {//day
+                if (firstAnd==1) WHERE += ' AND ';
+                var diff = 24 * 60 * 60 * 1000;
+                age = new Date(new Date(Date.now().getTime()) + diff).getTime();
+                WHERE += "time_created <= '" + (age)+"'";
+                firstAnd = 1;
+                checkWhere = true;
+            }else if(age ==='2') {//week
+                if (firstAnd==1) WHERE += ' AND ';
+                var diff = 7 * 24 * 60 * 60 * 1000;
+                age = new Date(new Date(Date.now().getTime()) + diff).getTime();
+                WHERE += "time_created <= '" + (age)+"'";
+                firstAnd = 1;
+                checkWhere = true;
+            }else if(age ==='3') {//month
+                if (firstAnd==1) WHERE += ' AND ';
+                var diff = 30 * 24 * 60 * 60 * 1000;
+                age = new Date(new Date(Date.now().getTime()) + diff).getTime();
+                WHERE += "time_created <= '" + (age)+"'";
+                firstAnd = 1;
+                checkWhere = true;
+            }else if(age ==='4') {
+                if (firstAnd==1) WHERE += ' AND ';
+                var diff =  40 *12 *30 * 24 * 60 * 60 * 1000;
+                age = new Date(new Date(Date.now().getTime()) + diff).getTime();
+                WHERE += "time_created <= '" + (age)+"'";
+                firstAnd = 1;
+                checkWhere = true;
+            }
+        }
 		/*if(query.administrative_area_level_2_short){
 			if(query.administrative_area_level_2_short && query.administrative_area_level_2_short!="") {
                 if (firstAnd==1) WHERE += ' AND ';
