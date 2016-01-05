@@ -1,4 +1,23 @@
-// GET classifieds 
+// GET classifieds
+/**
+ * You first need to create a formatting function to pad numbers to two digits…
+ **/
+function twoDigits(d) {
+    if(0 <= d && d < 10) return "0" + d.toString();
+    if(-10 < d && d < 0) return "-0" + (-1*d).toString();
+    return d.toString();
+}
+
+/**
+ * …and then create the method to output the date string as desired.
+ * Some people hate using prototypes this way, but if you are going
+ * to apply this to more than one Date object, having it as a prototype
+ * makes sense.
+ **/
+Date.prototype.toMysqlFormat = function() {
+    return this.getUTCFullYear() + "-" + twoDigits(1 + this.getUTCMonth()) + "-" + twoDigits(this.getUTCDate()) + " " + twoDigits(this.getUTCHours()) + ":" + twoDigits(this.getUTCMinutes()) + ":" + twoDigits(this.getUTCSeconds());
+};
+
 app.get('/classifieds', function(request, response, mysql){
 	// Construct Meta & Resources
 	response.data.page = 'classifieds';
@@ -19,7 +38,7 @@ app.get('/classifieds', function(request, response, mysql){
 		for(var x in query){
 			if(x=='category' || i>1){
 				var res = x.replace(/@/g,'')
-				if(res=='category' || res=='trade_type'){
+				if(res=='category' || res=='trade_type' || res=='age' || res=='classified_type'){
 					
 				}else{
 					if(query[x]!=''){
@@ -161,11 +180,9 @@ app.get('/classifieds', function(request, response, mysql){
                 WHERE += "seller_type <= '" + (type) + "'";
                 firstAnd = 1;
                 checkWhere = true;
-            } else if (age === '2') {//week
+            } else {//week
                 if (firstAnd == 1) WHERE += ' AND ';
-                var diff = 7 * 24 * 60 * 60 * 1000;
-                age = new Date(new Date(Date.now().getTime()) + diff).getTime();
-                WHERE += "time_created <= '" + (age) + "'";
+                WHERE += "seller_type <= '" + (type) + "'";
                 firstAnd = 1;
                 checkWhere = true;
             }
@@ -177,29 +194,41 @@ app.get('/classifieds', function(request, response, mysql){
             if(age ==='1') {//day
                 if (firstAnd==1) WHERE += ' AND ';
                 var diff = 24 * 60 * 60 * 1000;
-                age = new Date(new Date(Date.now().getTime()) + diff).getTime();
-                WHERE += "time_created <= '" + (age)+"'";
+                console.log("current date: " + Date.now().toISOString());
+                age = new Date(new Date(Date.now()).getTime() - diff);
+                console.log("date day after: " + age);
+                age = new Date(age).toISOString().slice(0, 19).replace('T', ' ');
+                WHERE += "time_created >= '" + (age)+"'";
                 firstAnd = 1;
                 checkWhere = true;
             }else if(age ==='2') {//week
                 if (firstAnd==1) WHERE += ' AND ';
                 var diff = 7 * 24 * 60 * 60 * 1000;
-                age = new Date(new Date(Date.now().getTime()) + diff).getTime();
-                WHERE += "time_created <= '" + (age)+"'";
+                console.log("current date: " + Date.now().toISOString());
+                age = new Date(new Date(Date.now()).getTime() - diff);
+                console.log("date day after: " + age);
+                age = new Date(age).toISOString().slice(0, 19).replace('T', ' ');
+                WHERE += "time_created >= '" + (age)+"'";
                 firstAnd = 1;
                 checkWhere = true;
             }else if(age ==='3') {//month
                 if (firstAnd==1) WHERE += ' AND ';
                 var diff = 30 * 24 * 60 * 60 * 1000;
-                age = new Date(new Date(Date.now().getTime()) + diff).getTime();
-                WHERE += "time_created <= '" + (age)+"'";
+                console.log("current date: " + Date.now().toISOString());
+                age = new Date(new Date(Date.now()).getTime() - diff);
+                console.log("date day after: " + age);
+                age = new Date(age).toISOString().slice(0, 19).replace('T', ' ');
+                WHERE += "time_created >= '" + (age)+"'";
                 firstAnd = 1;
                 checkWhere = true;
             }else if(age ==='4') {
                 if (firstAnd==1) WHERE += ' AND ';
                 var diff =  40 *12 *30 * 24 * 60 * 60 * 1000;
-                age = new Date(new Date(Date.now().getTime()) + diff).getTime();
-                WHERE += "time_created <= '" + (age)+"'";
+                console.log("current date: " + Date.now().toISOString());
+                age = new Date(new Date(Date.now()).getTime() - diff);
+                console.log("date day after: " + age);
+                age = new Date(age).toISOString().slice(0, 19).replace('T', ' ');
+                WHERE += "time_created >= '" + (age)+"'";
                 firstAnd = 1;
                 checkWhere = true;
             }
@@ -913,7 +942,7 @@ function Ad(request, response){
 		show_phone: request.body.show_phone ? 1 : 0,
 
 		// time created
-		time_created: new Date().getTime(),
+		time_created: new Date()
 		
 	};
 
@@ -930,8 +959,8 @@ function Ad(request, response){
 	ad.seller_type = response.head.account.business ? 1 : 0 ;
 	ad.seller = ad.seller_type 
 		? response.head.account.business.id : response.head.account.id ;
-	ad.agent = ad.seller_type 
-		? request.body.contact_details : response.head.account.id ; 
+//	ad.agent = ad.seller_type
+//		? request.body.contact_details : response.head.account.id ;
 	
 	// Fields
 	var fields = [];
