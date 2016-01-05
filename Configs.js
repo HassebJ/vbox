@@ -1,6 +1,6 @@
 module.exports = function Configs() {
     if (process.env.NODE_ENV === 'development'){
-        Configs.prototype.domain = 'devbox.example.com';
+        Configs.prototype.domain = 'devbox.example.com:4040';
         Configs.prototype.port = '80';
 
     }else{
