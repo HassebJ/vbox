@@ -546,6 +546,7 @@ app.get('/classifieds/place', function(request, response, mysql){
 
 // POST /classifieds/place
 app.post.simple('/classifieds/place', function(request, response){
+    consol.log(request);
 	app.upload('/uploads/pictures/original', request, response, function(mysql){
 		// Demands
 		request.demand('title');

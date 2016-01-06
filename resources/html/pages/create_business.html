@@ -1,6 +1,6 @@
 <div class="center">
 	<div class="center-in">
-		{{-@post '/businesses/create', enctype:'multipart/form-data' }}
+		{{-@post '/businesses/create',id: 'dropform', enctype:'multipart/form-data' }}
         <div>
             <!--<span class="col-lg-1"></span>-->
 
@@ -12,27 +12,27 @@
         <br>
         <br><br>
 
-			<fieldset>	
+			<fieldset>
 				<h3>Name</h3>
 				{{-this.input 'Write a short title', 'name', 'text'}}
 			</fieldset>
-			<fieldset>	
+			<fieldset>
 				<h3>Description</h3>
 
 				{{-this.textarea 'Describe breiefly what are you offering', 'description'}}
 			</fieldset>
-			<fieldset>	
+			<fieldset>
 				<h3>Vbox Address</h3>
 				{{-this.input 'Enter an Email for your Business', 'address', 'text'}}
 				<!--small class="address-example">ex: http://livevbox.com/<b>your_business_name</b></small-->
 			</fieldset>
-			
+
 			<fieldset class="input-holder select">
 				<h3><label for="category">Choose Category</label></h3>
 				{{-this.select placeholder:'Choose Category', name:'category', options:this.categories }}
 			</fieldset>
-			
-			<fieldset>	
+
+			<fieldset>
 				<h3>Contact</h3>
 				<!-- location -->
 				<div id="location_holder" >
@@ -59,17 +59,21 @@
 				{{-this.input 'Contact Number', 'contact_number', 'text'}}
 				{{-this.input 'Contact Email', 'contact_email', 'text'}}
 			</fieldset>
-			<fieldset>	
+			<fieldset>
 				<h3>Website</h3>
 				{{-this.input 'http://example.com/', 'website', 'text'}}
 			</fieldset>
-			
-			<fieldset>
-				<label for="avatar"><h3>Business Logo <small>(300x300px, png, jpg or gif)</small></h3></label>
-				<div class="inputfile_box">{{-this.input 'Avatar', 'avatar', 'file'}} <strong>Click here <br>OR <br>Drag and drop files</strong></div>
-			</fieldset>
-			
-			<button type="submit">Create Business</button>
+
+			<!--<fieldset>-->
+				<!--<label for="avatar"><h3>Business Logo <small>(300x300px, png, jpg or gif)</small></h3></label>-->
+                <!--<div class="inputfile_box" id="dropzonePreview">{{-this.input 'Avatar', 'avatar', 'file'}} <strong>Click here <br>OR <br>Drag and drop files</strong></div>-->
+			<!--</fieldset>-->
+        <fieldset>
+            <h3 style="margin-bottom:8px;">Upload Pictures</h3>
+            <div class="inputfile_box" id="dropzonePreview">{{-this.input 'Avatar', 'avatar', 'file'}} <strong>Click here <br>OR <br>Drag and drop files</strong></div>
+        </fieldset>
+
+			<button id="submit" type="submit">Create Business</button>
 		{{-@end}}
 	</div>
 </div>

@@ -21,7 +21,7 @@ app = new Application.setup({
 	path: __dirname,
 	public: __dirname+'/resources',
 	mysql: configs.mysql,
-    port: '4040'
+    port: configs.port
 });
 
 

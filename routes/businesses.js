@@ -341,7 +341,7 @@ app.get('/businesses/create', function(request, response, mysql){
 	if(response.head.account.id){
 		response.data.page = 'create_business';
 		response.data.title = 'VBOX - Create a Business';	
-		response.data.scripts = [scripts.maps, scripts.geo, scripts.selectize, scripts.page(response)];
+		response.data.scripts = [scripts.jquery, scripts.jelq, scripts.selectize, scripts.dropzone, scripts.accounting, scripts.maps, scripts.geo, scripts.page(response)];
 		response.data.categories = new Categories();
 		response.finish();
 	} else {
@@ -355,6 +355,7 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 	var form = new formidable.IncomingForm();
 	form.keepExtensions = true;
 	form.uploadDir = app.public + "/uploads/avatars/original";
+
 	form.parse(request, createConnection);
 	
 	function createConnection(err, fields, files){
@@ -369,6 +370,13 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 			app.headers(request, response, mysql, function(){
 				if(response.head.account.id){
 					request.body = merge(fields, files);
+                    for (var key in files) {
+                        if (files.hasOwnProperty(key)) {
+                            console.log(key + " -> " + JSON.stringify(files[key]));
+                            request.files = files[key];
+                        }
+                    }
+//                    request.files = files;
 					afterParse();
 				} else {
 					request.abort();
@@ -379,13 +387,13 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 	}
 	
 	function afterParse(){
-		request.demand('name');
-		request.demand('address');
-		//request.demand('location');
-		request.demand('contact_number');
+//		request.demand('name');
+//		request.demand('address');
+//		//request.demand('location');
+//		request.demand('contact_number');
 		
-		if(!request.body.avatar || !request.body.avatar.size){ 
-			request.error('avatar', 'It\'s empty'); 
+		if(!request.files){
+			request.error('avatar', 'It\'s empty');
 		}
 		
 		if(!request.errors.address){
@@ -408,7 +416,7 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 						name: request.body.name,
 						address: request.body.address,
 						contact_number: request.body.contact_number,
-						avatar: request.body.avatar.path.split(app.public+'/uploads/avatars/original/')[1],
+						avatar: request.files.path.split(app.public+'/uploads/avatars/original/')[1],
 						route_short: request.body.route_short || null,
 						route_long: request.body.route_long || null,
 						postal_code_short: request.body.postal_code_short || null,
@@ -433,7 +441,7 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 							request.body.formatted_address || null,
 							latitude: request.body.latitude || null,
 							longitude: request.body.longitude || null,
-						time_created: new Date().getTime(),
+						time_created: new Date(),
 						description: request.body.description,
 						contact_email: request.body.contact_email || null,
 						website: request.body.website || null,
@@ -444,19 +452,30 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 						business: business.id,
 						role: 0,
 						contact_email: response.head.account.email,
-						time_created: new Date().getTime(),
+						time_created: new Date(),
 						confirmed: 1
 					};
 					
 					mysql.businesses.save(business, next);
-					mysql.business_employees.save(employee, next);
-					function finish(){ response.redirect('/'+business.address); }
+					mysql.business_employees.save(employee, redir);
+//                    response.data.page = 'create_business';
+//                    response.data.title = 'VBOX - Create a Business';
+                    response.data.inputs = request.body;
+//                    response.data.scripts = [scripts.maps, scripts.geo, scripts.page(response)];
+
+
+                    response.finish();
+
+                    function redir(){
+//                        response.redirect('/'+business.address);
+                    }
+					function finish(){ console.log("chexk:"); }
 					
 				} catch (error) {	
 					console.log(error);
 					//console.error(error);
-					response.end('something went wrong', error.message);
-					request.abort();
+//					response.end('something went wrong', error.message);
+//					request.abort();
 				}
 			} else {	
 				console.log('response finish with fail');

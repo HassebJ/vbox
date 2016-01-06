@@ -1,11 +1,11 @@
 module.exports = function Configs() {
     if (process.env.NODE_ENV === 'development'){
-        Configs.prototype.domain = 'devbox.example.com:4040';
+        Configs.prototype.domain = 'devbox.example.com';
         Configs.prototype.port = '80';
 
     }else{
         Configs.prototype.domain = 'www.veebox.io'; //whatever is the ip of the server it is hosted on
-        Configs.prototype.port = '80';
+        Configs.prototype.port = '4040';
     }
 
     Configs.prototype.mysql = {
