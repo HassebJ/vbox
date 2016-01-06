@@ -1,0 +1,25 @@
+[33m[nodemon] 1.8.1[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: *.*[39m
+[32m[nodemon] starting `node /root/vbox/easy.js index.js`[39m
+
+module.js:340
+    throw err;
+          ^
+Error: Cannot find module '/root/vbox/easy.js'
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Function.Module.runMain (module.js:497:10)
+    at startup (node.js:119:16)
+    at node.js:929:3
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[33m[nodemon] 1.8.1[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: *.*[39m
+[32m[nodemon] starting `node easy.js`[39m
+Application started on port 80
+info: socket.io started
+info    - EasyRTC: Starting EasyRTC Server (v1.0.14) on Node (v0.10.36)
+warn: error raised: Error: listen EACCES
+info    - EasyRTC: EasyRTC Server Ready For Connections (v1.0.14)
+App.notFound

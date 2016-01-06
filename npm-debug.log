@@ -1,0 +1,194 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/bin/npm', 'install', 'diet-auth', '--save' ]
+2 info using npm@1.4.29
+3 info using node@v0.10.36
+4 warn deprecated This version of npm lacks support for important features,
+5 warn deprecated such as scoped packages, offered by the primary npm
+6 warn deprecated registry. Consider upgrading to at least npm@2, if not the
+7 warn deprecated latest stable version. To upgrade to npm@2, run:
+8 warn deprecated npm -g install npm@latest-2
+9 warn deprecated To upgrade to the latest stable version, run:
+10 warn deprecated npm -g install npm@latest
+11 warn deprecated (Depending on how Node.js was installed on your system, you
+12 warn deprecated may need to prefix the preceding commands with `sudo`, or if
+13 warn deprecated on Windows, run them from an Administrator prompt.)
+14 warn deprecated If you're running the version of npm bundled with
+15 warn deprecated Node.js 0.10 LTS, be aware that the next version of 0.10 LTS
+16 warn deprecated will be bundled with a version of npm@2, which has some small
+17 warn deprecated backwards-incompatible changes made to `npm run-script` and
+18 warn deprecated semver behavior.
+19 warn package.json Vbox@0.0.1 No description
+20 warn package.json Vbox@0.0.1 No repository field.
+21 warn package.json Vbox@0.0.1 No README data
+22 verbose readDependencies using package.json deps
+23 verbose cache add [ 'diet-auth@^1.2.1', null ]
+24 verbose cache add name=undefined spec="diet-auth@^1.2.1" args=["diet-auth@^1.2.1",null]
+25 verbose parsed url { protocol: null,
+25 verbose parsed url   slashes: null,
+25 verbose parsed url   auth: null,
+25 verbose parsed url   host: null,
+25 verbose parsed url   port: null,
+25 verbose parsed url   hostname: null,
+25 verbose parsed url   hash: null,
+25 verbose parsed url   search: null,
+25 verbose parsed url   query: null,
+25 verbose parsed url   pathname: 'diet-auth@^1.2.1',
+25 verbose parsed url   path: 'diet-auth@^1.2.1',
+25 verbose parsed url   href: 'diet-auth@^1.2.1' }
+26 verbose cache add name="diet-auth" spec="^1.2.1" args=["diet-auth","^1.2.1"]
+27 verbose parsed url { protocol: null,
+27 verbose parsed url   slashes: null,
+27 verbose parsed url   auth: null,
+27 verbose parsed url   host: null,
+27 verbose parsed url   port: null,
+27 verbose parsed url   hostname: null,
+27 verbose parsed url   hash: null,
+27 verbose parsed url   search: null,
+27 verbose parsed url   query: null,
+27 verbose parsed url   pathname: '^1.2.1',
+27 verbose parsed url   path: '^1.2.1',
+27 verbose parsed url   href: '^1.2.1' }
+28 verbose addNamed [ 'diet-auth', '^1.2.1' ]
+29 verbose addNamed [ null, '>=1.2.1-0 <2.0.0-0' ]
+30 silly lockFile 7589c16b-diet-auth-1-2-1 diet-auth@^1.2.1
+31 verbose lock diet-auth@^1.2.1 /home/ec2-user/.npm/7589c16b-diet-auth-1-2-1.lock
+32 silly addNameRange { name: 'diet-auth',
+32 silly addNameRange   range: '>=1.2.1-0 <2.0.0-0',
+32 silly addNameRange   hasData: false }
+33 verbose request where is /diet-auth
+34 verbose request registry https://registry.npmjs.org/
+35 verbose request id 572af530e89c310d
+36 verbose url raw /diet-auth
+37 verbose url resolving [ 'https://registry.npmjs.org/', './diet-auth' ]
+38 verbose url resolved https://registry.npmjs.org/diet-auth
+39 verbose request where is https://registry.npmjs.org/diet-auth
+40 info trying registry request attempt 1 at 12:04:37
+41 http GET https://registry.npmjs.org/diet-auth
+42 http 200 https://registry.npmjs.org/diet-auth
+43 silly registry.get cb [ 200,
+43 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+43 silly registry.get     etag: '"CPI5SQ6TOP7KEVV37VAWC4C4U"',
+43 silly registry.get     'content-type': 'application/json',
+43 silly registry.get     'cache-control': 'max-age=300',
+43 silly registry.get     'content-length': '9729',
+43 silly registry.get     'accept-ranges': 'bytes',
+43 silly registry.get     date: 'Mon, 28 Dec 2015 12:04:37 GMT',
+43 silly registry.get     via: '1.1 varnish',
+43 silly registry.get     age: '0',
+43 silly registry.get     connection: 'keep-alive',
+43 silly registry.get     'x-served-by': 'cache-lax1430-LAX',
+43 silly registry.get     'x-cache': 'MISS',
+43 silly registry.get     'x-cache-hits': '0',
+43 silly registry.get     'x-timer': 'S1451304277.396011,VS0,VE87',
+43 silly registry.get     vary: 'Accept' } ]
+44 silly addNameRange number 2 { name: 'diet-auth', range: '>=1.2.1-0 <2.0.0-0', hasData: true }
+45 silly addNameRange versions [ 'diet-auth', [ '1.0.0', '1.0.2', '1.0.3', '1.2.0', '1.2.1' ] ]
+46 verbose addNamed [ 'diet-auth', '1.2.1' ]
+47 verbose addNamed [ '1.2.1', '1.2.1' ]
+48 silly lockFile cd289431-diet-auth-1-2-1 diet-auth@1.2.1
+49 verbose lock diet-auth@1.2.1 /home/ec2-user/.npm/cd289431-diet-auth-1-2-1.lock
+50 silly lockFile 3c28b48e-rg-diet-auth-diet-auth-1-2-1-tgz https://registry.npmjs.org/diet-auth/-/diet-auth-1.2.1.tgz
+51 verbose lock https://registry.npmjs.org/diet-auth/-/diet-auth-1.2.1.tgz /home/ec2-user/.npm/3c28b48e-rg-diet-auth-diet-auth-1-2-1-tgz.lock
+52 verbose addRemoteTarball [ 'https://registry.npmjs.org/diet-auth/-/diet-auth-1.2.1.tgz',
+52 verbose addRemoteTarball   'd51e10fbe157d41bb841d0ce29076d3f38595677' ]
+53 info retry fetch attempt 1 at 12:04:37
+54 verbose fetch to= /tmp/npm-19700-4Ckqdo_y/registry.npmjs.org/diet-auth/-/diet-auth-1.2.1.tgz
+55 http GET https://registry.npmjs.org/diet-auth/-/diet-auth-1.2.1.tgz
+56 http 200 https://registry.npmjs.org/diet-auth/-/diet-auth-1.2.1.tgz
+57 silly lockFile 3c28b48e-rg-diet-auth-diet-auth-1-2-1-tgz https://registry.npmjs.org/diet-auth/-/diet-auth-1.2.1.tgz
+58 silly lockFile 3c28b48e-rg-diet-auth-diet-auth-1-2-1-tgz https://registry.npmjs.org/diet-auth/-/diet-auth-1.2.1.tgz
+59 silly lockFile cd289431-diet-auth-1-2-1 diet-auth@1.2.1
+60 silly lockFile cd289431-diet-auth-1-2-1 diet-auth@1.2.1
+61 silly lockFile 7589c16b-diet-auth-1-2-1 diet-auth@^1.2.1
+62 silly lockFile 7589c16b-diet-auth-1-2-1 diet-auth@^1.2.1
+63 silly resolved [ { name: 'diet-auth',
+63 silly resolved     version: '1.2.1',
+63 silly resolved     description: 'Dead-simple authentication for diet.js',
+63 silly resolved     homepage: 'http://github.com/adamhalasz/diet-auth',
+63 silly resolved     keywords:
+63 silly resolved      [ 'auth',
+63 silly resolved        'authorization',
+63 silly resolved        'framework',
+63 silly resolved        'rest',
+63 silly resolved        'api',
+63 silly resolved        'facebook',
+63 silly resolved        'facebook login',
+63 silly resolved        'facebook signup',
+63 silly resolved        'google',
+63 silly resolved        'google login',
+63 silly resolved        'google signup',
+63 silly resolved        'auth routing',
+63 silly resolved        'https',
+63 silly resolved        'routing',
+63 silly resolved        'router',
+63 silly resolved        'web',
+63 silly resolved        'restful',
+63 silly resolved        'http',
+63 silly resolved        'diet',
+63 silly resolved        'dietjs',
+63 silly resolved        'diet.js' ],
+63 silly resolved     bugs:
+63 silly resolved      { url: 'http://github.com/adamhalasz/diet-auth/issues',
+63 silly resolved        email: 'mail@adamhalasz.com' },
+63 silly resolved     repository:
+63 silly resolved      { type: 'git',
+63 silly resolved        url: 'https://github.com/adamhalasz/diet-auth.git' },
+63 silly resolved     license: 'MIT',
+63 silly resolved     author:
+63 silly resolved      { name: 'Halász Ádám',
+63 silly resolved        email: 'mail@adamhalasz.com',
+63 silly resolved        url: 'http://adamhalasz.com/' },
+63 silly resolved     dependencies: { googleapis: '>=1.0.6', request: '>=2.42.0' },
+63 silly resolved     main: 'index.js',
+63 silly resolved     engines: { node: '>=0.8.21' },
+63 silly resolved     gitHead: '6d1be1e0a3c445fd532bb8012ab1d3c2487737a7',
+63 silly resolved     _id: 'diet-auth@1.2.1',
+63 silly resolved     scripts: {},
+63 silly resolved     _shasum: 'd51e10fbe157d41bb841d0ce29076d3f38595677',
+63 silly resolved     _from: 'diet-auth@^1.2.1',
+63 silly resolved     _npmVersion: '1.4.28',
+63 silly resolved     _npmUser: { name: 'adamhalasz', email: 'mail@adamhalasz.com' },
+63 silly resolved     maintainers: [ [Object] ],
+63 silly resolved     dist:
+63 silly resolved      { shasum: 'd51e10fbe157d41bb841d0ce29076d3f38595677',
+63 silly resolved        tarball: 'http://registry.npmjs.org/diet-auth/-/diet-auth-1.2.1.tgz' },
+63 silly resolved     directories: {},
+63 silly resolved     _resolved: 'https://registry.npmjs.org/diet-auth/-/diet-auth-1.2.1.tgz' } ]
+64 info install diet-auth@1.2.1 into /home/ec2-user/vbox
+65 info installOne diet-auth@1.2.1
+66 verbose node_modules/diet-auth unbuild
+67 verbose tar unpack /home/ec2-user/.npm/diet-auth/1.2.1/package.tgz
+68 silly lockFile 89b4056c-user-vbox-node-modules-diet-auth tar:///home/ec2-user/vbox/node_modules/diet-auth
+69 verbose lock tar:///home/ec2-user/vbox/node_modules/diet-auth /home/ec2-user/.npm/89b4056c-user-vbox-node-modules-diet-auth.lock
+70 silly lockFile 3b23024c--npm-diet-auth-1-2-1-package-tgz tar:///home/ec2-user/.npm/diet-auth/1.2.1/package.tgz
+71 verbose lock tar:///home/ec2-user/.npm/diet-auth/1.2.1/package.tgz /home/ec2-user/.npm/3b23024c--npm-diet-auth-1-2-1-package-tgz.lock
+72 silly gunzTarPerm modes [ '775', '664' ]
+73 error Error: EACCES, mkdir '/home/ec2-user/vbox/node_modules/diet-auth'
+73 error  { [Error: EACCES, mkdir '/home/ec2-user/vbox/node_modules/diet-auth']
+73 error   errno: 3,
+73 error   code: 'EACCES',
+73 error   path: '/home/ec2-user/vbox/node_modules/diet-auth',
+73 error   fstream_type: 'Directory',
+73 error   fstream_path: '/home/ec2-user/vbox/node_modules/diet-auth',
+73 error   fstream_class: 'DirWriter',
+73 error   fstream_stack:
+73 error    [ '/usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+73 error      '/usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+73 error      'Object.oncomplete (fs.js:108:15)' ] }
+74 error Please try running this command again as root/Administrator.
+75 error System Linux 4.1.10-17.31.amzn1.x86_64
+76 error command "node" "/usr/bin/npm" "install" "diet-auth" "--save"
+77 error cwd /home/ec2-user/vbox
+78 error node -v v0.10.36
+79 error npm -v 1.4.29
+80 error path /home/ec2-user/vbox/node_modules/diet-auth
+81 error fstream_path /home/ec2-user/vbox/node_modules/diet-auth
+82 error fstream_type Directory
+83 error fstream_class DirWriter
+84 error code EACCES
+85 error errno 3
+86 error stack Error: EACCES, mkdir '/home/ec2-user/vbox/node_modules/diet-auth'
+87 error fstream_stack /usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+87 error fstream_stack /usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+87 error fstream_stack Object.oncomplete (fs.js:108:15)
+88 verbose exit [ 3, true ]
