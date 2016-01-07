@@ -67,11 +67,11 @@ $("#dropform").dropzone({
 			});
 
 			function onDropzoneSuccess(response){
-			alert("kjhjk");
-			window.location.replace('/classifieds');
+			//alert("kjhjk");
+			window.location.replace('/businesses');
 				var result = JSON.parse(response);
 				console.log(result);
-				alert('asdas' + response);
+				//alert('asdas' + response);
 
                 				window.location.pathname = '/classifieds';
 				$(myDropzone.element).find('.error.input-holder').removeClass('error');

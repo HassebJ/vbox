@@ -5,6 +5,26 @@
 <script>
 	window.businesses = {{-JSON.stringify this.data.businesses }};
 	window.query = {{-JSON.stringify this.query}};
+
+    $( document ).ready(function() {
+        $('#shuffle1').click(function () {
+            $(".business").css("width", "50%");
+            $(".business").css("height", "250px");
+
+            $('.ads').isotope({
+                layoutMode: 'fitRows',
+                itemSelector: '.business'
+            });
+        });
+
+        $('#shuffle').click(function () {
+            $(".business").css("width", "100%");
+            $('.ads').isotope({
+                layoutMode: 'vertical',
+                itemSelector: '.business'
+            });
+        });
+    });
 </script>
 
 {{-@get '/businesses', id:'search' }}
@@ -61,12 +81,12 @@
 <div id="classifieds" >
 	<div class="wrap">
 		<div class="col-md-12 col-sm-12 mislery text-right">
-			<a href="#"><i class="fa fa-th-list"></i></a>
-			<a href="#"><i class="fa fa-th-large"></i></a>
+			<a href="#" id="shuffle"><i class="fa fa-th-list"></i></a>
+			<a href="#" id="shuffle1"><i class="fa fa-th-large"></i></a>
 		</div>
 		<h2 class="title"><span>{{-this.total_rows}} Business{{-if this.inputs.search_location then ' around ' + this.inputs.search_location}}</span></h2>
 		
-		<div class="businesses">
+		<div class="ads">
 			{{for business in this.businesses:}}
 				{{this.business = business}}
 				<div class="business">
