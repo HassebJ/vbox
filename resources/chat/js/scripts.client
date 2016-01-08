@@ -1,5 +1,5 @@
 var site_url = window.location.hostname;
-var avatars_path = site_url+"uploads/profiles/original/";
+var avatars_path = "/uploads/profiles/original/";
 var shared_dir = "shared/";
 var id_account = false;
 var id_user = false;
