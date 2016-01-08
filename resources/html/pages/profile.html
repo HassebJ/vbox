@@ -29,7 +29,7 @@
 			{{if this.connection is 'stranger':}}
 						
 						<li>
-						<a class="chatIdentity btn btn-default lightblue" data-user="{{-this.user.id}}" href="chat/?r={{-this.user.id}}&id={{-this.account.id}}" >Chat</a></li>
+						<a class="chatIdentity btn btn-default lightblue" data-user="{{-this.user.id}}" href="/chat/?r={{-this.user.id}}&id={{-this.account.id}}" >Chat</a></li>
 						<a href="/posts/follow?id={{-this.user.id}}&type=personal" class="follow button"><i class="fa fa-plus"></i> follow</a>
 					{{else if this.connection is 'following':}}
 						<a href="/posts/follow?id={{-this.user.id}}&type=personal" class="silver follow button">unfollow</a>
