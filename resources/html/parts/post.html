@@ -38,9 +38,10 @@
 		</div>
 		<div class="message">{{-nl2br post.message}}</div>
 		{{if post.url:}}
-			<div class="message"><a href="{{-nl2br post.url}}" target="blank">{{-nl2br post.url}}</a></div>
+			<div class="message"><a href="{{-post.url}}" target="blank">{{-nl2br post.url}}</a></div>
 		{{end}}
-		
+
+        {{if post.image_name:}}
 		{{ ftype=post.image_name.split('.').pop()}}
 		{{if ftype=='mp4':}}
 		<video width="320" height="240" controls ><source src="/uploads/pictures/original/{{-post.image_name}}"  type="video/mp4"></video>
@@ -49,6 +50,7 @@
 		{{else:}}
 			<div class="image"><img src="/uploads/pictures/original/{{-post.image_name}}" width="300" height="250"></div>
 		{{end}}
+        {{end}}
         <script>
             $.get("/totallikedislike", {"postId":"{{-this.post.id}}"},function(resl){
                 resl = $.parseJSON(resl)

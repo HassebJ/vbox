@@ -20,11 +20,15 @@ console.log("sayeed--==================>",request.body.message);
 		
 				
 			 next();
-			var  msg=request.body.message
-			mysql.posts.save({owner: response.head.account.id, image_name: avatar,author:response.head.account.id,message:msg,time:new Date().getTime()}, next);
+			var  msg=request.body.message;
+//			mysql.posts.save({owner: response.head.account.id, image_name: avatar,author:response.head.account.id,message:msg,time:new Date().getTime()}, next);
+            var sqlInsert = "INSERT INTO posts (`author`, `owner`, `message`, `time`,`image_name`) VALUES ('"+response.head.account.id+"','"+response.head.account.id+"','"+msg+"',"+new Date().getTime()+", '"+avatar+"')";
+            console.log('File SQL',sqlInsert);
+            mysql(sqlInsert);
+            response.redirect('back');
 			
 			function finish(){
-				response.redirect('back');
+//				response.redirect('back');
 			}
 			
 		} else {
@@ -60,13 +64,17 @@ if( response.head.account.id){
 	
 		var msg=request.body.message;	
 		var url;
-		if(isset(request.body.url))	
-			url=request.body.url;
+		if(isset(request.body.url)) {
+            url = request.body.url;
+            if (url.indexOf('http://') < 0 && url.indexOf('https://') < 0){
+                url = 'http://'+url;
+            }
+        }
 		else
 			url='';
 
 	
-		var sqlInsert = "INSERT INTO posts (`author`, `owner`, `message`, `time`, `url`) VALUES ("+response.head.account.id+","+owner+",'"+msg+"',"+new Date().getTime()+",'"+url+"')";
+		var sqlInsert = "INSERT INTO posts (`author`, `owner`, `message`, `time`, `url`) VALUES ('"+response.head.account.id+"','"+owner+"','"+msg+"',"+new Date().getTime()+",'"+url+"')";
 		console.log('File SQL',sqlInsert);
 		mysql(sqlInsert);
 		response.redirect('back');
