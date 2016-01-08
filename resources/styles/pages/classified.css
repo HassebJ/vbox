@@ -277,7 +277,9 @@
 	position:absolute; right:45px; bottom:100px;
 	
 }
-
+li, .author, p {
+    font-size: medium;
+}
 .live.button{
 	
 	margin: 0;
