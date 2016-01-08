@@ -29,8 +29,13 @@
 						<div class="content">
 							<div class="name">{{-employee.first_name + ' ' + employee.last_name}}</div>
 							<div class="address">
-								<p><i class="fa fa-phone"></i> 100-200-1900</p>
-								<p> <i class="fa fa-envelope"></i> leoash842@hotmail.com</p>
+                                {{-if employee.contact_number is '' :}}
+                                <p><i class="fa fa-phone"></i> Contact Number not provided</p>
+                                {{else:}}
+                                <p><i class="fa fa-phone"></i> {{-employee.contact_number }}</p>
+                                {{end}}
+								<!--<p><i class="fa fa-phone"></i> {{-employee.contact_number }}</p>-->
+								<p> <i class="fa fa-envelope"></i> {{-employee.contact_email }}</p>
 							</div>
 						</div>
 						<div class="detail role">

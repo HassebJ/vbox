@@ -4,6 +4,11 @@
 
 <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
+          <script>
+//              $( document ).ready(function(){
+                  console.log(this);
+//              })
+          </script>
   {{if this.page is 'welcome' || this.page is 'classified' || this.page is 'profile' || this.page is 'business':}}
   <div id="header" class="home-header">
   {{else:}}
@@ -109,7 +114,7 @@
 									{{for business in this.account.businesses:}}
 										<a href="/businesses/use/{{-business.id}}" class="item">
 											<div class="avatar-head">
-												<span class="profile-helper"></span><img src="{{-business.avatar}}" alt="" />
+												<span class="profile-helper"></span><img src="/uploads/avatars/original/{{-business.avatar}}" alt="" />
 											</div>
 											<span>{{-business.name}}</span>
 										</a>

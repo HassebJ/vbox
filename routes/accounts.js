@@ -185,24 +185,47 @@ app.login = function(request, response){
 } 
 
 app.accounts.extend = function(request, response, mysql, callback){
-	response.data = {};
-	response.data.account = response.head.account;
+    console.log(response.data);
+    response.data = {};
+    response.data.account = response.head.account;
+    if(typeof accounts === 'undefined')
+        console.log('accounts not defined');
+    else{
+        console.log(accounts);
+        response.data.account.business = accounts.business;
+        if (response.data.account.business.avatar.indexOf('uploads') < 0){
+            response.data.account.business.avatar = '/uploads/avatars/original/'+ response.data.account.business.avatar;
+
+        }
+
+
+    }
+
+
 	
 	var next = new Next(1, function(){ callback(); });
 	// get businesses
-	mysql('SELECT * FROM business_employees, businesses WHERE business_employees.account = ' + mysql.escape(response.head.account.id) + ' AND businesses.id = business_employees.business AND business_employees.role = 0 ', function(rows){
-		rows.forEach(function(business){
-			business.avatar = isset(business.avatar)
-				? '/uploads/avatars/original/'+business.avatar 
-				: '/images/no-business-profile.png';
-			if(business.session == request.cookies.business){
-				business.selected = true;
-				response.data.account.business = business;
-			}
-		});
-		response.data.account.businesses = rows;
-		next();
-	})
+    mysql('SELECT * FROM business_employees, businesses WHERE business_employees.account = ' + mysql.escape(response.head.account.id) + ' AND businesses.id = business_employees.business AND business_employees.role = 0 ', function(rows){
+        rows.forEach(function(business){
+            business.avatar = isset(business.avatar)
+                ? '/uploads/avatars/original/'+business.avatar
+                : '/images/no-business-profile.png';
+            if(business.session == request.cookies.business){
+                business.selected = true;
+                response.data.account.business = business;
+            }
+        });
+        mysql.businesses.get('account',response.head.account.id,function(businesses){
+            if(businesses && businesses.length) {
+                response.data.account.businesses = businesses;
+            }
+
+            next();
+        });
+
+//		response.data.account.businesses = rows;
+
+    })
 	// get notificiations
 	// get ads
 }

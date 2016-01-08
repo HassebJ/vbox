@@ -175,19 +175,26 @@ app.accounts.extend = function(request, response, mysql, callback){
 	
 	var next = new Next(1, function(){ callback(); });
 	// get businesses
-	mysql('SELECT * FROM business_employees, businesses WHERE business_employees.account = ' + mysql.escape(response.head.account.id) + ' AND businesses.id = business_employees.business AND business_employees.role = 0 ', function(rows){
-		rows.forEach(function(business){
-			business.avatar = isset(business.avatar)
-				? '/uploads/avatars/original/'+business.avatar 
-				: '/images/no-business-profile.png';
-			if(business.session == request.cookies.business){
-				business.selected = true;
-				response.data.account.business = business;
-			}
-		});
-		response.data.account.businesses = rows;
-		next();
-	})
+    mysql('SELECT * FROM business_employees, businesses WHERE business_employees.account = ' + mysql.escape(response.head.account.id) + ' AND businesses.id = business_employees.business AND business_employees.role = 0 ', function(rows){
+        rows.forEach(function(business){
+            business.avatar = isset(business.avatar)
+                ? '/uploads/avatars/original/'+business.avatar
+                : '/images/no-business-profile.png';
+            if(business.session == request.cookies.business){
+                business.selected = true;
+                response.data.account.business = business;
+            }
+        });
+        mysql.businesses.get('account',response.head.account.id,function(businesses){
+            if(businesses && businesses.length) {
+                response.data.account.businesses = businesses;
+            }
+            next();
+        });
+
+//		response.data.account.businesses = rows;
+
+    })
 	// get notificiations
 	// get ads
 }

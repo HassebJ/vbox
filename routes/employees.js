@@ -2,10 +2,23 @@
 app.get(/^\/businesses\/employees\/?$/i, function(request, response, mysql){
 	when.business(request, response, mysql, function(){
 		var next = new Next(3, finish);
-		var business_id = mysql.escape(response.head.account.business.id);
-		
+        var business_id;
+
+        if(typeof(response.head.account.business) !== 'undefined'){
+            if (response.head.account.business instanceof Array)
+                business_id = mysql.escape(response.head.account.business[0].id);
+            else
+                business_id = mysql.escape(response.head.account.business.id);
+
+        }else if(typeof(response.head.account.businesses) !== 'undefined'){
+            if (response.head.account.business instanceof Array)
+                business_id = mysql.escape(response.head.account.businesses[0].id);
+            else
+                business_id = mysql.escape(response.head.account.businesses.id);
+        }
 		// get stores
-		mysql.stores.get('business', response.head.account.business.id, function(stores){
+        console.log(business_id);
+		mysql.stores.get('business', business_id, function(stores){
 			var selectStores = [];
 			stores.forEach(function(store){
 				selectStores.push([store.id, store.name]);
@@ -19,7 +32,10 @@ app.get(/^\/businesses\/employees\/?$/i, function(request, response, mysql){
 			+ ' WHERE business_employees.business = ' + business_id 
 			+ ' AND accounts.id = business_employees.account AND confirmed = 1', 
 		function(rows){
-			rows.forEach(function(row){ row = app.accounts.user(row) });
+			rows.forEach(function(row){
+                row = app.accounts.user(row)
+            });
+//            for (var i = 0 )
 			response.head.account.business.employees = rows;
 			next();
 		});

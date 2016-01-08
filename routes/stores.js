@@ -18,7 +18,7 @@ app.post('/businesses/stores', function(request, response, mysql){
 		request.demand('formatted_address');
 		console.log('/businesses/stores/save', request.body);
 		if(request.passed){
-			var id = request.body.id || uniqid();
+			var id =  uniqid();
 			var store = {
 				id: id,
 				name: request.body.name,
@@ -49,7 +49,7 @@ app.post('/businesses/stores', function(request, response, mysql){
 				longitude: request.body.longitude || null,
 			};
 			if(!request.body.id){
-				store.time_created = new Date().getTime();
+				store.time_created = new Date();
 			}
 			mysql.stores.save(store, function(){
 				response.redirect('back');
@@ -84,11 +84,20 @@ app.get('/businesses/stores/delete', function(request, response, mysql){
 when = {};
 when.business = function(request, response, db, callback){
 	if(response.head.account.id){
+
 		if(response.head.account.business){
 			callback();
 		} else {
-			response.redirect('/?error=no_business');
-			mysql.end();
+            mysql.businesses.get('account',response.head.account.id,function(business){
+                if(business){
+                    response.head.account.business = business[0];
+                    callback();
+                } else {
+                    response.redirect('/?error=no_business');
+                    mysql.end();
+                }
+            });
+
 		}
 	} else {
 		app.login(request, response);

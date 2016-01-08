@@ -413,6 +413,7 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 					var next = new Next(2, finish);
 					var business = {
 						id: uniqid(),
+                        account: response.head.account.id,
 						name: request.body.name,
 						address: request.body.address,
 						contact_number: request.body.contact_number,
@@ -460,6 +461,7 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 					mysql.business_employees.save(employee, redir);
 //                    response.data.page = 'create_business';
 //                    response.data.title = 'VBOX - Create a Business';
+                    response.head.account.business = business;
                     response.data.inputs = request.body;
 //                    response.data.scripts = [scripts.maps, scripts.geo, scripts.page(response)];
 
@@ -499,8 +501,8 @@ app.get(/^\/businesses\/use\/([^\/]+)$/i, function(request, response, mysql){
 			if(request.params[1] != 'none'){
 				var query = 
 						'SELECT'
-					+	' business_employees.id AS id,'
-					+	' businesses.address AS business '
+					+	' business_employees.id AS busid,'
+					+	' businesses.* '
 					+	'FROM business_employees, businesses'
 					+	' WHERE business_employees.account = ' + mysql.escape(response.head.account.id) 
 					+ 	' AND business_employees.business = ' + mysql.escape(request.params[1])
@@ -510,11 +512,24 @@ app.get(/^\/businesses\/use\/([^\/]+)$/i, function(request, response, mysql){
 					if(rows && rows.length){
 						var next = new Next(1, finish);
 						var session = uniqid();
-						mysql.business_employees.save({ id: rows[0].id, session: session }, next);
-						response.cookies.set('business', session, { httpOnly: true });
+
+						mysql.business_employees.save({ id: rows[0].busid, session: session }, function(){
+
+                            response.head.account.business=rows[0];
+                            accounts = {};
+                            accounts.business = rows[0];
+                            response.bus = {};
+                            response.bus = rows[0];
+                            response.data = accounts.business;
+                            response.cookies.set('business', session, { httpOnly: true });
+
+                            response.redirect('back');
+//                            response.end();
+                        });
+
 						
 						function finish(){
-							response.redirect('back');
+
 						}
 						
 					} else {
