@@ -104,17 +104,19 @@ function geocoder(lat,lng){
 	console.log("map is");
 	if(window.query && window.query.latitude)
 	{
+	console.log('window');
+	console.log(window);
 		if(isset(query.locality_long)){
-			if (!window.ads.length){
+			if (!window.businesses.length){
 				map.setZoom(11);
-			} else if(window.ads.length == 1){
+			} else if(window.businesses.length == 1){
 				map.setZoom(11);
 			} else {
 				center = bounds.getCenter();
 				map.fitBounds(bounds);
 			}
 		} else {
-			if (window.ads.length == 1){
+			if (window.businesses.length == 1){
 				map.setZoom(11);
 			} else {
 				map.setZoom(4);
@@ -144,8 +146,12 @@ for (var i=0; i<window.markers.length; i++){
 }
 	 markerId = markerId.replace(/,\s*$/, '');
 	console.log(markerId);
-	$('.ads').isotope({
+	$('.flt').isotope({
 		filter: markerId
+		//filter: function() {
+          //        var name = $(this).find('.name').text();
+            //      return name.match( /ium$/ );
+              //  }
 	});
 }
 google.maps.event.addListener(map,'bounds_changed',function(){

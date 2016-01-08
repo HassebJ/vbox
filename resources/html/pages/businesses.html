@@ -84,12 +84,12 @@
 			<a href="#" id="shuffle"><i class="fa fa-th-list"></i></a>
 			<a href="#" id="shuffle1"><i class="fa fa-th-large"></i></a>
 		</div>
-		<h2 class="title"><span>{{-this.total_rows}} Business{{-if this.inputs.search_location then ' around ' + this.inputs.search_location}}</span></h2>
-		
-		<div class="ads">
+		<!--<h2 class="title"><span>{{-this.total_rows}} Business{{-if this.inputs.search_location then ' around ' + this.inputs.search_location}}</span></h2>-->
+        <h2 class="title"><span>Businesses{{-if this.inputs.search_location then ' around ' + this.inputs.search_location}}</span></h2>
+		<div class="businesses flt">
 			{{for business in this.businesses:}}
 				{{this.business = business}}
-				<div class="business">
+				<div class="business {{-this.business.id}}">
 					<div class="in">
 						<a class="avatar" href="/{{-this.business.address}}?show=wall">
 							<!--span class="profile-helper"></span><img src="{{-this.business.avatar}}"/-->
