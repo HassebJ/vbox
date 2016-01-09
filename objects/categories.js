@@ -1,4 +1,124 @@
-Categories = function(){ 
+Categories = function(selector){
+    if (typeof selector !== 'undefined'){
+        return [
+            {
+                "options": [
+                    [
+                        "0",
+                        "Active Life"
+                    ],
+                    [
+                        "1",
+                        "Agriculture"
+                    ],
+                    [
+                        "2",
+                        "Arts & Entertainment"
+                    ],
+                    [
+                        "3",
+                        "Automotive"
+                    ],
+                    [
+                        "4",
+                        "Beauty & Spas"
+                    ],
+                    [
+                        "5",
+                        "Clothing"
+                    ],
+                    [
+                        "6",
+                        "Computer & Mobile"
+                    ],
+                    [
+                        "7",
+                        "Education"
+                    ],
+                    [
+                        "8",
+                        "Electronics"
+                    ],
+                    [
+                        "9",
+                        "Event Planning & Services"
+                    ],
+                    [
+                        "10",
+                        "Financial Services"
+                    ],
+                    [
+                        "11",
+                        "Food & Resturants"
+                    ],
+                    [
+                        "12",
+                        "Footwear and Accessories"
+                    ],
+                    [
+                        "13",
+                        "Others"
+                    ],
+                    [
+                        "14",
+                        "Sports"
+                    ],
+                    [
+                        "15",
+                        "Shopping"
+                    ],
+                    [
+                        "16",
+                        "Health & Medical"
+                    ],
+                    [
+                        "17",
+                        "Home Services"
+                    ],
+                    [
+                        "18",
+                        "Furniture and Kitchen Accessories"
+                    ],
+                    [
+                        "19",
+                        "Hotels & Travel"
+                    ],
+                    [
+                        "20",
+                        "Internet & Web Services"
+                    ],
+                    [
+                        "21",
+                        "Real Estate"
+                    ],
+                    [
+                        "22",
+                        "Mass & Electronic Media"
+                    ],
+                    [
+                        "23",
+                        "NGOs"
+                    ],
+                    [
+                        "24",
+                        "Nightlife & Bars"
+                    ],
+                    [
+                        "25",
+                        "Pets & Animals"
+                    ],
+                    [
+                        "26",
+                        "Professional Services"
+                    ],
+                    [
+                        "27",
+                        "Public Services & Government"
+                    ]
+                ]
+            }
+        ];
+    }
 	return [
 	  {
 	    "label": "Cars & Vehicles",
@@ -267,7 +387,7 @@ if(!Array.isArray) {
   };
 }
 
-getCategory = function(CATEGORY_ID){
+ getCategory = function (CATEGORY_ID){
 	var output = false;
 	var categories = new Categories();
 	for(var i = 0; i < categories.length; i++){
@@ -280,4 +400,19 @@ getCategory = function(CATEGORY_ID){
 		}
 	}
 	return output;
-} 
+}
+
+getCategoryBus = function (CATEGORY_ID, selector){
+    var output = false;
+    var categories = new Categories(selector);
+    for(var i = 0; i < categories.length; i++){
+        var category = categories[i];
+        for(var b = 0; b < category.options.length; b++){
+            if(category.options[b][0] == CATEGORY_ID) {
+                output = category.options[b][1];
+                break;
+            }
+        }
+    }
+    return output;
+}

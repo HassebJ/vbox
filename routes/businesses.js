@@ -17,7 +17,7 @@ app.get('/businesses', function(request, response, mysql){
 	response.data.page = 'businesses';
 	response.data.title = 'VBOX - Businesses';
 	response.data.scripts = [scripts.jquery, scripts.jelq, scripts.coffee, scripts.ect, scripts.selectize, scripts.google, scripts.maps, scripts.geo, scripts.imagesLoaded, scripts.masonry, scripts.page(response)];
-	response.data.categories = new Categories();
+	response.data.categories = new Categories('business');
 	
 	// Construct Input Data
 	var query = request.query;
@@ -86,7 +86,7 @@ app.get('/businesses', function(request, response, mysql){
 		});
 		console.log('sayeed'+response.data.businesses);
 		rows.forEach(function(row){
-			row.category = getCategory(row.category);
+//			row.category = getCategoryBus(row.category, 'business');
 			row.avatar = row.avatar 
 				? '/uploads/avatars/original/'+row.avatar 
 				: '/images/no-business-profile.png';
@@ -152,7 +152,7 @@ response.data.business = row;
 		response.data.stores = [];
 		response.data.employees = [];
 		response.data.subpage = request.query.show || 'wall';
-		response.data.business.category = getCategory(response.data.business.category)
+		response.data.business.category = getCategoryBus(response.data.business.category, 'business');
 		
 		var business_id = response.data.business.id;
 		
@@ -342,7 +342,7 @@ app.get('/businesses/create', function(request, response, mysql){
 		response.data.page = 'create_business';
 		response.data.title = 'VBOX - Create a Business';	
 		response.data.scripts = [scripts.jquery, scripts.jelq, scripts.selectize, scripts.dropzone, scripts.accounting, scripts.maps, scripts.geo, scripts.page(response)];
-		response.data.categories = new Categories();
+		response.data.categories = new Categories('business');
 		response.finish();
 	} else {
 		app.login(request, response);
@@ -557,7 +557,7 @@ function settingsPage(request, response, mysql){
 		response.data.subpage =  response.data.subpage || request.params[1] || 'details';
 		response.data.scripts = [scripts.jquery, scripts.jelq, scripts.selectize, scripts.maps, scripts.geo, scripts.page(response)];
 		if(response.data.subpage == 'details'){
-			response.data.categories = new Categories();
+			response.data.categories = new Categories('business');
 		}
 		if(!response.data.inputs) response.data.inputs = response.head.account.business;
 		response.finish();
