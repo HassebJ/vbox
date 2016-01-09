@@ -188,7 +188,7 @@ app.accounts.extend = function(request, response, mysql, callback){
     console.log(response.data);
     response.data = {};
     response.data.account = response.head.account;
-    if(typeof accounts === 'undefined')
+    if(typeof accounts === 'undefined' || accounts === null)
         console.log('accounts not defined');
     else{
         console.log(accounts);
@@ -197,6 +197,7 @@ app.accounts.extend = function(request, response, mysql, callback){
             response.data.account.business.avatar = '/uploads/avatars/original/'+ response.data.account.business.avatar;
 
         }
+        accounts = null;
 
 
     }

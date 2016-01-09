@@ -1,7 +1,9 @@
 <div class="body">
 	<div class="topprofile-sec fw">
 		<img src="../../images/profile-banner.jpg" alt="" class="bg">
-		<a href="#" class="upload"><img src="../../images/upload-btn.png" alt=""></a>
+        {{if this.user:}}
+		<a href="#" class="upload"><img src="../../images/upload-btn.png" alt=""><input type="file" id="avatar" name="avatar" placeholder="Avatar"/></a>
+        {{end}}
 	</div>
 	<div class="user-sec fw">
 		<ul class="follow">
@@ -196,7 +198,7 @@
 		<div class="about_container maintab" style="display:none">
 			<h2>Personal Info</h2>
 			<ul>
-				<li><span><img src="../../images/calendr.png" alt=""> Date of Birth</span> <!--23-July-1997--></li>
+				<!--<li><span><img src="../../images/calendr.png" alt=""> Date of Birth</span> &lt;!&ndash;23-July-1997&ndash;&gt;</li>-->
 				<li><span><img src="../../images/lives.png" alt=""> Lives in</span> {{if this.user.country_short and this.user.locality_long:}}
 				{{-this.user.locality_long + ','}} {{-this.user.country_short}}
 			{{end}}</li>
@@ -208,8 +210,8 @@
 			<h2>VBOX Info</h2>
 			<ul>
 				<li><span>No. of Ads</span> <!--12--></li>
-				<li><span>No. of followers</span> <!--08--></li>
-				<li><span>No of Following</span> <!--16--></li>
+				<li><span>No. of Followers</span> <!--08--></li>
+				<!--<li><span>No of Following</span> &lt;!&ndash;16&ndash;&gt;</li>-->
 				
 			</ul>
 		</div>
