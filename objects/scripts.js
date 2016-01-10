@@ -11,7 +11,7 @@ scripts = {
 	coffee		: '/scripts/modules/coffee.js',
 	share		: '/scripts/modules/rrssb.min.js',
 	google		: 'https://maps.googleapis.com/maps/api/js?v=3.exp',
-	maps		: 'http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places',
+	maps		: 'https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places',
 	geo			: '/scripts/modules/jquery.geocomplete.js',
 	currency	: '/scripts/modules/currency.js',
 	accounting	: '/scripts/modules/accounting.js',
