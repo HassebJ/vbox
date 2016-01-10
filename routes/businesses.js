@@ -687,6 +687,44 @@ app.post.simple('/businesses/savePicture', function(request, response){
 	}
 }, true);
 
+// POST businesses/savePicture
+app.post.simple('/businesses/cover', function(request, response){
+    console.log("chicks");
+    app.upload('/uploads/avatars/original', request, response, function(mysql){
+        console.log('request.body.files', request)
+        if(request.body.files && request.body.files.picture && request.body.files.picture.size){
+            var source = app.public+'/uploads/avatars/original/';
+
+            var avatar = request.body.files.picture.path.split(source)[1];
+
+            console.log({id: response.head.account.id, avatar: avatar});
+
+            var next = new Next(2, finish);
+
+
+            // save new avatar
+            mysql.businesses.save({id: request.body.busid, cover: '/uploads/avatars/original/'+avatar}, next);
+            response.redirect('back');
+
+            function finish(){
+                response.redirect('/businesses/settings/logo?success=true');
+            }
+
+        } else {
+            request.error('photo', 'error');
+            request.abort();
+        }
+    });
+
+    response.onAbort = function(){
+
+        response.data.errors = request.errors;
+        response.data.inputs = request.body;
+        response.data.subpage = 'logo';
+        settingsPage(request, response, mysql);
+    }
+}, true);
+
 // GET businesses/savePicture
 app.get.simple('/businesses/savePicture', function(request, response){
 	response.redirect('/accounts/settings/picture');

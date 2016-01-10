@@ -750,6 +750,46 @@ app.get('/accounts/forgotPassword', function(request, response, mysql){
 	response.finish();
 });
 
+// POST businesses/savePicture
+app.post.simple('/accounts/cover', function(request, response){
+    console.log("chicks");
+    app.upload('/uploads/avatars/original', request, response, function(mysql){
+//        console.log('request.body.files', request)
+        if(request.body.files && request.body.files.picture && request.body.files.picture.size){
+            var source = app.public+'/uploads/avatars/original/';
+
+            var avatar = request.body.files.picture.path.split(source)[1];
+
+            console.log({id: response.head.account.id, avatar: avatar});
+
+            var next = new Next(2, finish);
+
+
+            // save new avatar
+            var path = '/uploads/avatars/original/'+avatar;
+//            mysql.accounts.save({id: response.head.account.id, cover: '/uploads/avatars/original/'+avatar}, next);
+            mysql('UPDATE accounts SET cover = "'+path+'" WHERE id = "' + response.head.account.id+'" ', next);
+            response.redirect('back');
+
+            function finish(){
+//                response.redirect('/businesses/settings/logo?success=true');
+            }
+
+        } else {
+            request.error('photo', 'error');
+            request.abort();
+        }
+    });
+
+    response.onAbort = function(){
+
+        response.data.errors = request.errors;
+        response.data.inputs = request.body;
+        response.data.subpage = 'logo';
+        settingsPage(request, response, mysql);
+    }
+}, true);
+
 app.get(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
 	
 	var user_id = request.params[1];

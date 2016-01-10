@@ -1,8 +1,17 @@
 <div class="body">
 	<div class="topprofile-sec fw">
-		<img src="../../images/profile-banner.jpg" alt="" class="bg">
-        {{if this.user:}}
-		<a href="#" class="upload"><img src="../../images/upload-btn.png" alt=""><input type="file" id="avatar" name="avatar" placeholder="Avatar"/></a>
+        {{if this.user.cover:}}
+        <img src="{{-this.user.cover}}" alt="" class="bg">
+        {{else:}}
+
+        <img src="../../images/profile-banner.jpg" alt="" class="bg">
+        {{end}}
+
+
+        {{if this.account:}}
+        <form id="picform" enctype="multipart/form-data">
+            <img id="up" class="upload" src="../../images/upload-btn.png" alt=""><input type="file" id="cover" name="avatar" placeholder="Avatar" style="display:none;"/>
+        </form>
         {{end}}
 	</div>
 	<div class="user-sec fw">
@@ -267,6 +276,42 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+        $("#up").click(function() {
+            $("#cover").click();
+        });
+        $("#cover").change(function (){
+            var fileInput = document.getElementById('cover');
+            var file = fileInput.files[0];
+            var formData = new FormData();
+            formData.append('picture', file);
+//            formData.append("busid", $("#busid").text())
+//            alert(formData);
+//            alert(JSON.stringify(formData));
+            $.ajax({
+                url: '/accounts/cover',  //Server script to process data
+                type: 'POST',
+//                xhr: function() {  // Custom XMLHttpRequest
+//                    var myXhr = $.ajaxSettings.xhr();
+//                    if(myXhr.upload){ // Check if upload property exists
+//                        myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+//                    }
+//                    return myXhr;
+//                },
+                //Ajax events
+                success: function(res){
+                    location.reload(true);
+                },
+                error: function(err){
+                    alert(JSON.stringify(err));
+                },
+                // Form data
+                data: formData,
+                //Options to tell jQuery not to process data or worry about content-type.
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
 		
 		$(function() {
 			$("a").on("click", function() {
