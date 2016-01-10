@@ -44,11 +44,11 @@
         {{if post.image_name:}}
 		{{ ftype=post.image_name.split('.').pop()}}
 		{{if ftype=='mp4':}}
-		<video width="320" height="240" controls ><source src="/uploads/pictures/original/{{-post.image_name}}"  type="video/mp4"></video>
+		<video width="100%" height="100%" controls ><source src="/uploads/pictures/original/{{-post.image_name}}"  type="video/mp4"></video>
 		{{else if ftype=='ogg':}}
-		<video  width="320" height="240" controls ><source src="/uploads/pictures/original/{{-post.image_name}}" type="video/ogg"></video>
+		<video  width="100%" height="100%" controls ><source src="/uploads/pictures/original/{{-post.image_name}}" type="video/ogg"></video>
 		{{else:}}
-			<div class="image"><img src="/uploads/pictures/original/{{-post.image_name}}" width="300" height="250"></div>
+			<div class="image"><img src="/uploads/pictures/original/{{-post.image_name}}" width="100%" height="100%"></div>
 		{{end}}
         {{end}}
         <script>
