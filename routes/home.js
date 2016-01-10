@@ -51,3 +51,13 @@ response.data.scripts = [scripts.jquery, scripts.jelq, scripts.selectize, script
 		response.finish();
 	}
 });
+
+
+app.get('/search', function(request, response, mysql){
+
+        response.data.title = 'Welcome to VBOX'
+        response.data.page = 'search';
+//        response.data.scripts = [scripts.maps, scripts.geo, scripts.validetta, scripts.page(response)];
+        response.finish();
+
+});
