@@ -102,12 +102,12 @@
 								{{-@textarea 'What is in your mind?', 'message' }}
 								<fieldset>
 									<h3 style="margin-bottom:8px;">Upload Pictures</h3>
-										<div class="inputfile_box" id="">	
-											<div class="input-holder file">
-												<input type="file" id="avatar" name="avatar" placeholder="Avatar"/>					
-											</div>
-											<strong>Click here <br>OR <br>Drag and drop files</strong>
-										</div>		
+										<!--<div class="inputfile_box" id="">-->
+                                            <div class="input-holder file">
+                                                <input type="file" id="imgvid" name="avatar" placeholder="Avatar">
+                                            </div>
+											<!--<strong>Click here <br>OR <br>Drag and drop files</strong>-->
+										<!--</div>		-->
 									
 								</fieldset>
 								<button id="submit" type="submit">Share</button>
@@ -502,10 +502,35 @@
 	
 	$(document).ready(function(){
 
+        $("#imgvid").change(function (){
+            var fileInput = document.getElementById('imgvid');
+            var file = fileInput.files[0];
+
+            var fsize = file.size;
+            var ftype = file.type;
+            var fname = file.name;
+
+            switch(ftype)
+            {
+                case 'image/png':
+                case 'image/gif':
+                case 'image/jpeg':
+                case 'image/jpg':
+                case 'image/pjpeg':
+                case 'video/mp4':
+                    alert("Acceptable image file!");
+                    break;
+                default:
+                    alert('Unsupported File! Only png, jpg, mp4 accepted.');
+                     $("#imgvid").val('');
+            }
+        });
+
 
         $("#up").click(function() {
             $("#cover").click();
         });
+
         $("#cover").change(function (){
             var fileInput = document.getElementById('cover');
             var file = fileInput.files[0];
