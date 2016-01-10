@@ -282,15 +282,27 @@
         $("#cover").change(function (){
             var fileInput = document.getElementById('cover');
             var file = fileInput.files[0];
-            var formData = new FormData();
-            alert("Page will reload automitically once upload is complete. Press okay to begin upload.");
-            formData.append('picture', file);
+            if( file ) {
+                var img = new Image();
+
+                img.src = window.URL.createObjectURL( file );
+
+                img.onload = function() {
+                    var width = img.naturalWidth,
+                            height = img.naturalHeight;
+
+                    window.URL.revokeObjectURL( img.src );
+
+                    if( width >= 1270 ) {
+//                        var formData = new FormData();
+                        alert("Page will reload automitically once upload is complete. Press okay to begin upload.");
+                        formData.append('picture', file);
 //            formData.append("busid", $("#busid").text())
 //            alert(formData);
 //            alert(JSON.stringify(formData));
-            $.ajax({
-                url: '/accounts/cover',  //Server script to process data
-                type: 'POST',
+                        $.ajax({
+                            url: '/accounts/cover',  //Server script to process data
+                            type: 'POST',
 //                xhr: function() {  // Custom XMLHttpRequest
 //                    var myXhr = $.ajaxSettings.xhr();
 //                    if(myXhr.upload){ // Check if upload property exists
@@ -298,20 +310,27 @@
 //                    }
 //                    return myXhr;
 //                },
-                //Ajax events
-                success: function(res){
-                    location.reload(true);
-                },
-                error: function(err){
-                    alert(JSON.stringify(err));
-                },
-                // Form data
-                data: formData,
-                //Options to tell jQuery not to process data or worry about content-type.
-                cache: false,
-                contentType: false,
-                processData: false
-            });
+                            //Ajax events
+                            success: function(res){
+                                location.reload(true);
+                            },
+                            error: function(err){
+                                alert(JSON.stringify(err));
+                            },
+                            // Form data
+                            data: formData,
+                            //Options to tell jQuery not to process data or worry about content-type.
+                            cache: false,
+                            contentType: false,
+                            processData: false
+                        });
+                    }
+                    else {
+                        alert("Picture should be alteast 1280px in width.")
+                    }
+                };
+            }
+
         });
 		
 		$(function() {
