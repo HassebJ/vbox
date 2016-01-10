@@ -1,3 +1,53 @@
+input[type="text"], input[type="password"], input[type="email"], textarea {
+    /*background: none !important;*/
+    border: none !important;
+    /* box-shadow: 0 1px 2px rgba(0,0,0,0.3); */
+
+    /* outline: none; */
+    /*padding: none !important;*/
+    /*font-size: 15px;*/
+    /*font-family: Lato, Lucida Grande, Tahoma;*/
+    -webkit-transition: box-shadow 30ms ease-in-out;
+
+    border: none !important;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea {
+    /*background: none !important;*/
+    border: none !important;
+    /* box-shadow: 0 1px 2px rgba(0,0,0,0.3); */
+
+    /* outline: none; */
+    /*padding: none !important;*/
+    /*font-size: 15px;*/
+    /*font-family: Lato, Lucida Grande, Tahoma;*/
+    -webkit-transition: box-shadow 30ms ease-in-out;
+
+    border: none !important;
+}
+
+input[type="text"]:hover, input[type="password"]:hover, input[type="email"]:hover, textarea {
+    background: none;
+    border: none !important;
+    /* box-shadow: 0 1px 2px rgba(0,0,0,0.3); */
+
+    /* outline: none; */
+    /*padding: none !important;*/
+    /*font-size: 15px;*/
+    /*font-family: Lato, Lucida Grande, Tahoma;*/
+    -webkit-transition: box-shadow 30ms ease-in-out;
+
+    border: none !important;
+}
+
+/*.button:hover, button:hover, input[type="submit"]:hover {*/
+     /*background: none !important;*/
+     /*box-shadow: none !important;*/
+    /*color: #FFF; */
+     /*text-decoration: none !important;*/
+/*}*/
+
+
 body{ background:#fff !Important;}
 form{
 	padding: 20px 0;
@@ -45,7 +95,7 @@ h1{
 }
 .stores .store .in:hover{ background: #00BBFF; border-color: #088abb;}
 .stores .store .in:hover .detail.name input, .stores .store .in:hover .detail.location input{ color: #fff;}
-.stores .store .in:hover button{ background: #fff; color: #00baff !Important; text-shadow:none;}
+.stores .store .in:hover button{ background: #fff !important; color: #00baff !important; text-shadow:none !important;}
 .stores .store .in:hover .map{ color: #fff;}
 
 .stores .store .in:before{
@@ -80,7 +130,7 @@ h1{
 .stores .store .actions{
 	position: relative; text-align:right;
 }
-.stores .store .actions a{ color:#00baff !Important; background: #fff; border:1px solid #00BBFF; box-shadow: none;}
+.stores .store .actions a{ color:#00baff !important; background: #fff !important; border:1px solid #00BBFF !important; box-shadow: none !important;}
 
 
 .stores .store .detail.name input{

@@ -1,5 +1,6 @@
 Categories = function(selector){
     if (typeof selector !== 'undefined'){
+        if(selector == 'business')
         return [
             {
                 "options": [
