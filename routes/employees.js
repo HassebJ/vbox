@@ -6,15 +6,19 @@ app.get(/^\/businesses\/employees\/?$/i, function(request, response, mysql){
 
         if(typeof(response.head.account.business) !== 'undefined'){
             if (response.head.account.business instanceof Array)
-                business_id = mysql.escape(response.head.account.business[0].id);
+//                business_id = mysql.escape(response.head.account.business[0].id);
+            business_id = response.head.account.business[0].id;
             else
-                business_id = mysql.escape(response.head.account.business.id);
+//                business_id = mysql.escape(response.head.account.business.id);
+                business_id = response.head.account.business.id;
 
         }else if(typeof(response.head.account.businesses) !== 'undefined'){
             if (response.head.account.business instanceof Array)
-                business_id = mysql.escape(response.head.account.businesses[0].id);
+                business_id = response.head.account.business[0].id;
+//                business_id = mysql.escape(response.head.account.businesses[0].id);
             else
-                business_id = mysql.escape(response.head.account.businesses.id);
+                business_id = response.head.account.business.id;
+//                business_id = mysql.escape(response.head.account.businesses.id);
         }
 		// get stores
         console.log(business_id);
@@ -26,23 +30,23 @@ app.get(/^\/businesses\/employees\/?$/i, function(request, response, mysql){
 			response.data.stores = selectStores;
 			next();
 		});
-		
-		// get confirmed employees
-		mysql('SELECT * FROM accounts, business_employees'
-			+ ' WHERE business_employees.business = ' + business_id 
-			+ ' AND accounts.id = business_employees.account AND confirmed = 1', 
-		function(rows){
-			rows.forEach(function(row){
-                row = app.accounts.user(row)
-            });
+
+
+        // get confirmed employees
+        mysql('SELECT * FROM accounts, business_employees'
+                + ' WHERE business_employees.business = ' + mysql.escape(business_id)
+                + ' AND accounts.id = business_employees.account AND confirmed = 1',
+            function(rows){
+                rows.forEach(function(row){
+                    row = app.accounts.user(row)
+                });
 //            for (var i = 0 )
-			response.head.account.business.employees = rows;
-			next();
-		});
-		
-		// get pending employees
+                response.head.account.business.employees = rows;
+                next();
+            });
+        // get pending employees
 		mysql('SELECT * FROM business_employees'
-			+ ' WHERE business_employees.business = ' + business_id 
+			+ ' WHERE business_employees.business = ' + mysql.escape(business_id)
 			+ ' AND confirmed != 1', 
 		function(rows){
 			response.head.account.business.pending_employees = rows;
@@ -63,8 +67,8 @@ app.post('/businesses/employees/save', function(request, response, mysql){
 	when.business(request, response, mysql, function(){
 		var employee = {
 			id: request.body.id,
-			contact_number: request.body.contact_number,
-			contact_email: request.body.contact_email,
+//			contact_number: request.body.contact_number,
+//			contact_email: request.body.contact_email,
 			role: request.body.role,
 			store: request.body.store || null
 		}
@@ -109,11 +113,12 @@ app.post('/businesses/employees/invite', function(request, response, mysql){
 			
 			mysql.business_employees.save({
 				contact_email	: request.body.email,
-				confirmed		: confirmation_code,
+				confirmed		: 0,
 				business		: response.head.account.business.id,
 				account			: account.id,
 				role			: 1,
-				time_created	: new Date().getTime()
+				time_created	: new Date(),
+                code : confirmation_code
 			}, onFinish);
 			
 			function onFinish(){	
@@ -137,7 +142,7 @@ app.get('/businesses/employees/delete', function(request, response, mysql){
 // GET businesses/employees/invite/answer
 app.get('/businesses/employees/invite/answer', function(request, response, mysql){
 	if(isset(request.query.code)){
-		mysql.business_employees.get('confirmed', request.query.code, function(employees){
+		mysql.business_employees.get('code', request.query.code, function(employees){
 			var employee = employees[0];
 			if(employee){
 				mysql.businesses.get('id', employee.business, function(rows){

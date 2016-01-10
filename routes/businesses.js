@@ -515,12 +515,12 @@ app.get(/^\/businesses\/use\/([^\/]+)$/i, function(request, response, mysql){
 
 						mysql.business_employees.save({ id: rows[0].busid, session: session }, function(){
 
-                            response.head.account.business=rows[0];
+//                            response.head.account.business=rows[0];
                             accounts = {};
                             accounts.business = rows[0];
-                            response.bus = {};
-                            response.bus = rows[0];
-                            response.data = accounts.business;
+//                            response.bus = {};
+//                            response.bus = rows[0];
+//                            response.data = accounts.business;
                             response.cookies.set('business', session, { httpOnly: true });
 
                             response.redirect('back');
@@ -537,6 +537,7 @@ app.get(/^\/businesses\/use\/([^\/]+)$/i, function(request, response, mysql){
 					}
 				});
 			} else {
+                accounts = false;
 				response.cookies.delete('business');
 				response.redirect('back');
 			}

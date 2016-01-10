@@ -1,4 +1,4 @@
-var site_url = "http://192.168.1.30:8080";
+var site_url = window.location.hostname;
 var avatars_path = "img/";
 var shared_dir = "shared/";
 var id_account = false;

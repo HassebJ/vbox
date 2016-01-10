@@ -5,13 +5,13 @@
 			<li><a href="#">Staff</a></li>
 		</ul>
 	</div>
-
+    <!--{{-console.log(this) }}-->
 	<div class="top">
 		<h1 class="left">Staff</h1>
 		<div class="right">
-			{{if this.account.business.role == 0:}}
+        {{if this.account.business.role == 0:}}
 				<a href="/businesses/employees/invite" class="button fa fa-plus">Invite Staff</a>
-			{{end}}
+        {{end}}
 		</div>
 	</div>
 	
@@ -29,11 +29,11 @@
 						<div class="content">
 							<div class="name">{{-employee.first_name + ' ' + employee.last_name}}</div>
 							<div class="address">
-                                {{-if employee.contact_number is '' :}}
+                            {{if employee.contact_number is '' :}}
                                 <p><i class="fa fa-phone"></i> Contact Number not provided</p>
-                                {{else:}}
+                            {{else:}}
                                 <p><i class="fa fa-phone"></i> {{-employee.contact_number }}</p>
-                                {{end}}
+                            {{end}}
 								<!--<p><i class="fa fa-phone"></i> {{-employee.contact_number }}</p>-->
 								<p> <i class="fa fa-envelope"></i> {{-employee.contact_email }}</p>
 							</div>
@@ -94,3 +94,4 @@
 	</div>
 	
 </div>
+<script>consol.log("this :" + this);</script>
