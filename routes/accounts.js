@@ -185,77 +185,54 @@ app.login = function(request, response){
 	response.finish();
 } 
 
-app.accounts.extend = function(request, response, mysql, callback){
-    console.log(response.data);
-    response.data = {};
-    response.data.account = response.head.account;
-
-
-
-	
-	var next = new Next(1, function(){ callback(); });
-	// get businesses
-
-//    if(typeof accounts === 'undefined' || accounts === null)
-//        console.log('accounts not defined');
-//    else{
-//        if (accounts == false){
-//            response.data.account.business = false;
-//        }else{
-//            console.log(accounts);
-//            response.data.account.business = accounts.business;
-//            if (response.data.account.business.avatar.indexOf('uploads') < 0){
-//                response.data.account.business.avatar = '/uploads/avatars/original/'+ response.data.account.business.avatar;
-//
-//            }
-//            accounts = null;
-//        }
+//app.accounts.extend = function(request, response, mysql, callback){
+//    console.log(response.data);
+//    response.data = {};
+//    response.data.account = response.head.account;
 //
 //
-//    }
-
-    mysql('SELECT * FROM business_employees, businesses WHERE business_employees.account = ' + mysql.escape(response.head.account.id) + ' AND businesses.id = business_employees.business AND business_employees.role = 0 ', function(rows){
-        rows.forEach(function(business){
-            business.avatar = isset(business.avatar)
-                ? '/uploads/avatars/original/'+business.avatar
-                : '/images/no-business-profile.png';
-            if(typeof accounts === 'undefined' || accounts === null)
-                console.log('accounts not defined');
-            else {
-                if (accounts == false) {
-                    response.data.account.business = false;
-                } else {
-
-                    if (business.session == request.cookies.business) {
-                        business.selected = true;
-                        response.data.account.business = business;
-                        if (response.data.account.business.avatar.indexOf('uploads') < 0) {
-                            response.data.account.business.avatar = '/uploads/avatars/original/' + response.data.account.business.avatar;
-
-                        }
-                    }else{
-                        console.log(accounts);
-                        response.data.account.business = accounts.business;
-                        if (response.data.account.business.avatar.indexOf('uploads') < 0){
-                            response.data.account.business.avatar = '/uploads/avatars/original/'+ response.data.account.business.avatar;
-
-                        }
-                        accounts = null;
-                    }
-                }
-            }
-        });
-        mysql.businesses.get('account',response.head.account.id,function(businesses){
-            if(businesses && businesses.length) {
-                response.data.account.businesses = businesses;
-            }
-//            if (!response.data.account.business){
-//                if(typeof accounts === 'undefined' || accounts === null) {
-//                    console.log('accounts not defined');
-//                }
-//                else{
-//                    if (accounts == false){
-//                        response.data.account.business = false;
+//
+//
+//	var next = new Next(1, function(){ callback(); });
+//	// get businesses
+//
+////    if(typeof accounts === 'undefined' || accounts === null)
+////        console.log('accounts not defined');
+////    else{
+////        if (accounts == false){
+////            response.data.account.business = false;
+////        }else{
+////            console.log(accounts);
+////            response.data.account.business = accounts.business;
+////            if (response.data.account.business.avatar.indexOf('uploads') < 0){
+////                response.data.account.business.avatar = '/uploads/avatars/original/'+ response.data.account.business.avatar;
+////
+////            }
+////            accounts = null;
+////        }
+////
+////
+////    }
+//
+//    mysql('SELECT * FROM business_employees, businesses WHERE business_employees.account = ' + mysql.escape(response.head.account.id) + ' AND businesses.id = business_employees.business AND business_employees.role = 0 ', function(rows){
+//        rows.forEach(function(business){
+//            business.avatar = isset(business.avatar)
+//                ? '/uploads/avatars/original/'+business.avatar
+//                : '/images/no-business-profile.png';
+//            if(typeof accounts === 'undefined' || accounts === null)
+//                console.log('accounts not defined');
+//            else {
+//                if (accounts == false) {
+//                    response.data.account.business = false;
+//                } else {
+//
+//                    if (business.session == request.cookies.business) {
+//                        business.selected = true;
+//                        response.data.account.business = business;
+//                        if (response.data.account.business.avatar.indexOf('uploads') < 0) {
+//                            response.data.account.business.avatar = '/uploads/avatars/original/' + response.data.account.business.avatar;
+//
+//                        }
 //                    }else{
 //                        console.log(accounts);
 //                        response.data.account.business = accounts.business;
@@ -265,20 +242,90 @@ app.accounts.extend = function(request, response, mysql, callback){
 //                        }
 //                        accounts = null;
 //                    }
-//
 //                }
-//
-//
 //            }
+//        });
+//        mysql.businesses.get('account',response.head.account.id,function(businesses){
+//            if(businesses && businesses.length) {
+//                response.data.account.businesses = businesses;
+//            }
+////            if (!response.data.account.business){
+////                if(typeof accounts === 'undefined' || accounts === null) {
+////                    console.log('accounts not defined');
+////                }
+////                else{
+////                    if (accounts == false){
+////                        response.data.account.business = false;
+////                    }else{
+////                        console.log(accounts);
+////                        response.data.account.business = accounts.business;
+////                        if (response.data.account.business.avatar.indexOf('uploads') < 0){
+////                            response.data.account.business.avatar = '/uploads/avatars/original/'+ response.data.account.business.avatar;
+////
+////                        }
+////                        accounts = null;
+////                    }
+////
+////                }
+////
+////
+////            }
+//
+//            next();
+//        });
+//
+////		response.data.account.businesses = rows;
+//
+//    })
+//	// get notificiations
+//	// get ads
+//}
+
+app.accounts.extend = function(request, response, mysql, callback){
+    console.log(response.data);
+    response.data = {};
+    response.data.account = response.head.account;
+    if(typeof accounts === 'undefined' || accounts === null )
+        console.log('accounts not defined');
+    else{
+        console.log(accounts);
+        response.data.account.business = accounts.business;
+        if (response.data.account.business.avatar.indexOf('uploads') < 0){
+            response.data.account.business.avatar = '/uploads/avatars/original/'+ response.data.account.business.avatar;
+
+        }
+//        accounts = null;
+
+
+    }
+
+
+
+    var next = new Next(1, function(){ callback(); });
+    // get businesses
+    mysql('SELECT * FROM business_employees, businesses WHERE business_employees.account = ' + mysql.escape(response.head.account.id) + ' AND businesses.id = business_employees.business AND business_employees.role = 0 ', function(rows){
+        rows.forEach(function(business){
+            business.avatar = isset(business.avatar)
+                ? '/uploads/avatars/original/'+business.avatar
+                : '/images/no-business-profile.png';
+            if(business.session == request.cookies.business){
+                business.selected = true;
+                response.data.account.business = business;
+            }
+        });
+        mysql.businesses.get('account',response.head.account.id,function(businesses){
+            if(businesses && businesses.length) {
+                response.data.account.businesses = businesses;
+            }
 
             next();
         });
 
 //		response.data.account.businesses = rows;
 
-    })
-	// get notificiations
-	// get ads
+    });
+    // get notificiations
+    // get ads
 }
 
 app.accounts.on('login', function(request, response, mysql){

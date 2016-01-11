@@ -86,6 +86,9 @@
 							<div class="tabbed status">
 							{{-@post '/posts/save', {id: 'dropform3'} }}
 								{{-@textarea 'What is in your mind?', 'message' }}
+                                {{if this.business.id:}}
+                                <input type="hidden" name="busid" value="{{-this.business.id}}" />
+                                {{end}}
 								<button id="submit" type="submit">Share</button>
 										{{-@end}}
 							</div>
@@ -93,6 +96,9 @@
 							{{-@post '/posts/save', {id: 'dropfor2'} }}
 								{{-@textarea 'What is in your mind?', 'message' }}
 										<input style="width: 100%" type="text" name="url" placeholder="URL"/>
+                                        {{if this.business.id:}}
+                                        <input type="hidden" name="busid" value="{{-this.business.id}}" />
+                                        {{end}}
 										<button id="submit" type="submit">Share</button>
 										{{-@end}}
 							</div>
@@ -105,6 +111,9 @@
 										<!--<div class="inputfile_box" id="">-->
                                             <div class="input-holder file">
                                                 <input type="file" id="imgvid" name="avatar" placeholder="Avatar">
+                                                {{if this.business.id:}}
+                                                <input type="hidden" name="busid" value="{{-this.business.id}}" />
+                                                {{end}}
                                             </div>
 											<!--<strong>Click here <br>OR <br>Drag and drop files</strong>-->
 										<!--</div>		-->
@@ -502,6 +511,31 @@
 	
 	$(document).ready(function(){
 
+        $(".comment_submit").click(function() {
+            event.preventDefault();
+            var element = $(this);
+            var id = element.attr("id");
+            var formid = 'form'+id;
+            var form = document.getElementById(formid);
+            var formData = new FormData(form);
+            formData.append('postid', id);
+            var test = $("#message"+id).val();
+            if(test=='')
+            {
+                alert("Please Enter Some Text");
+            }
+            else
+            {
+
+                $.get( "/posts/comment", { postid: id, message: test} )
+                        .done(function( data ) {
+                            location.reload(true);
+                        });
+
+            }
+
+        });
+
         $("#imgvid").change(function (){
             var fileInput = document.getElementById('imgvid');
             var file = fileInput.files[0];
@@ -547,7 +581,7 @@
 
                     if( width >= 1270 ) {
 //                        var formData = new FormData();
-                        alert("Page will reload automitically once upload is complete. Press okay to begin upload.");
+                        alert("Page will reload automatically once upload is complete. Press okay to begin upload.");
                         formData.append('picture', file);
             formData.append("busid", $("#busid").text())
 //            alert(formData);

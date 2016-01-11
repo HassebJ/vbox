@@ -57,8 +57,9 @@ if( response.head.account.id){
 		
 
 		
-		if(response.head.account.business && request.body.owner == 'business'){
-			owner = response.head.account.business.id;
+		if(response.head.account.business && request.body.busid){
+            if(request.body.busid == response.head.account.business.id)
+			    owner = response.head.account.business.id;
 		}
 
 	
@@ -92,9 +93,13 @@ app.get('/posts/comment', function(request, response, mysql){
 
 
     if(response.head.account.id){
+        var author = response.head.account.id;
+        if(response.head.account.business){
+            author = response.head.account.business.id;
+        }
 
         mysql.post_comments.save({
-            author	: response.head.account.id,
+            author	: author,
             message	: request.query.message,
             post		: request.query.postid,
             time	: new Date().getTime(),

@@ -4,6 +4,7 @@ app.all(function (request, response, mysql, next) {
         
         app.accounts.user(response.head.account);
         app.accounts.extend(request, response, mysql, next);
+//        mysql.end();
 //        console.log(app);
     } else {
         next();

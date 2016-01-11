@@ -2,6 +2,17 @@ body{
 	background: #E9EAED;
 }
 
+.add-comments {
+    padding: 15px !important;
+    background: #F2F2F2;
+    padding: 15px !important;
+    clear: both;
+    border-radius: 5px;
+}
+.add-comments textarea {
+    width: 100%;
+}
+
 #content{
 	background: #E9EAED;
 }

@@ -1,4 +1,5 @@
 // GET businesses browser
+var async = require('async');
 /*
 app.get('/businesses', function(request, response, mysql){
 	response.data.page = 'businesses';
@@ -208,8 +209,33 @@ response.data.business = row;
 					order: 'time DESC',
 					limit: LIMIT
 				}, function(rows){
-					response.data.posts = rows;
-					nextPost();
+                    async.eachSeries(rows, function(post, callback) {
+
+                        mysql.post_comments.get('post', post.id, function(comments){
+//                            posts.push(comments);
+                            post.comments = comments;
+                            callback();
+
+                        });
+
+                    }, function(err){
+                        response.data.posts = rows;
+                        console.log('==============================================>>>>>>>>>>>>>>>>>');
+//                        console.log(posts);
+                        console.log(response.data.posts);
+                        console.log(rows);
+                        console.log('==============================================>>>>>>>>>>>>>>>>>');
+                        nextPost();
+                        // if any of the file processing produced an error, err would equal that error
+
+                    });
+//					response.data.posts = rows;
+//					nextPost();
+//                })
+
+
+//					response.data.posts = rows;
+//					nextPost();
 				});
 				
 			} else if(response.data.subpage == 'ads'){
@@ -294,8 +320,29 @@ response.data.business = row;
 					order: 'time DESC',
 					limit: LIMIT
 				}, function(rows){
-					response.data.posts = rows;
-					nextPost();
+
+                    async.eachSeries(rows, function(post, callback) {
+
+                        mysql.post_comments.get('post', post.id, function(comments){
+//                            posts.push(comments);
+                            post.comments = comments;
+                            callback();
+
+                        });
+
+                    }, function(err){
+                        response.data.posts = rows;
+                        console.log('==============================================>>>>>>>>>>>>>>>>>');
+//                        console.log(posts);
+                        console.log(response.data.posts);
+                        console.log(rows);
+                        console.log('==============================================>>>>>>>>>>>>>>>>>');
+                        nextPost();
+                        // if any of the file processing produced an error, err would equal that error
+
+                    });
+//					response.data.posts = rows;
+//					nextPost();
 				});
 			}
 		}
@@ -522,6 +569,7 @@ app.get(/^\/businesses\/use\/([^\/]+)$/i, function(request, response, mysql){
 //                            response.bus = rows[0];
 //                            response.data = accounts.business;
                             response.cookies.set('business', session, { httpOnly: true });
+                            response.cookies.set('busid', rows[0].busid, { httpOnly: true });
 
                             response.redirect('back');
 //                            response.end();
@@ -537,8 +585,9 @@ app.get(/^\/businesses\/use\/([^\/]+)$/i, function(request, response, mysql){
 					}
 				});
 			} else {
-                accounts = false;
+//                accounts = false;
 				response.cookies.delete('business');
+                response.cookies.delete('busid');
 				response.redirect('back');
 			}
 		} else {
