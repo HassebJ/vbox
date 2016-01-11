@@ -586,6 +586,8 @@ app.get(/^\/businesses\/use\/([^\/]+)$/i, function(request, response, mysql){
 				});
 			} else {
 //                accounts = false;
+                response.head.account.business = undefined;
+                accounts = undefined;
 				response.cookies.delete('business');
                 response.cookies.delete('busid');
 				response.redirect('back');

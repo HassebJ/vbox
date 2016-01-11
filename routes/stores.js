@@ -83,24 +83,16 @@ app.get('/businesses/stores/delete', function(request, response, mysql){
 
 when = {};
 when.business = function(request, response, db, callback){
-	if(response.head.account.id){
-
-		if(response.head.account.business){
-			callback();
-		} else {
-            mysql.businesses.get('account',response.head.account.id,function(business){
-                if(business){
-                    response.head.account.business = business[0];
-                    callback();
-                } else {
-                    response.redirect('/?error=no_business');
-                    mysql.end();
-                }
-            });
-
-		}
-	} else {
-		app.login(request, response);
-	}
+    if(response.head.account.id){
+        if(response.head.account.business){
+            callback();
+        } else {
+            response.redirect('/');
+            mysql.end();
+        }
+    } else {
+        app.login(request, response);
+    }
 }
+
 
