@@ -101,7 +101,12 @@
 			<!-- location -->
 			<span class="dot">·</span> {{-this.ad.locality_long}}, {{-this.ad.country_long}}
 		</p>
-        <div data-productid="312" class="rateit"></div>
+        {{if this.ad.rating_average is null:}}
+        <div data-productid="{{-this.ad.id}}" class="rateit" id="rateit9"></div>
+        {{else:}}
+        <div data-productid="{{-this.ad.id}}" data-rateit-value="{{-this.ad.rating_average}}" class="rateit" id="rateit19"></div>
+        {{end}}
+        <!--<div data-productid="{{-this.ad.id}}" class="rateit" id="rateit9"></div>-->
 		<!--<ul>-->
 			<!--<li><img src="../../images/solidrate.png" alt=""></li>-->
 			<!--<li><img src="../../images/solidrate.png" alt=""></li>-->
@@ -303,7 +308,41 @@
 	</div>
 </div>
 
+<script>
 
+$('.rateit').bind('rated reset', function (e, value) {
+//            alert(JSON.stringify(value));
+            var ri = $(this);
+
+
+            //if the use pressed reset, it will get value: 0 (to be compatible with the HTML range control), we could check if e.type == 'reset', and then set the value to  null .
+//            var value = $('#rateit9').rateit('value');
+            var productID = ri.data('productid');
+//    alert(JSON.stringify(productID));// if the product id was in some hidden field: ri.closest('li').find('input[name="productid"]').val()
+
+            //maybe we want to disable voting?
+//            ri.rateit('readonly', true);
+
+            $.ajax({
+                url: '/classifieds/rating', //your server side script
+                data: { id: productID, value: value }, //our data
+                type: 'POST',
+                success: function (data) {
+                    location.reload(true);
+//                    alert("in success");
+//                    $('#response').append('<li>' + data + '</li>');
+
+                },
+                error: function (jxhr, msg, err) {
+                    location.reload(true);
+//                    alert("in err");
+//                    $('#response').append('<li style="color:red">' + msg + '</li>');
+                }
+            });
+
+        });
+
+</script>
 
 
 
