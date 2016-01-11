@@ -479,6 +479,31 @@ app.get('/accounts/login', function(request, response, mysql){
 	response.finish();
 });
 
+app.get('/accounts/login', function(request, response, mysql){
+    response.data.title = 'VBOX - Login';
+    response.data.page = 'login';
+    response.finish();
+});
+
+//app.get('/accounts/logout', function(request, response, mysql){
+//    if(events.logout){
+//        Auth.logout(request, response, mysql, false, function(){
+//            events.logout(request, response, mysql);
+//        });
+//    } else {
+//        cors(request, response);
+//        var redirect = !isset(request.query.sso) ? 'back' : false ;
+//        Auth.logout(request, response, mysql, redirect);
+//        if(!redirect) response.end({passed: true, errors: false});
+//    }
+//});
+
+//app.get('/accounts/logout', function(request, response, next){
+//    accounts = undefined;
+//    response.head.accounts = undefined;
+//    next();
+//});
+
 app.get('/accounts/signup', function(request, response, mysql){
 	response.data.title = 'VBOX - Sign Up';
 	response.data.page = 'signup';
