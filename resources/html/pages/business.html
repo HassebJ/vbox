@@ -57,7 +57,7 @@
 			<a id="timelineActiveId" class="active" href="?show=wall">Timeline</a>
 			<a id="storeActiveId" class="" href="?show=stores">Stores</a>
 			<a id="classifiedActiveId" class="" href="?show=ads">Classified Ads</a>
-			<li id="descriptionActiveId" class=""><a href="#">Description</a></li>
+			<a id="descriptionActiveId" class="" href="?show=description">Description</a>
 		</ul>
 	</div>
 	
@@ -339,7 +339,7 @@
 												{{end}}
 											</p>
 										</div>
-										<a href="#">Chat</a>
+										<a href="/chat/?r={{-employee.id}}&id={{-this.account.id}}">Chat</a>
 									</div>
 								</div>
 							</div>
@@ -422,7 +422,7 @@
 		<div class="description_container maintab" style="display:none">
 			<h2>Business info</h2>
 			<ul>
-				<li><span><img src="../../images/calendr.png" alt=""> Start Date</span> <strong> <!--17 February 2010--></strong></li>
+				<!--<li><span><img src="../../images/calendr.png" alt=""> Start Date</span> <strong> &lt;!&ndash;17 February 2010&ndash;&gt;</strong></li>-->
 				<li><span> Short Description</span> <strong>{{-this.business.description}}</strong></li>
 				<li><span> Category</span> <strong>{{-this.business.category}}</strong></li>
 				<li><span><i class="fa fa-phone"></i> Telephone no.</span> <strong>{{-this.business.contact_number}}</strong></li>
@@ -612,7 +612,8 @@
                         });
                     }
                     else {
-                        alert("Picture should be alteast 1280px in width.")
+                        alert("Picture should be alteast 1280px in width.");
+                        $("#cover").val('');
                     }
                 };
             }
@@ -634,12 +635,13 @@
 			vars.push(hash[0]);
 			vars[hash[0]] = hash[1];
 		}
-		
+//		alert("hash 0: " + hash[0] + " hash 1: " + hash[1])
 			
 		if(hash[1]=='wall'){
 			$(".timeline_container").css("display", "block");
 			$(".classified_container").css("display", "none");
 			$(".stores_container").css("display", "none");
+            $(".description_container").css("display", "none");
 			
 			$('#timelineActiveId').removeClass('active');
 			$('#storeActiveId').removeClass('active');
@@ -653,15 +655,18 @@
 			$(".timeline_container").css("display", "none");
 			$(".classified_container").css("display", "none");
 			$(".stores_container").css("display", "block");
+            $(".description_container").css("display", "none");
 			
 			$('#timelineActiveId').removeClass('active');
 			$('#storeActiveId').addClass('active');
 			$('#classifiedActiveId').removeClass('active');
 			$('#descriptionActiveId').removeClass('active');
-		}else if(hash[1]=='ads'){
+		}
+        else if(hash[1]=='ads'){
 			$(".timeline_container").css("display", "none");
 			$(".classified_container").css("display", "block");
 			$(".stores_container").css("display", "none");
+            $(".description_container").css("display", "none");
 			
 			$('#timelineActiveId').removeClass('active');
 			$('#storeActiveId').removeClass('active');
@@ -672,17 +677,30 @@
 			//alert('sdfjjjjjjjjjjjjjjjjjjjjjjjjjjjjk');
 			//$(".timeline_container").css("display", "none");
 			//$(".classified_container").css("display", "block");
-			$(".timeline_container").css("display", "none");
-			$(".classified_container").css("display", "none");
-			$(".stores_container").css("display", "none");
-			$(".staff_container").css("display", "block");
-			
-			$('#timelineActiveId').removeClass('active');
-			$('#storeActiveId').addClass('active');
-			$('#classifiedActiveId').removeClass('active');
-			$('#descriptionActiveId').removeClass('active');
-			
-		}
+            $(".timeline_container").css("display", "none");
+            $(".classified_container").css("display", "none");
+            $(".stores_container").css("display", "none");
+            $(".staff_container").css("display", "block");
+            $(".description_container").css("display", "none");
+
+            $('#timelineActiveId').removeClass('active');
+            $('#storeActiveId').addClass('active');
+            $('#classifiedActiveId').removeClass('active');
+            $('#descriptionActiveId').removeClass('active');
+
+
+        }else if(hash[1]=='description'){
+         $(".timeline_container").css("display", "none");
+         $(".classified_container").css("display", "none");
+         $(".stores_container").css("display", "none");
+         $(".staff_container").css("display", "none");
+         $(".description_container").css("display", "block");
+
+         $('#timelineActiveId').removeClass('active');
+         $('#descriptionActiveId').addClass('active');
+         $('#classifiedActiveId').removeClass('active');
+         $('#storeActiveId').removeClass('active');
+     }
 		
 		
 		$('.user-sec .tabs li').click(function(){

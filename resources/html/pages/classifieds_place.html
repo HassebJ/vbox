@@ -1,3 +1,4 @@
+
 <div class="center">
 	<div class="center-in">
 		{{-@post '/classifieds/place', id: 'dropform', enctype : 'multipart/form-data' }}
@@ -104,3 +105,34 @@
 		{{@end}}
 	</div>
 </div>
+
+
+        <script>
+            $(document).ready(function() {
+                $("#avatar").change(function (){
+                    var fileInput = document.getElementById('cover');
+                    var file = fileInput.files[0];
+                    if( file ) {
+                        var img = new Image();
+
+                        img.src = window.URL.createObjectURL( file );
+
+                        img.onload = function() {
+                            var width = img.naturalWidth,
+                                    height = img.naturalHeight;
+
+                            window.URL.revokeObjectURL( img.src );
+
+                            if( (width >290 && width <310) && (height >290 && height < 310) ) {
+                              console.log("correct picture size");
+                            }
+                            else {
+                                alert("Picture should be 300x300 pixels.");
+                                $("#avatar").val('');
+                            }
+                        };
+                    }
+
+                });
+            });
+        </script>
