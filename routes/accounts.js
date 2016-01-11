@@ -1,4 +1,5 @@
 var request = require('request');
+var async = require('async');
 var qs = require('querystring');
 
 
@@ -791,7 +792,7 @@ app.post.simple('/accounts/cover', function(request, response){
 }, true);
 
 app.get(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
-	
+    var posts  = [];
 	var user_id = request.params[1];
 	console.log('user id=',user_id);
 	if(isset(user_id)){
@@ -836,6 +837,7 @@ app.get(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
 			});
 		}
 		function afterUser(){
+
 			if(response.data.subpage == 'ads'){
 				
 				response.data.ads = [];
@@ -879,12 +881,32 @@ app.get(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
 					order: 'time DESC',
 					limit: LIMIT
 				}, function(rows){
-					response.data.posts = rows;
-					console.log('==============================================>>>>>>>>>>>>>>>>>');
-					console.log(response.data.posts);
-					console.log(rows);
-					console.log('==============================================>>>>>>>>>>>>>>>>>');
-					nextPost();
+
+//                    rows.forEach(function(row){
+
+                    async.eachSeries(rows, function(post, callback) {
+
+                        mysql.post_comments.get('post', post.id, function(comments){
+                            posts.push(comments);
+                            post.comments = comments;
+                            callback();
+
+                        });
+
+                    }, function(err){
+                        response.data.posts = rows;
+                        console.log('==============================================>>>>>>>>>>>>>>>>>');
+                        console.log(posts);
+                        console.log(response.data.posts);
+                        console.log(rows);
+                        console.log('==============================================>>>>>>>>>>>>>>>>>');
+                        nextPost();
+                        // if any of the file processing produced an error, err would equal that error
+
+                    });
+
+
+
 				});
 				console.log('==============================================');
 				console.log(limit_count);

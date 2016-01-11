@@ -2,6 +2,16 @@ body{
 	background: #E9EAED;
 }
 
+.add-comments {
+    padding: 15px !important;
+    background: #F2F2F2;
+    padding: 15px !important;
+    clear: both;
+    border-radius: 5px;
+}
+.add-comments textarea {
+    width: 100%;
+}
 #content{
 	
 }
@@ -700,7 +710,7 @@ ul{ list-style:none;}
 .tabdetail-container h2 a{ color:#00baff;}
 .timebox{ border:2px solid #e3e3e3; float:left; text-align:left; background:#fff; display:inline-block; vertical-align:top; padding:10px 10px; position:relative;}
 .timebox .arrow{ position:absolute; right:-19px; top:30px;}
-.timebox form{ padding: 10px 0 !Important;}
+.timebox form{ padding: 10px 0;}
 .timebox.left{ width:27%; margin:0 54% 0 19%;}
 .timebox.right{ width:27%; margin:0 19% 0 54%;}
 .timebox.right .arrow{ right:auto; left:-19px;}

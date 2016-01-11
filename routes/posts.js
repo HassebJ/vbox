@@ -1,5 +1,5 @@
 // POST /posts/save
-
+var fm = require("formidable");
 
 app.post.simple('/posts/savepic', function(request, response, mysql){
 
@@ -87,6 +87,28 @@ if( response.head.account.id){
 
 
 	});
+
+app.get('/posts/comment', function(request, response, mysql){
+
+
+    if(response.head.account.id){
+
+        mysql.post_comments.save({
+            author	: response.head.account.id,
+            message	: request.query.message,
+            post		: request.query.postid,
+            time	: new Date().getTime(),
+            author_name : response.head.account.first_name,
+            author_picture : response.head.account.avatarName
+        }, function(){
+            response.redirect('back');
+        });
+//    });
+
+    } else {
+        response.redirect('/classifieds/'+request.body.ad+'?comment=failed');
+    }
+});
 
 app.post("/hitLikedislike",function(request,response,mysql){
 console.log("-------------------------- HIT LIKE DISLIKE -----------------------");

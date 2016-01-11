@@ -276,6 +276,64 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+
+        $(".comment_submit").click(function() {
+            event.preventDefault();
+            var element = $(this);
+            var id = element.attr("id");
+            var formid = 'form'+id;
+            var form = document.getElementById(formid);
+            var formData = new FormData(form);
+            formData.append('postid', id);
+            var test = $("#message"+id).val();
+            if(test=='')
+            {
+                alert("Please Enter Some Text");
+            }
+            else
+            {
+
+                $.get( "/posts/comment", { postid: id, message: test} )
+                        .done(function( data ) {
+                            location.reload(true);
+                        });
+//                $.ajax({
+//                    url: '/posts/comment',  //Server script to process data
+//                    type: 'POST',
+//
+//                    success: function(res){
+//                        alert(res);
+//                        location.reload(true);
+//                    },
+//                    error: function(err){
+//                        alert(JSON.stringify(err));
+//                    },
+//                    // Form data
+//                    data: JSON.stringify({
+//                        "postid" : document.getElementById(formid),
+//                        "message" : test,
+//                        "shit": "1g2c"
+//
+//                    }),
+////                    Options to tell jQuery not to process data or worry about content-type.
+////                    cache: false,
+//                    contentType: 'application/json',
+//                    processData: false
+//                });
+
+            }
+
+        });
+
+
+
+
+
+
+
+
+
+
         $("#imgvid").change(function (){
             var fileInput = document.getElementById('imgvid');
             var file = fileInput.files[0];

@@ -48,9 +48,40 @@
 		{{else if ftype=='ogg':}}
 		<video  width="100%" height="100%" controls ><source src="/uploads/pictures/original/{{-post.image_name}}" type="video/ogg"></video>
 		{{else:}}
-			<div class="image"><img src="/uploads/pictures/original/{{-post.image_name}}" width="100%" height="100%"></div>
+			<div class="image"><img src="/uploads/pictures/original/{{-post.image_name}}" width="100%" height="100%"><br></div>
 		{{end}}
         {{end}}
+
+        <br>
+        <!-- comment list -->
+        <div class="add-comments">
+        <div class="list">
+            {{console.log(post)}}
+            {{if post.comments and post.comments.length:}}
+            {{for comment in post.comments:}}
+            {{this.comment = comment}}
+            {{include 'html/parts/comment2.html'}}
+            {{end}}
+            {{end}}
+        </div>
+
+        {{if this.account:}}
+        <form method="post" action="/posts/comment" id="form{{-this.post.id}}" name="{{-this.post.id}}">
+            <input name="form" value="2" type="hidden">
+            <input type="hidden" value="{{-this.post.id}}" name="comment" />
+            <div class="input-holder textarea ">
+                <textarea id="message{{-this.post.id}}" name="message" placeholder="Your Comment"></textarea>
+            </div>
+            <button id="{{-this.post.id}}" type="submit" class="comment_submit">Share</button>
+            <br>
+            <br>
+            <br>
+        </form>
+
+        {{end}}
+        </div>
+
+
         <script>
             $.get("/totallikedislike", {"postId":"{{-this.post.id}}"},function(resl){
                 resl = $.parseJSON(resl)
