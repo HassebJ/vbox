@@ -354,7 +354,7 @@
 
                     window.URL.revokeObjectURL( img.src );
 
-                    if( width >= 1490 && height >= 350 ) {
+                    if( width >= 1490 && height >= 350 && height <= 450 ) {
                         var formData = new FormData();
                         alert("Page will reload automitically once upload is complete. Press okay to begin upload.");
                         formData.append('picture', file);
