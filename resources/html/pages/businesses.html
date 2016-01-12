@@ -96,13 +96,11 @@
 							<img src="{{-this.business.avatar}}" alt="">
 						</a>
 						<h1 class="logo"><a href="/{{-this.business.address}}?show=wall">{{-this.business.name}}</a></h1>
-						<ul class="rate">
-							<li><img src="../../images/solidrate.png" alt=""></li>
-							<li><img src="../../images/solidrate.png" alt=""></li>
-							<li><img src="../../images/solidrate.png" alt=""></li>
-							<li><img src="../../images/solidrate.png" alt=""></li>
-							<li><img src="../../images/solidrate.png" alt=""></li>
-						</ul>
+                        {{if this.business.rating_average is null:}}
+                        <div style="padding-left: 17px;" data-productid="{{-this.business.id}}" class="rateit" id="rateit9" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        {{else:}}
+                        <div style="padding-left: 17px;" data-productid="{{-this.business.id}}" data-rateit-value="{{-this.business.rating_average}}" data-rateit-ispreset="true" data-rateit-readonly="true" class="rateit" id="rateit19"></div>
+                        {{end}}
 						 <div class="infos">
 						   {{if this.business.description:}}
 							<p class="info fa fa-info"><span>{{-this.business.description}}</span></p>

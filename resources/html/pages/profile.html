@@ -354,7 +354,7 @@
 
                     window.URL.revokeObjectURL( img.src );
 
-                    if( width >= 1490 && height >= 350 && height <= 450 ) {
+                    if( width >= 1490 && height >= 400 && height <= 460 ) {
                         var formData = new FormData();
                         alert("Page will reload automitically once upload is complete. Press okay to begin upload.");
                         formData.append('picture', file);
@@ -377,7 +377,7 @@
                         });
                     }
                     else {
-                        alert("Picture should be alteast 1280px in width and 400px in height.");
+                        alert("Picture should be at least 15000px in width and exactly 450px in height.");
                     }
                 };
             }

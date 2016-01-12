@@ -383,6 +383,55 @@ else{
 
 }, true);
 
+app.post('/businesses/rating', function(request, response, mysql){
+    // Demands
+    console.log("jhjhghgj");
+
+
+    // Passed
+    if(request.passed) {
+        mysql.businesses.get('id', request.body.id, function(rows){
+            var count;
+            var average;
+            var total;
+            if(rows[0].rating_count == null){
+                count = 1;
+            }else{
+                count = rows[0].rating_count +1;
+            }
+
+            if(rows[0].rating_average == null){
+                total =  parseInt(request.body.value);
+            }else{
+                total = rows[0].rating_total+ parseInt(request.body.value);
+            }
+
+            if(rows[0].rating_average == null){
+                average = total/count ;
+            }else{
+                average = total/count;
+            }
+
+
+
+            mysql('UPDATE businesses SET rating_count = '+count+', rating_average = '+average+', rating_total= '+total+'  WHERE id = "' + request.body.id+'" ', function(){
+                response.redirect('back');
+            });
+            mysql.end();
+
+
+//            mysql.ads.save('id', mysql.escape(request.body.id), {rating_count: count, rating_average: average, rating_total: total}, function(){
+//
+//            })
+
+
+        })
+
+
+
+    }
+});
+
 // GET businesses/create
 app.get('/businesses/create', function(request, response, mysql){
 	if(response.head.account.id){
@@ -395,6 +444,7 @@ app.get('/businesses/create', function(request, response, mysql){
 		app.login(request, response);
 	}
 });
+
 
 // POST businesses/create
 app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){

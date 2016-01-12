@@ -622,6 +622,7 @@ app.post('/classifieds/rating', function(request, response, mysql){
             mysql('UPDATE ads SET rating_count = '+count+', rating_average = '+average+', rating_total= '+total+'  WHERE id = "' + request.body.id+'" ', function(){
                 response.redirect('back');
             });
+            mysql.end();
 
 
 //            mysql.ads.save('id', mysql.escape(request.body.id), {rating_count: count, rating_average: average, rating_total: total}, function(){
@@ -635,6 +636,8 @@ app.post('/classifieds/rating', function(request, response, mysql){
 
     }
 });
+
+
 
 // POST /classifieds/edit
 app.post('/classifieds/edit', function(request, response, mysql){

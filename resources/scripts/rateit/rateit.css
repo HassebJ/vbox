@@ -51,32 +51,39 @@
 
 .rateit .rateit-hover
 {
-    background: url(star.gif) left -32px;
+    /*background: url(star.gif) left -32px;*/
+    background: url(star.gif) left -16px;
 }
 
 .rateit .rateit-hover-rtl
 {
-    background-position: right -32px;
+    /*background-position: right -32px;*/
+    background-position: right -16px;
 }
 
 .rateit .rateit-selected
 {
-    background: url(star.gif) left -16px;
+    /*background: url(star.gif) left -16px;*/
+    background: url(star.gif) left -32px;
+
 }
 
 .rateit .rateit-selected-rtl
 {
-    background-position: right -16px;
+    /*background-position: right -16px;*/
+    background-position: right -32px;
 }
 
 .rateit .rateit-preset
 {
-    background: url(star.gif) left -48px;
+    /*background: url(star.gif) left -48px;*/
+    background: url(star.gif) left -32px;
 }
 
 .rateit .rateit-preset-rtl
 {
-    background: url(star.gif) left -48px;
+    /*background: url(star.gif) left -48px;*/
+    background: url(star.gif) left -32px;
 }
 
 .rateit button.rateit-reset
