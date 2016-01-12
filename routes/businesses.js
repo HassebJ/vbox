@@ -551,7 +551,8 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 						role: 0,
 						contact_email: response.head.account.email,
 						time_created: new Date(),
-						confirmed: 1
+						confirmed: 1,
+                        contact_number: request.body.contact_number
 					};
 					
 					mysql.businesses.save(business, next);
