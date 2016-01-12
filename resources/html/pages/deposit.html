@@ -2,7 +2,7 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script>
     (function() {
-        Stripe.setPublishableKey('pk_test_ycTWO6DcB7xxy6YMhpHWjiZV');
+        Stripe.setPublishableKey('pk_live_qvQDKsVt0YSYsbn3P5xnzZNe');
     })();
 </script>
 <div class="deposit container">
@@ -123,7 +123,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">&nbsp;</div>
-                                <div class="col-md-7"><input type="submit" id="depositPaypal" name="paypal_action" onclick="doPaypalAction()" value="Deposit Now" class="btn btn-default save-btn bgbaff"></div>
+                                <div class="col-md-7"><input type="submit" id="depositPaypal" name="paypal_action" onclick="return doPaypalAction()" value="Deposit Now" class="btn btn-default save-btn bgbaff"></div>
                             </div>
                         </form>
                     </div>
@@ -182,6 +182,7 @@
             }, stripeResponseHandler);
             e.preventDefault();
         }
+        else{ e.preventDefault(); }
     });
 
     function stripeResponseHandler(status, response) {

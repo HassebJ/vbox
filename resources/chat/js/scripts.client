@@ -1,4 +1,4 @@
-var site_url = window.location.hostname;
+var site_url = "http://"+ window.location.hostname + "/";
 var avatars_path = "/uploads/profiles/original/";
 var shared_dir = "shared/";
 var id_account = false;
@@ -1006,7 +1006,7 @@ function startCharging(){
       console.log("charging");
       showSuccess("Your account is charged $ 0.05", 3000);
       socket.emit("chargeUser", {id_user: id_user});
-      callTimeOut = setTimeout(startCharging, 10000);
+      callTimeOut = setTimeout(startCharging, 60000);
    }
 }
 socket.on("chargeUserCB", function(data){
