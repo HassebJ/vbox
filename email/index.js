@@ -1,5 +1,4 @@
-// CONNECT to Mandrill
-//mail = {};
+
 var mailer = require("nodemailer");
 mail = mailer.createTransport("SMTP",{
     service: "Gmail",
