@@ -579,7 +579,7 @@
 
                     window.URL.revokeObjectURL( img.src );
 
-                    if( width >= 1270 ) {
+                    if( width >= 1490 && height >= 350 ) {
                         var formData = new FormData();
                         alert("Page will reload automatically once upload is complete. Press okay to begin upload.");
                         formData.append('picture', file);
@@ -611,7 +611,7 @@
                         });
                     }
                     else {
-                        alert("Picture should be alteast 1280px in width.");
+                        alert("Picture should be alteast 1280px in width and 400px in height.");
                         $("#cover").val('');
                     }
                 };
