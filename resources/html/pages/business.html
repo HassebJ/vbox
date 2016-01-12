@@ -580,12 +580,11 @@
                     window.URL.revokeObjectURL( img.src );
 
                     if( width >= 1270 ) {
-//                        var formData = new FormData();
+                        var formData = new FormData();
                         alert("Page will reload automatically once upload is complete. Press okay to begin upload.");
                         formData.append('picture', file);
             formData.append("busid", $("#busid").text())
-//            alert(formData);
-//            alert(JSON.stringify(formData));
+
                         $.ajax({
                             url: '/businesses/cover',  //Server script to process data
                             type: 'POST',

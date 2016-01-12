@@ -355,23 +355,13 @@
                     window.URL.revokeObjectURL( img.src );
 
                     if( width >= 1270 ) {
-//                        var formData = new FormData();
+                        var formData = new FormData();
                         alert("Page will reload automitically once upload is complete. Press okay to begin upload.");
                         formData.append('picture', file);
-//            formData.append("busid", $("#busid").text())
-//            alert(formData);
-//            alert(JSON.stringify(formData));
+//
                         $.ajax({
                             url: '/accounts/cover',  //Server script to process data
                             type: 'POST',
-//                xhr: function() {  // Custom XMLHttpRequest
-//                    var myXhr = $.ajaxSettings.xhr();
-//                    if(myXhr.upload){ // Check if upload property exists
-//                        myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
-//                    }
-//                    return myXhr;
-//                },
-                            //Ajax events
                             success: function(res){
                                 location.reload(true);
                             },
