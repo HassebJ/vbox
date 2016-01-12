@@ -1,7 +1,7 @@
 // CONNECT to Mandrill
-
+//mail = {};
 var mailer = require("nodemailer");
-var smtpTransport = mailer.createTransport("SMTP",{
+mail = mailer.createTransport("SMTP",{
     service: "Gmail",
     auth: {
         user: "veebox.io@gmail.com",
@@ -17,7 +17,7 @@ var smtpTransport = mailer.createTransport("SMTP",{
 //        pass: "vbox@1234"	// smtp password
 //    }
 //});
-mail = {};
+
 // CREATE send shorthand
 mail.send = function(locals, options){
 	// Render HTML Template
@@ -25,7 +25,7 @@ mail.send = function(locals, options){
 	app.ect.render(__dirname + '/templates/' + locals.html, locals, function (error, html) {
 		if(!isset(error)){
 
-            smtpTransport.sendMail({
+            mail.sendMail({
                 from: "VBOX <hello@veebox.io>",
                 to: locals.email, // list of receivers
                 subject: locals.subject, // Subject line
