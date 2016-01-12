@@ -1006,7 +1006,7 @@ function startCharging(){
       console.log("charging");
       showSuccess("Your account is charged $ 0.05", 3000);
       socket.emit("chargeUser", {id_user: id_user});
-      callTimeOut = setTimeout(startCharging, 10000);
+      callTimeOut = setTimeout(startCharging, 60000);
    }
 }
 socket.on("chargeUserCB", function(data){
