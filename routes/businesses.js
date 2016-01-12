@@ -626,7 +626,7 @@ app.post('/businesses/save', function(request, response, mysql){
 	request.demand('formatted_address');
 	request.demand('contact_number');
 	
-	console.log(request.body);
+//	console.log(request.body);
 	
 	if(request.passed){
 		var business = {

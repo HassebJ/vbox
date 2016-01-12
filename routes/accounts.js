@@ -354,7 +354,7 @@ app.accounts.on('create', function(request, response, mysql){
 	request.demand('password');
 	request.demand('gender');
 	
-	console.log(request.body);
+//	console.log(request.body);
 	mysql.accounts.get('email', request.body.email, function(rows){
 		if(rows && rows.length) request.error('email', 'already exists');
 		onDemand();
@@ -367,7 +367,7 @@ app.accounts.on('create', function(request, response, mysql){
 			
 			if(isset(request.body.invite_code)){
 				var activated = 1;
-				mysql('UPDATE business_employees SET confirmed = 1, account = "'+account_id+'" WHERE confirmed = ' + mysql.escape(request.body.invite_code), next);
+				mysql('UPDATE business_employees SET confirmed = 1, account = "'+account_id+'" WHERE code = ' + mysql.escape(request.body.invite_code), next);
 			} else {
 				//var activated = uniqid();
 				var activation_key = account_id;
@@ -428,7 +428,7 @@ app.accounts.on('create', function(request, response, mysql){
 		} else {
 			response.data.errors = request.errors;
 			response.data.inputs = request.body;
-			response.data.page = 'signup';
+			response.data.page = 'login';
 			response.data.scripts = [scripts.maps, scripts.geo, scripts.page(response)];
 			response.finish();
 		}
@@ -712,7 +712,7 @@ app.post('/accounts/save', function(request, response, mysql){
 	request.demand('contact_number');
 	request.demand('gender');
 	
-	console.log(request.body);
+//	console.log(request.body);
 	
 	if(request.passed){
 		mysql.accounts.save({

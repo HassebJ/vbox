@@ -1,16 +1,23 @@
 // CONNECT to Mandrill
 
-var mailer = require("nodemailer").mail;
-mail = nodemailer.createTransport("SMTP", {
-	host	: "webmail.gandi.net", 	// smtp hostname
-	port	: 25, 						// port for secure smtp
-	debug	: true,						// display debug log
-    auth	: {
-        user: "hello@veebox.io",		// smtp username
-        pass: "vbox@1234"	// smtp password
+var mailer = require("nodemailer");
+var smtpTransport = mailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth: {
+        user: "veebox.io@gmail.com",
+        pass: "vbox@1234"
     }
 });
-
+//mail = nodemailer.createTransport("SMTP", {
+//	host	: "webmail.gandi.net", 	// smtp hostname
+//	port	: 25, 						// port for secure smtp
+//	debug	: true,						// display debug log
+//    auth	: {
+//        user: "hello@veebox.io",		// smtp username
+//        pass: "vbox@1234"	// smtp password
+//    }
+//});
+mail = {};
 // CREATE send shorthand
 mail.send = function(locals, options){
 	// Render HTML Template
@@ -18,13 +25,26 @@ mail.send = function(locals, options){
 	app.ect.render(__dirname + '/templates/' + locals.html, locals, function (error, html) {
 		if(!isset(error)){
 
-            mailer({
-                from: "VBOX <hello@veebox.io>", // sender address
+            smtpTransport.sendMail({
+                from: "VBOX <hello@veebox.io>",
                 to: locals.email, // list of receivers
                 subject: locals.subject, // Subject line
                 html: html // html body
-//                generateTextFromHTML: true
+            }, function(error, response){
+                if(error){
+                    console.log(error);
+                }else{
+                    console.log("Message sent: " + response.message);
+                }
             });
+
+//            mailer({
+//                from: "VBOX <hello@veebox.io>", // sender address
+//                to: locals.email, // list of receivers
+//                subject: locals.subject, // Subject line
+//                html: html // html body
+////                generateTextFromHTML: true
+//            });
 //			mail.sendMail(merge({
 //			    from	: "VBOX <hello@veebox.io>",
 //			    to		: locals.email,
