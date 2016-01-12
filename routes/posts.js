@@ -50,7 +50,7 @@ console.log("sayeed--==================>",request.body.message);
 
 app.post('/posts/save', function(request, response, mysql){
 
-	request.demand('message'); 
+//	request.demand('message');
 
 if( response.head.account.id){
 		var owner = response.head.account.id;
@@ -94,8 +94,12 @@ app.get('/posts/comment', function(request, response, mysql){
 
     if(response.head.account.id){
         var author = response.head.account.id;
+        var author_name = response.head.account.first_name;
+        var author_picture = '/uploads/profiles/original/' + response.head.account.avatarName;
         if(response.head.account.business){
             author = response.head.account.business.id;
+            author_name = response.head.account.business.name;
+            author_picture = response.head.account.business.avatar;
         }
 
         mysql.post_comments.save({
@@ -103,8 +107,8 @@ app.get('/posts/comment', function(request, response, mysql){
             message	: request.query.message,
             post		: request.query.postid,
             time	: new Date().getTime(),
-            author_name : response.head.account.first_name,
-            author_picture : response.head.account.avatarName
+            author_name : author_name,
+            author_picture : author_picture
         }, function(){
             response.redirect('back');
         });
@@ -112,6 +116,48 @@ app.get('/posts/comment', function(request, response, mysql){
 
     } else {
         response.redirect('/classifieds/'+request.body.ad+'?comment=failed');
+    }
+});
+
+// GET /posts/comment/delete
+app.get('/posts/comment/delete', function(request, response, mysql){
+    var id = request.query.id;
+    if(isset(id)){
+        // check if session user has access to the file
+        if(response.head.account.id){
+            // get comment from mysql
+            mysql.post_comments.get('id', id, function(comments){
+                // get the comment
+                var comment = comments[0];
+                if(comment){
+                    // check if the ad seller is the session seller
+                    if(response.head.account.id = comment.author){
+                        // remove ad from the database
+                        mysql.post_comments.delete('id', id, function(){
+                            response.redirect('back');
+                        });
+
+                        // else not authorized
+                    } else {
+                        request.error('account', 'not authorized');
+                        response.error();
+                        mysql.end();
+                    }
+                } else {
+                    request.error('post', 'not found');
+                    response.error();
+                    mysql.end();
+                }
+            });
+        } else {
+            request.error('account', 'not found')
+            response.error();
+            mysql.end();
+        }
+    } else {
+        request.error('id', 'missing')
+        response.error();
+        mysql.end();
     }
 });
 

@@ -3,7 +3,7 @@
     <div>
     <a href="/accounts/{{-comment.author}}" class="avatar">
 
-        <img src="/uploads/profiles/original/{{-comment.author_picture}}" style="width:40px; height:40px;">
+        <img src="{{-comment.author_picture}}" style="width:40px; height:40px;">
     </a>
     </div>
 
@@ -11,7 +11,7 @@
     <div class="comment-contents">
 
         <div class="top row">
-            <div class="">
+            <div class="left">
                 <a  style="font-size: small;" href="/accounts/{{-comment.author}}" class="author">{{-comment.author_name}}</a>
                 <!--<div class="time" style="visibility: hidden;">-->
                     <!--{{- dates.months[new Date(parseInt(comment.time)).getMonth()]}}-->
@@ -19,14 +19,28 @@
                     <!--{{- new Date(parseInt(comment.time)).getFullYear() }}-->
                 <!--</div>-->
 
+
             </div>
 
-            <!--<div class="right">-->
-                <!--{{if this.account.id is comment.author.id:}}-->
-                <!--<a href="/classifieds/comment/delete?id={{-comment.id}}" class="delete" onclick="return confirm('Are you sure?');">delete</a>-->
-                <!--{{end}}-->
+            {{if this.account.business:}}
+                {{if this.account.business.id is comment.author:}}
+                <div class="pull-right" name="business" style="padding: 12px 0 0;">
 
-            <!--</div>-->
+                    <a href="/posts/comment/delete?id={{-comment.id}}" class="delete" onclick="return confirm('Are you sure?');">delete</a>
+
+
+                </div>
+                {{end}}
+            {{else if this.account.id is comment.author:}}
+            <div class="pull-right" name="account" style="padding: 12px 0 0;">
+
+                <a href="/posts/comment/delete?id={{-comment.id}}" class="delete" onclick="return confirm('Are you sure?');">delete</a>
+
+
+            </div>
+            {{end}}
+
+
         </div>
         <div style="font-size: small;" class="message row">{{-nl2br comment.message}}</div>
 

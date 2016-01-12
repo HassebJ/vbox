@@ -1,3 +1,5 @@
+var async = require('async');
+
 app.get('/', function(request, response, mysql){
     console.log("----------------------------------------------------")
 	var user = response.head.account.business ? response.head.account.business.id : response.head.account.id ;
@@ -22,8 +24,24 @@ response.data.scripts = [scripts.jquery, scripts.jelq, scripts.selectize, script
 					order: 'time DESC',
 					limit: LIMIT
 				}, function(rows){
-					response.data.posts = rows;
-				response.finish();
+                    async.eachSeries(rows, function(post, callback) {
+
+                        mysql.post_comments.get('post', post.id, function(comments){
+//                            posts.push(comments);
+                            post.comments = comments;
+                            callback();
+
+                        });
+
+                    }, function(err){
+                        response.data.posts = rows;
+                        response.finish();
+                        // if any of the file processing produced an error, err would equal that error
+
+                    });
+
+
+
 				});
 		}
 		/*
