@@ -245,7 +245,7 @@ label{
 .modal-header button.close{ color:#333 !Important;}
 
 .button:hover, button:hover, input[type="submit"]:hover{
-    background: #00baff !important;
+    background: #00baff;
 	box-shadow: 0 1px 0 rgba(0,0,0,0.1), inset 0 -2px rgba(0,0,0,0.2), inset 0 0 0 100px rgba(255,255,255,0.2);
 	color: #FFF;
 	text-decoration: none;

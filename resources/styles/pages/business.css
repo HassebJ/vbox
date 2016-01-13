@@ -681,6 +681,8 @@ ul{ list-style:none;}
 
 .user-sec .follow{ float:left;}
 .user-sec .links .follow{ background: #36A95C; box-shadow: none; border-radius: 0;}
+a.follow:hover{ background: #36A95C; !important;}
+a.button:hover{ background: #36A95C; !important;}
 .user-sec .follow li{ float:left; font-size:16px; margin:0 20px; line-height:25px; color:#b8b8b8; font-weight:bold;}
 
 .user-sec .links{ float:right;}
@@ -689,6 +691,10 @@ ul{ list-style:none;}
 .user-sec .links li a:hover{ opacity:.8;}
 .user-sec .links li .lightblue{ background:#00baff url("../../images/chat.png") no-repeat 14px 10px; background-size:15px auto; padding:6px 12px 6px 39px;}
 .user-sec .links li .green{ background:#37a85c;}
+.button:hover, button:hover, input[type="submit"]:hover {
+    background: #36A95C; !important;
+
+}
 
 .user-sec .user-account{ display:inline-block; width:300px; vertical-align:top; left:50%; position:absolute; margin:-100px 0 0 -150px;}
 .user-sec .user-account .profile-pic{ display:inline-block; position:relative;}

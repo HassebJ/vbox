@@ -78,7 +78,9 @@
 #signup{
 
 	margin: 20px auto;
-	max-width: 490px; background:rgba(0, 0, 0, 0.1); padding:2px 20px 25px;
+	max-width: 490px;
+    /*background:rgba(0, 0, 0, 0.1); */
+    padding:2px 20px 25px;
 }
 
 #content h1{

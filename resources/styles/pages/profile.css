@@ -687,6 +687,8 @@ ul{ list-style:none;}
 
 .user-sec .links .follow{ float:left; padding:6px 20px; background: #36A95C; border-radius: 0; box-shadow: none; margin: 0 0 0 10px;}
 .user-sec .follow li{ float:left; font-size:16px; margin:0 20px; line-height:25px; color:#b8b8b8; font-weight:bold;}
+.follow:hover{ background: #36A95C; !important;}
+.button:hover{ background: #36A95C; !important;}
 
 .user-sec .links{ float:right;}
 .user-sec .links li{ float:left; margin:0 0 0 15px;}
