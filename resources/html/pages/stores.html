@@ -57,13 +57,18 @@
 				{{-@post '/businesses/stores', values: store, class:'store' }}
 					<div class="in">
 						<i class="fa fa-map-marker map"></i>
-						<ul class="rate">
-							<li><img src="../../images/solidrate.png"></li>
-							<li><img src="../../images/solidrate.png"></li>
-							<li><img src="../../images/solidrate.png"></li>
-							<li><img src="../../images/solidrate.png"></li>
-							<li><img src="../../images/solidrate.png"></li>
-						</ul>
+						<!--<ul class="rate">-->
+							<!--<li><img src="../../images/solidrate.png"></li>-->
+							<!--<li><img src="../../images/solidrate.png"></li>-->
+							<!--<li><img src="../../images/solidrate.png"></li>-->
+							<!--<li><img src="../../images/solidrate.png"></li>-->
+							<!--<li><img src="../../images/solidrate.png"></li>-->
+						<!--</ul>-->
+                        {{if store.rating_average is null:}}
+                        <div  data-productid="{{-store.id}}" name="store" class="rate rateit" data-rateit-ispreset="true" data-rateit-readonly="true" id="rateit9"></div>
+                        {{else:}}
+                        <div  data-productid="{{-store.id}}" name="store" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-value="{{-store.rating_average}}" class="rate rateit" id="rateit19"></div>
+                        {{end}}
 						<div class="detail name">
 							<!--i class="fa fa-info-circle"></i-->
 							{{-this.input 'Store Name', 'name', 'text', store.id}}
@@ -72,6 +77,8 @@
 							<!--i class="fa fa-location-arrow"></i-->
 							{{-this.input 'Store Location', 'formatted_address', 'text', store.id}}
 						</div>
+
+
 						{{-this.input false, 'id', 'hidden', store.id }}
 						{{-this.input false, 'country_short', 'hidden', store.id }}
 						{{-this.input false, 'country_long', 'hidden', store.id }}
@@ -102,3 +109,62 @@
 		</div>
 	</div>
 </div>
+
+
+<script>
+
+    $('.rateit').bind('rated reset', function (e, value) {
+//            alert(JSON.stringify(value));
+        var ri = $(this);
+
+
+        //if the use pressed reset, it will get value: 0 (to be compatible with the HTML range control), we could check if e.type == 'reset', and then set the value to  null .
+//            var value = $('#rateit9').rateit('value');
+        var productID = ri.data('productid');
+        var name = ri.attr("name");
+
+//                alert("name:" + name);
+        if (name == 'store'){
+
+            $.ajax({
+                url: '/stores/rating', //your server side script
+                data: { id: productID, value: value }, //our data
+                type: 'POST',
+                success: function (data) {
+                    location.reload(true);
+                    //                    alert("in success");
+                    //                    $('#response').append('<li>' + data + '</li>');
+
+                },
+                error: function (jxhr, msg, err) {
+                    location.reload(true);
+                    //                    alert("in err");
+                    //                    $('#response').append('<li style="color:red">' + msg + '</li>');
+                }
+            });
+
+        }else{
+
+
+            $.ajax({
+                url: '/businesses/rating', //your server side script
+                data: { id: productID, value: value }, //our data
+                type: 'POST',
+                success: function (data) {
+                    location.reload(true);
+                    //                    alert("in success");
+                    //                    $('#response').append('<li>' + data + '</li>');
+
+                },
+                error: function (jxhr, msg, err) {
+                    location.reload(true);
+                    //                    alert("in err");
+                    //                    $('#response').append('<li style="color:red">' + msg + '</li>');
+                }
+            });
+        }
+
+    });
+
+
+</script>

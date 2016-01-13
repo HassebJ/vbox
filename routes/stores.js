@@ -69,6 +69,56 @@ app.post('/businesses/stores', function(request, response, mysql){
 	});
 });
 
+app.post('/stores/rating', function(request, response, mysql){
+    // Demands
+    console.log("jhjhghgj");
+
+
+    // Passed
+    if(request.passed) {
+        mysql.stores.get('id', request.body.id, function(rows){
+            var count;
+            var average;
+            var total;
+            if(rows[0].rating_count == null){
+                count = 1;
+            }else{
+                count = rows[0].rating_count +1;
+            }
+
+            if(rows[0].rating_average == null){
+                total =  parseInt(request.body.value);
+            }else{
+                total = rows[0].rating_total+ parseInt(request.body.value);
+            }
+
+            if(rows[0].rating_average == null){
+                average = total/count ;
+            }else{
+                average = total/count;
+            }
+
+
+
+            mysql('UPDATE stores SET rating_count = '+count+', rating_average = '+average+', rating_total= '+total+'  WHERE id = "' + request.body.id+'" ', function(){
+                response.redirect('/show=stores');
+                mysql.end();
+            });
+//            mysql.end();
+
+
+//            mysql.ads.save('id', mysql.escape(request.body.id), {rating_count: count, rating_average: average, rating_total: total}, function(){
+//
+//            })
+
+
+        })
+
+
+
+    }
+});
+
 app.get('/businesses/stores/delete', function(request, response, mysql){
 	when.business(request, response, mysql, function(){
 		if(request.query.id){

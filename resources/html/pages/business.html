@@ -278,15 +278,14 @@
 								<a href="/{{-this.business.address}}?show=stores&store={{-store.id}}" class=" store {{-selected}}">
 									<!--<i class="fa fa-home"></i>-->
 									<i class="fa fa-map-marker map"></i>
-									<ul>
-										<li><img src="../../images/solidrate.png"></li>
-										<li><img src="../../images/solidrate.png"></li>
-										<li><img src="../../images/solidrate.png"></li>
-										<li><img src="../../images/solidrate.png"></li>
-										<li><img src="../../images/solidrate.png"></li>
-									</ul>
+
 									<span class="name">{{-store.name}}</span>
 									<span class="location">{{-store.formatted_address}}</span>
+                                    {{if store.rating_average is null:}}
+                                    <div  data-productid="{{-store.id}}" name="store" class="rateit" id="rateit9"></div>
+                                    {{else:}}
+                                    <div  data-productid="{{-store.id}}" name="store" data-rateit-value="{{-store.rating_average}}" class="rateit" id="rateit19"></div>
+                                    {{end}}
 								</a>
 							{{end}}
 						</div>
@@ -745,29 +744,51 @@
                 //if the use pressed reset, it will get value: 0 (to be compatible with the HTML range control), we could check if e.type == 'reset', and then set the value to  null .
 //            var value = $('#rateit9').rateit('value');
                 var productID = ri.data('productid');
-//    alert(JSON.stringify(productID));// if the product id was in some hidden field: ri.closest('li').find('input[name="productid"]').val()
+                var name = ri.attr("name");
 
-                //maybe we want to disable voting?
-//            ri.rateit('readonly', true);
+//                alert("name:" + name);
+                if (name == 'store'){
 
-                $.ajax({
-                    url: '/businesses/rating', //your server side script
-                    data: { id: productID, value: value }, //our data
-                    type: 'POST',
-                    success: function (data) {
-                        location.reload(true);
-//                    alert("in success");
-//                    $('#response').append('<li>' + data + '</li>');
+                    $.ajax({
+                        url: '/stores/rating', //your server side script
+                        data: { id: productID, value: value }, //our data
+                        type: 'POST',
+                        success: function (data) {
+                            location.reload(true);
+                            //                    alert("in success");
+                            //                    $('#response').append('<li>' + data + '</li>');
 
-                    },
-                    error: function (jxhr, msg, err) {
-                        location.reload(true);
-//                    alert("in err");
-//                    $('#response').append('<li style="color:red">' + msg + '</li>');
-                    }
+                        },
+                        error: function (jxhr, msg, err) {
+                            location.reload(true);
+                            //                    alert("in err");
+                            //                    $('#response').append('<li style="color:red">' + msg + '</li>');
+                        }
+                    });
+
+                }else{
+
+
+                    $.ajax({
+                        url: '/businesses/rating', //your server side script
+                        data: { id: productID, value: value }, //our data
+                        type: 'POST',
+                        success: function (data) {
+                            location.reload(true);
+    //                    alert("in success");
+    //                    $('#response').append('<li>' + data + '</li>');
+
+                        },
+                        error: function (jxhr, msg, err) {
+                            location.reload(true);
+    //                    alert("in err");
+    //                    $('#response').append('<li style="color:red">' + msg + '</li>');
+                        }
+                    });
+                }
+
                 });
 
-            });
 
         </script>
 
