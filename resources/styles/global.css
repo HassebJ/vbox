@@ -1243,7 +1243,11 @@ body.contact #header .wrap{ max-width:1140px !important;}
 
 .dropdown-opener .dropdown-menu:after{ position:absolute; content:""; top:-9px; left:19px; border-bottom:10px solid #fff;
     border-left:9px solid rgba(0,0,0,0); border-right:9px solid rgba(0,0,0,0);}
-.dropdown-menu{ left:7px; min-width:100%; max-height: 550px; overflow: auto;}
+.dropdown-menu{ left:7px; min-width:100%; max-height: 550px;
+    /*overflow: auto;*/
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
 .dropdown-menu .businesses a{ padding:0; display:inline-block; width:100%}
 
 #acceptCallBox{

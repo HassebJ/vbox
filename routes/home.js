@@ -17,6 +17,9 @@ app.get('/', function(request, response, mysql){
 response.data.scripts = [scripts.jquery, scripts.jelq, scripts.selectize, scripts.dropzone, scripts.accounting, scripts.maps, scripts.geo, scripts.page(response)];
 		                var limit_count = response.data.limit_count = 10;
 				var page = request.query.page ? (request.query.page-1)*limit_count : 0 ;
+            if (isNaN(page) == true){
+                page = 0;
+            }
 				var LIMIT = page+','+limit_count;
 				var count_sql = 'SELECT COUNT(*) FROM posts WHERE owner = ' + mysql.escape(response.data.user.id);
 				

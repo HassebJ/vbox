@@ -141,6 +141,9 @@ app.post(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
 				// LIMIT
 				var limit_count = response.data.limit_count = 10;
 				var page = request.query.page ? (request.query.page-1)*limit_count : 0 ;
+                if (isNaN(page) == true){
+                    page = 0;
+                }
 				var LIMIT = page+','+limit_count;
 				var count_sql = 'SELECT COUNT(*) FROM posts WHERE owner = ' + mysql.escape(response.data.user.id);
 				var nextPost = new Next(2, next);
@@ -721,17 +724,19 @@ app.post('/accounts/save', function(request, response, mysql){
 			last_name: request.body.last_name,
 			contact_number: request.body.contact_number,
 			gender: request.body.gender,
+            email: response.head.account.email,
 			
-			country_short: request.body.country_short || null,
-			country_long: request.body.country_long || null,
-			locality_short: request.body.locality_short || null,
-			locality_long: request.body.locality_long || null,
-			administrative_area_level_1_short: request.body.administrative_area_level_1_short || null,
-			administrative_area_level_1_long: request.body.administrative_area_level_1_long || null,
-			administrative_area_level_2_short: request.body.administrative_area_level_2_short || null,
-			administrative_area_level_2_long: request.body.administrative_area_level_2_long || null,
-			formatted_address: request.body.formatted_address || null
+			country_short: (request.body.country_short || response.head.account.country_short) || null,
+			country_long:(request.body.country_long || response.head.account.country_long) || null,
+			locality_short:(request.body.locality_short || response.head.account.locality_short)|| null,
+			locality_long:(request.body.locality_long || response.head.account.locality_long)|| null,
+			administrative_area_level_1_short:(request.body.administrative_area_level_1_short || response.head.account.administrative_area_level_1_short )|| null,
+			administrative_area_level_1_long:(request.body.administrative_area_level_1_long || response.head.account.administrative_area_level_1_long )|| null,
+			administrative_area_level_2_short:(request.body.administrative_area_level_2_short || response.head.account.administrative_area_level_2_short )|| null,
+			administrative_area_level_2_long:(request.body.administrative_area_level_2_long || response.head.account.administrative_area_level_2_long )|| null,
+			formatted_address:(request.body.formatted_address || response.head.account.formatted_address)|| null
 		}, function(){
+            mysql.end();
 			response.redirect('/accounts/'+response.head.account.id);
 		});
 		
@@ -944,6 +949,9 @@ app.get(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
 				// LIMIT
 				var limit_count = response.data.limit_count = 10;
 				var page = request.query.page ? (request.query.page-1)*limit_count : 0 ;
+                if (isNaN(page) == true){
+                    page = 0;
+                }
 				var LIMIT = page+','+limit_count;
 				var count_sql = 'SELECT COUNT(*) FROM posts WHERE owner = ' + mysql.escape(response.data.user.id);
 				var nextPost = new Next(2, next);
