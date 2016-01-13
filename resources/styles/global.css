@@ -374,7 +374,7 @@ input {
     outline: medium none;
     width: 100px; 
 }
-.inner-header #logo{ background: url('/images/bluelogo.png') no-repeat left center; width: 123px; height:64px; margin: 0; padding: 15px 20px 15px 0; border-right: 1px solid #d1d1d1;}
+.inner-header #logo{ background: url('/images/logo-small.png') no-repeat left center; width: 123px; height:64px; margin: 0; padding: 15px 20px 15px 0; border-right: 1px solid #d1d1d1;}
 
 #mobile-logo{
 	background: url('/images/mobile-logo.png');

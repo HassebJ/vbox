@@ -16,9 +16,41 @@ nav {
   width: 100%;
 }
 
-@media only screen and (min-width:1500px) {
-  .timebox .circle{ left: -79px;}
-  .timebox.left .circle{ right: -80px;}
+@media only screen and (max-width:766px) {
+    .dropdown-menu {
+
+        overflow-y: visible !important;
+        overflow-x: visible !important;
+    }
+
+    .link:hover {
+        color: #ffffff !important;
+    }
+    .ad .live-state {
+        margin: 27px 8px;
+        float:left !important;
+    }
+
+    .classifieds_mine .ad .seller-picture {
+        position: absolute;
+        z-index: 99;
+        right: 1px;
+        bottom: -30px;
+        width: 50px;
+        border: 2px solid #fff;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .classifieds_mine .ad .seller-picture img {
+        height: 50px;
+        width: 50px;
+    }
+}
+
+@media only screen and (max-width:1500px) {
+    .timebox .circle{ left: -79px;}
+    .timebox.left .circle{ right: -80px;}
 }
 
 @media only screen and (min-width:992px) and ( max-width:1100px){
@@ -97,11 +129,14 @@ nav {
  
 }
 
+@media only screen and (max-width:425px) {
+    .follow{ padding:4px 10px; float: right !important; display: inline-block;     margin-bottom: 102px;}
+}
 
 @media only screen and (max-width:767px) {
 	
 	.mobile-menu {
-  background: #000000 none repeat scroll 0 0;
+  background: #00baff; none repeat scroll 0 0;
   padding: 0 10px;
   /* position: fixed; */
   z-index: 999999;
@@ -219,7 +254,8 @@ nav {
 #content.profile .user-sec .links .follow{ float: none; display: inline-block;}
 
 #content.business .user-sec .links{ position: absolute; right: 0; bottom: 152px; margin: 0; width: 100%;}
-#content.business .user-sec .links .follow{ padding:4px 10px; float: none; display: inline-block;}
+#content.business .user-sec .links{ padding:4px 10px; float: none; display: inline-block;}
+.follow{ padding:4px 10px; float: right !important; display: inline-block;     margin-bottom: 42px;}
 
 .user-sec .follow li{ margin:0 10px; float:none; display:inline-block;}
 .topprofile-sec .upload img{ width:27px;}
@@ -252,9 +288,17 @@ nav {
 .top_section .head ul li img{ width: 15px;}
 .top_section button.choose-recipient{ background: #00baff url("../../images/chat.png") no-repeat scroll 14px 9px; background-size: 15px auto;
        min-width: 85px;  padding: 4px 3px 7px 22px;}
-.top_section .live-chat-button{ right: 15px; bottom: 140px;}
-.top_section .paypal-btn{ background: #eeeeee url("../../images/paypl-icon.png") no-repeat scroll 7px 5px; background-size: 19px auto;
-    font-size: 13px;  margin: 0 10px 0 0;  padding: 4px 11px 6px 33px;}
+.top_section .live-chat-button{ right: 15px;
+    /*bottom: 140px;*/
+    top: 190px;
+}
+.top_section .paypal-btn{
+    background: #eeeeee url("../../images/paypl-icon.png") no-repeat scroll 7px 5px;
+    background-size: 19px auto;
+    font-size: 13px;  margin: 0 10px 0 0;
+    padding: 4px 11px 6px 33px;
+    margin: 3px 270px 0 0;
+}
     .map-container{ margin: 0;}
 .map-container #map{ width: 100% !important;}
 .map-container .map-info{ width: 100%; margin: 20px 0 0;}
