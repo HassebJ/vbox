@@ -8,7 +8,7 @@
         {{end}}
 
 
-        {{if this.account:}}
+        {{if this.account.id is this.user.id:}}
         <form id="picform" enctype="multipart/form-data">
             <img id="up" class="upload" src="../../images/upload-btn.png" alt=""><input type="file" id="cover" name="avatar" placeholder="Avatar" style="display:none;"/>
         </form>
