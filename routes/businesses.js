@@ -51,7 +51,12 @@ app.get('/businesses', function(request, response, mysql){
 	if(query && query.latitude && query.longitude){
 		var SELECT = ', (3959 * acos(cos(radians('+query.latitude+')) * cos(radians(latitude)) * cos( radians(longitude) - radians('+query.longitude+')) + sin(radians('+query.latitude+')) * sin(radians(latitude)))) AS distance FROM businesses ';
 		var ORDER = 'ORDER BY distance';
-		var HAVING = 'HAVING distance < 100';
+        var HAVING = 'HAVING distance < 100';
+        if (query.administrative_area_level_1_short == 'CA'){
+            HAVING = 'HAVING distance < 200';
+        }
+
+
 	} else {
 		var SELECT = 'FROM businesses';
 		var ORDER = 'ORDER BY time_created DESC';
