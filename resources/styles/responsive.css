@@ -25,6 +25,10 @@ nav {
 
 @media only screen and (max-width:766px) {
 
+    .timebox button {
+       float: right;
+    }
+
 
     .navbar-toggle {
 
