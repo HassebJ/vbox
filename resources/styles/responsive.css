@@ -25,6 +25,16 @@ nav {
 
 @media only screen and (max-width:766px) {
 
+
+    .navbar-toggle {
+
+        /*background-color: #7fd2ff;*/
+        background: url(../../images/icons/list-blue.png) no-repeat 33px 14px;
+        background-size: 20px 20px;
+        box-shadow: none;
+
+    }
+
     #map {
 
          position: fixed;

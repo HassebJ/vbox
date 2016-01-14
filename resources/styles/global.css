@@ -599,7 +599,29 @@ input {
 
 .inner-header #navbar #menu li .link.home{ background: url(../../images/homeic1.png) no-repeat 16px 23px;}
 .inner-header #navbar #menu li .link.classi{ background: url(../../images/useric1.png) no-repeat 16px 21px;}
+
 .inner-header #navbar #menu li .link.business{ background: url(../../images/businessic1.png) no-repeat 14px 23px;}
+@media only screen and (max-width:766px) {
+    #header.inner-header .link {
+        padding: 18px 20px 19px;
+        color: #ffffff;
+        border-left: 1px solid #d6d6d6;
+    }
+    #header.inner-header .right .link {
+        color: #ffffff;
+        font-family: "Flaticon";
+        margin: 0;
+        padding: 22px 20px 22px;
+        border-right: 1px solid #d6d6d6;
+    }
+    #navbar #menu li .link.home:hover, #navbar #menu li .link.home:hover{ background: url(../../images/homeic1.png) no-repeat 8px 9px !important;}
+    #navbar #menu li .link.classi:hover, #navbar #menu li .link.classi:hover{ background: url(../../images/useric1.png) no-repeat 8px 9px !important;}
+    #navbar #menu li .link.business:hover, #navbar #menu li .link.business:hover{ background: url(../../images/businessic1.png) no-repeat 6px 9px !important;}
+
+    #navbar #menu li .link.home, #navbar #menu li .link.home{ background: url(../../images/homeic.png) no-repeat 8px 9px !important;}
+    #navbar #menu li .link.classi, #navbar #menu li .link.classi{ background: url(../../images/useric.png) no-repeat 8px 9px !important;}
+    #navbar #menu li .link.business, #navbar #menu li .link.business{ background: url(../../images/businessic.png) no-repeat 5px 9px !important;}
+}
 
 #navbar #menu li .link.home:hover, #navbar #menu li .link.home.selected{ background: url(../../images/homeic1-b.png) no-repeat 16px 23px;}
 #navbar #menu li .link.classi:hover, #navbar #menu li .link.classi.selected{ background: url(../../images/useric1-b.png) no-repeat 16px 21px;}

@@ -4,6 +4,11 @@
 	margin-bottom: 10px;
 }
 
+@media (max-width: 660px) {
+    .ads .ad {
+        width: 100% !important;
+    }
+}
 .head h1{
 	font-size: 37px;
 	margin: 0 0 20px; color: #00baff;
