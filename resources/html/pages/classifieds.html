@@ -3,7 +3,7 @@
 	 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css">
     <ul id="reshead" class="tabs" style="display:none">
 
-        <a id="timelineActiveId" class="list-blue pull-left" href=""></a>
+        <a id="timelineActiveId" class="list-blue pull-left active" href=""></a>
         <a id="storeActiveId" class="pin-blue" href=""></a>
 
     </ul>
@@ -15,8 +15,8 @@
 		<script>
 $( document ).ready(function() {
     $('#timelineActiveId').click( function() {
-//        $('#storeActiveId').removeClass('active');
-//        $('#timelineActiveId').addClass('active');
+        $('#storeActiveId').removeClass('active');
+        $('#timelineActiveId').addClass('active');
 //        $("#resmap").css("visibility", "hidden");
         $(".form-horizontal").css("display", "block");
         $("#resmap").css("display", "none");
@@ -26,8 +26,8 @@ $( document ).ready(function() {
     } );
 
     $('#storeActiveId').click( function() {
-//        $('#timelineActiveId').removeClass('active');
-//        $('#storeActiveId').addClass('active');
+        $('#timelineActiveId').removeClass('active');
+        $('#storeActiveId').addClass('active');
         $(".form-horizontal").css("display", "none");
 //        $("#resmap").css("visibility", "visible");
         $("#resmap").css("display", "block");

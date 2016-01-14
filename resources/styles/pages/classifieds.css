@@ -1,20 +1,20 @@
 
-.list-blue:hover {
-    background: url(../../images/icons/list-white.png) no-repeat 33px 14px;
-    background-size: 20px 20px;
-}
-.list-blue {
-    background: url(../../images/icons/list-blue.png) no-repeat 33px 14px;
-    background-size: 20px 20px;
-}
-.pin-blue:hover {
+/*.list-blue:hover {*/
+    /*background: url(../../images/icons/list-white.png) no-repeat 33px 14px;*/
     /*background-size: 20px 20px;*/
-    background: url(../../images/icons/pin-white.png) no-repeat 33px 14px;
+/*}*/
+.list-blue {
+    background: url(../../images/icons/list-blue.png) no-repeat 23px 14px;
     background-size: 20px 20px;
 }
+/*.pin-blue:hover {*/
+    /*background-size: 20px 20px;*/
+    /*background: url(../../images/icons/pin-white.png) no-repeat 20px 14px;*/
+    /*background-size: 20px 20px;*/
+/*}*/
 .pin-blue {
     /*background-size: 20px 20px;*/
-    background: url(../../images/icons/pin-blue.png) no-repeat 33px 14px;
+    background: url(../../images/icons/pin-blue.png) no-repeat 20px 14px;
     background-size: 20px 20px;
 }
 
