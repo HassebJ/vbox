@@ -17,6 +17,7 @@ nav {
 }
 
 @media only screen and (max-width:766px) {
+    .inner-header #logo{ background: url('/images/logo-small.png') no-repeat left center; width: 123px; height:64px; margin: 0; padding: 15px 20px 15px 0; border-right: 1px solid #d1d1d1;}
     .dropdown-menu {
 
         overflow-y: visible !important;
@@ -274,6 +275,10 @@ nav {
 .inner-header #logo{ height: 50px; border:none;}
 .classifieds #category_fields{ padding: 0 15px;}
 #classifieds .ad{ width: 100%;}
+
+#reshead{
+    display:block;
+}
 
 .classifieds .contentpart, .businesses .contentpart{ position: static;}
 #search .wrap{ padding: 0 !important;}
