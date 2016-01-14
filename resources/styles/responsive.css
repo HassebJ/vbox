@@ -307,7 +307,7 @@ nav {
 
 #content.profile .user-sec > .follow{  bottom:110px; }
 #content.profile .user-sec .links{ position: absolute; right: 0; bottom: 110px; width: 100%; text-align: center;}
-#content.profile .user-sec .links .follow{ float: none; display: inline-block;}
+#content.profile .user-sec .links .follow{ float: none; display: inline-block;     margin-bottom: 62px;}
 
 #content.business .user-sec .links{ position: absolute; right: 0; bottom: 152px; margin: 0; width: 100%;}
 #content.business .user-sec .links{ padding:4px 10px; float: none; display: inline-block;}
