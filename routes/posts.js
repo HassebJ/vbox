@@ -10,8 +10,17 @@ app.post.simple('/posts/savepic', function(request, response, mysql){
 console.log("sayeed--==================>",request.body.message);
 		if(request.body.files && request.body.files.avatar && request.body.files.avatar.size){
 			var source = app.public+'/uploads/pictures/original/';
+            var owner = response.head.account.id;
 
-			var avatar = request.body.files.avatar.path.split(source)[1];
+
+
+            if(response.head.account.business && request.body.busid){
+                if(request.body.busid == response.head.account.business.id)
+                    owner = response.head.account.business.id;
+            }
+
+
+            var avatar = request.body.files.avatar.path.split(source)[1];
 			
 			console.log({id: response.head.account.id, avatar: avatar});
 			
@@ -22,7 +31,7 @@ console.log("sayeed--==================>",request.body.message);
 			 next();
 			var  msg=request.body.message;
 //			mysql.posts.save({owner: response.head.account.id, image_name: avatar,author:response.head.account.id,message:msg,time:new Date().getTime()}, next);
-            var sqlInsert = "INSERT INTO posts (`author`, `owner`, `message`, `time`,`image_name`) VALUES ('"+response.head.account.id+"','"+response.head.account.id+"','"+msg+"',"+new Date().getTime()+", '"+avatar+"')";
+            var sqlInsert = "INSERT INTO posts (`author`, `owner`, `message`, `time`,`image_name`) VALUES ('"+response.head.account.id+"','"+owner+"','"+msg+"',"+new Date().getTime()+", '"+avatar+"')";
             console.log('File SQL',sqlInsert);
             mysql(sqlInsert);
             response.redirect('back');
