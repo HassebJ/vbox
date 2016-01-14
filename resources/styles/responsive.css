@@ -16,11 +16,27 @@ nav {
   width: 100%;
 }
 
+@media only screen and (min-width:767px) {
+    #map {
+
+        position: fixed !important;
+    }
+}
+
 @media only screen and (max-width:766px) {
 
+    #map {
+
+         position: fixed;
+    }
+
     #resmap{
-    display: none;
+        /*visibility: hidden;*/
+        display: none;
 }
+    /*#map .mainmap-sec{*/
+        /*visibility: hidden;*/
+    /*}*/
 
     #reshead{
         text-align: center;
@@ -28,6 +44,7 @@ nav {
         /* min-height: 240px; */
         padding: 7px 13% 0px;
         display: block !important;
+        background: #f2f1ef;
     }
     ul{ list-style:none;}
     .topprofile-sec{ position:relative; text-align:center;}
@@ -392,7 +409,9 @@ nav {
 .welcome #signup #first_name_in, .welcome #signup #last_name_in{ margin: 0;}
 .welcome #signup h3{ font-size: 27px; margin-top: 10px;}
 #signup input[type="text"], #signup input[type="password"], #signup-actions{margin-bottom: 12px;}
-.classifieds #map{ position: static !important; width:100%; margin: 20px 0;}
+.classifieds #map{
+    /*position: static !important;*/
+    width:100%; margin: 20px 0;}
 .businesses #map{ position: static !important; width:100%; margin: 20px 0;}
 #loginModal .modal-dialog{ margin: 225px auto 20px;}
 .about_container{ width: 90%;}

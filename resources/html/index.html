@@ -181,7 +181,9 @@ caller = {
 		{{include 'html/layouts/header.html'}}
 		<div id="content" class="{{-this.page}}">{{include 'html/pages/'+this.page+'.html'}}</div>
     </div>
-    {{if this.page is 'chat':}}
+
+
+  {{if this.page is 'chat':}}
        {{else :}}
    
             {{this.part = 'footer'}}
@@ -255,6 +257,31 @@ caller = {
 			<script src="/scripts/global.js" type="text/javascript"></script>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.js"></script>
 
+  {{if this.page is 'classifieds':}}
+  <footer>
+      <ul id="" class="tabs">
 
+          <a id="" class="home col-lg-4" style="
+    padding-top: 33px;" href="/">Home</a>
+          <a id="" class="classi col-lg-4" href="/classifieds" style="
+    padding-top: 33px;">Classifieds</a>
+          <a id="" class="business col-lg-4" style="
+    padding-top: 33px;" href="businesses">Business</a>
+
+      </ul>
+      <!--<div class="container row">-->
+          <!--<div class="">-->
+              <!--<span class="text-muted">Place sticky footer content here.</span>-->
+          <!--</div>-->
+          <!--<div class="">-->
+              <!--<span class="text-muted">Place sticky footer content here.</span>-->
+          <!--</div>-->
+          <!--<div class="">-->
+              <!--<span class="text-muted">Place sticky footer content here.</span>-->
+          <!--</div>-->
+
+      <!--</div>-->
+  </footer>
+  {{end}}
 	</body>
 </html>

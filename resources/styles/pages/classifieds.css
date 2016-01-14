@@ -92,6 +92,9 @@
 	margin-top: 4px;
 	
 }
+.posclass {
+    position: static !important;
+}
 
 
 #search_value, #search_location{
@@ -146,7 +149,46 @@ body{
 	margin-top: 10px; display:inline-block;
 }
 
+@media only screen and (min-width:769px) {
 
+    footer {
+
+        display: none;
+    }
+}
+
+@media only screen and (max-width:766px) {
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 56px;
+        background-color: #ffffff;
+        display: block;
+    }
+
+    /*footer {*/
+
+        /*display: block;*/
+        /*background: #f2f1ef;*/
+    /*}*/
+    #footer {
+
+        display: none;
+    }
+}
+
+.home {
+    background: url(../../images/homeic1.png)  no-repeat 33px 14px;
+}
+
+.classi {
+    background: url(../../images/useric1.png)  no-repeat 52px 14px;
+}
+.business{
+    background: url(../../images/businessic1.png)  no-repeat 41px 14px;
+}
 
 #classifieds .title span{
 	color: #00baff;
@@ -163,7 +205,8 @@ body{
 	background-color: #E5E3DF;
 	height: 76%;
 	width: 57%; top:66px;
-	float: left; position:fixed !important;
+	float: left;
+    position:fixed;
 }
 
 #map-border{
