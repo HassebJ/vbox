@@ -17,6 +17,30 @@ nav {
 }
 
 @media only screen and (max-width:766px) {
+
+    #resmap{
+    display: none;
+}
+
+    #reshead{
+        text-align: center;
+        position: relative;
+        /* min-height: 240px; */
+        padding: 7px 13% 0px;
+        display: block !important;
+    }
+    ul{ list-style:none;}
+    .topprofile-sec{ position:relative; text-align:center;}
+    .topprofile-sec .upload{ position:absolute; right:5%; bottom:5%;}
+    .topprofile-sec  .bg{ max-width:100%;}
+
+    /*.user-sec{ text-align:center; position:relative; min-height:240px; padding:15px 3% 90px;}*/
+    .tabs{ position:absolute; background:none; bottom:0; left:0; margin:0; width:100%;}
+    .tabs li{ margin:0; display:inline-block;}
+    .tabs a{ font-size:17px; margin: 0 30px; display:inline-block; line-height:25px; font-weight:bold; color:#757575; padding:0 20px 5px; border-bottom:6px solid rgba(0,0,0,0);}
+    .tabs li a:focus{ outline:none; text-decoration:none;}
+    .tabs a.active{ border-color:#00baff;}
+
     .inner-header #logo{ background: url('/images/logo-small.png') no-repeat left center; width: 123px; height:64px; margin: 0; padding: 15px 20px 15px 0; border-right: 1px solid #d1d1d1;}
     .dropdown-menu {
 
@@ -276,9 +300,7 @@ nav {
 .classifieds #category_fields{ padding: 0 15px;}
 #classifieds .ad{ width: 100%;}
 
-#reshead{
-    display:block;
-}
+
 
 .classifieds .contentpart, .businesses .contentpart{ position: static;}
 #search .wrap{ padding: 0 !important;}

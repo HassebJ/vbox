@@ -1,18 +1,17 @@
 	
 	<!--<script src="/scripts/modules/jquery.js" type="text/javascript"></script>-->
 	 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css">
-    <ul id="reshead" class="tabs">
+    <ul id="reshead" class="tabs" style="display:none">
         <!--<li class="active"><a href="?show=wall">Timeline</a></li>
         <li><a href="?show=stores">Stores</a></li>
         <li><a href="?show=ads">Classified Ads</a></li>
         <li><a href="#">Description</a></li>-->
-        <a id="timelineActiveId" class="active" href="?show=wall">Timeline</a>
-        <a id="storeActiveId" class="" href="?show=stores">Stores</a>
-        <a id="classifiedActiveId" class="" href="?show=ads">Classified Ads</a>
-        <a id="descriptionActiveId" class="" href="?show=description">Description</a>
+        <a id="timelineActiveId" class="active pull-left" href="?show=wall">List</a>
+        <a id="storeActiveId" class="" href="?show=stores">Map</a>
+
     </ul>
 
-	<div class="col-md-6 col-lg-7 col-sm-12">
+	<div id="resmap" class="col-md-6 col-lg-7 col-sm-12">
 		<div id="map" class="mainmap-sec"></div>
 	</div>
 	<div class="col-md-6 col-lg-5 col-sm-12 contentpart">
