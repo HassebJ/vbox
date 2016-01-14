@@ -1,4 +1,56 @@
 
+.list-blue:hover {
+    background: url(../../images/icons/list-white.png) no-repeat 33px 14px;
+    background-size: 20px 20px;
+}
+.list-blue {
+    background: url(../../images/icons/list-blue.png) no-repeat 33px 14px;
+    background-size: 20px 20px;
+}
+.pin-blue:hover {
+    /*background-size: 20px 20px;*/
+    background: url(../../images/icons/pin-white.png) no-repeat 33px 14px;
+    background-size: 20px 20px;
+}
+.pin-blue {
+    /*background-size: 20px 20px;*/
+    background: url(../../images/icons/pin-blue.png) no-repeat 33px 14px;
+    background-size: 20px 20px;
+}
+
+@media only screen and (max-width:766px) {
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 56px;
+        background-color: #ffffff;
+        display: block !important;
+    }
+
+    /*footer {*/
+
+    /*display: block;*/
+    /*background: #f2f1ef;*/
+    /*}*/
+    #footer {
+
+        display: none;
+    }
+}
+
+.home {
+    background: url(../../images/homeic1.png)  no-repeat 33px 14px;
+}
+
+.classi {
+    background: url(../../images/useric1.png)  no-repeat 52px 14px;
+}
+.business{
+    background: url(../../images/businessic1.png)  no-repeat 41px 14px;
+}
+
 #header{
 	position: relative;
 	z-index: 100;

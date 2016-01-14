@@ -55,6 +55,7 @@
 	position: relative;
 	z-index: 100;
 }
+}
 #content{ }
 
 #search{ float:left; width:100%;}

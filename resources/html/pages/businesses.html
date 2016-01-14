@@ -1,5 +1,12 @@
-<div class="col-md-6 col-lg-7 col-xs-12 col-sm-12">
-<div id="map" class="mainmap-sec"></div>
+<ul id="reshead" class="tabs" style="display:none">
+
+    <a id="timelineActiveId" class="list-blue pull-left" href=""></a>
+    <a id="storeActiveId" class="pin-blue" href=""></a>
+
+</ul>
+
+<div id="resmap" class="col-md-6 col-lg-7 col-sm-12">
+    <div id="map" class="mainmap-sec"></div>
 </div>
 <div class="col-md-6 col-lg-5 col-xs-12 col-sm-12 contentpart">
 <script>
@@ -7,6 +14,29 @@
 	window.query = {{-JSON.stringify this.query}};
 
     $( document ).ready(function() {
+        $('#timelineActiveId').click( function() {
+//            $('#storeActiveId').removeClass('active');
+//            $('#timelineActiveId').addClass('active');
+//        $("#resmap").css("visibility", "hidden");
+            $(".form-horizontal").css("display", "block");
+            $("#resmap").css("display", "none");
+
+
+            return false;
+        } );
+
+        $('#storeActiveId').click( function() {
+//            $('#timelineActiveId').removeClass('active');
+//            $('#storeActiveId').addClass('active');
+            $(".form-horizontal").css("display", "none");
+//        $("#resmap").css("visibility", "visible");
+            $("#resmap").css("display", "block");
+            $("#map").addClass('posclass');
+            $("#map").css("height", "557px");
+
+            return false;
+        } );
+
         $('#shuffle1').click(function () {
             $(".business").css("width", "50%");
             $(".business").css("height", "250px");
