@@ -167,13 +167,13 @@ body{
 	margin-top: 10px; display:inline-block;
 }
 
-@media only screen and (min-width:769px) {
+/*@media only screen and (min-width:769px) {*/
 
     footer {
 
-        display: none;
+        display: none !important;
     }
-}
+/*}*/
 
 @media only screen and (max-width:766px) {
     footer {
@@ -183,7 +183,7 @@ body{
         /* Set the fixed height of the footer here */
         height: 56px;
         background-color: #ffffff;
-        display: block;
+        display: block !important;
     }
 
     /*footer {*/
