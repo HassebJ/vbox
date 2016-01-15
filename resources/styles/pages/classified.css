@@ -100,7 +100,7 @@
 }
 .section.price span{ font-size:18px;}
 .section .field{
-	
+    font-size: medium;
 	padding: 8px 5px 12px 5px;
 	clear: both; text-align:center;
 }
@@ -429,7 +429,9 @@ button.choose-recipient:hover{ display:inline-block !important; background:url(.
 .description-sec{ float: left; width: 100%;}
 .description-sec h4{ font-size: 26px; line-height: 30px; padding:0 0 10px;}
 .follow-sec{ text-align:center;}
-.follow-sec .flwbtn{ background: #36A95C; padding:8px 15px; color: #FFF ; display:inline-block;}
+.follow-sec .flwbtn{ background: #36A95C; padding:8px 15px; color: #FFF ; display:inline-block;
+font-size: small;
+}
 .follow-sec p{ padding: 10px 0 0; text-align:left; color:#cbcbcb;}
 
 @media all and (max-width:600px){

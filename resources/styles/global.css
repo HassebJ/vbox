@@ -6,6 +6,13 @@
     text-indent: 10em;
     color: transparent;
 }
+.ui-slider-horizontal {
+    height: .4em !important;
+}
+.ui-slider-horizontal .ui-slider-handle {
+    top: -1.0em !important;
+    /*margin-left: -1.6em !important;*/
+}
 
 /*===================[ fonts ]===================*/
 @font-face {

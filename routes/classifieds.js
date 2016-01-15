@@ -92,6 +92,8 @@ app.get('/classifieds', function(request, response, mysql){
 	var WHERE = '';
 	var checkWhere = false;
 	var checkPrice = false;
+
+
 	if(query.category || query.trade_type){
 		WHERE += 'WHERE ';
         var firstAnd = 0;
@@ -109,6 +111,13 @@ app.get('/classifieds', function(request, response, mysql){
             firstAnd = 1;
             checkWhere = true;
 		}
+        if(query.locality_long){
+            if(query.search_value)
+                if (firstAnd==1) WHERE += ' AND ';
+            WHERE += "locality_long = '" + (query.locality_long)+"'";
+            firstAnd = 1;
+            checkWhere = true;
+        }
 		if(query.Price){
 			checkPrice = true;
 			if(query.category || query.search_value) 

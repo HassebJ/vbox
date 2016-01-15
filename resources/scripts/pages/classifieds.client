@@ -127,11 +127,14 @@ function geocoder(lat,lng){
 		if(isset(query.locality_long)){
 			if (!window.ads.length){
 				map.setZoom(11);
-			} else if(window.ads.length == 1){ 
+			}
+			else if(window.ads.length == 1){
 				map.setZoom(11);
-			} else {
+			}
+			else {
 				center = bounds.getCenter();
 				map.fitBounds(bounds);
+				//map.setZoom(4);
 			}
 		} else {
 			if (window.ads.length == 1){
@@ -142,7 +145,7 @@ function geocoder(lat,lng){
 		}
 		console.log("laaaadadtt"+lat);
 
-		map.setZoom(14);
+		//map.setZoom(14);
 	}
 			if(lat==1)
 		map.setZoom(1);
@@ -251,6 +254,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 google.load('visualization', '1.0', {'packages':['geomap']});
 google.setOnLoadCallback(drawMap);
 window.currentRegion = 'world';
+
 function drawMap() {
 	var mapData = [['Country', 'Classifieds']]; 
 	

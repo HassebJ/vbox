@@ -310,7 +310,31 @@
 
 <script>
 
-$('.rateit').bind('rated reset', function (e, value) {
+
+    jQuery(document).ready(function ($) {
+        jQuery('#pictures').click(function () {
+
+            var img = []
+            jQuery('.rsContainer').find("img").each(function () {
+//                alert($(this).attr('src'));
+                img.push({src: $(this).attr('src')});
+
+            });
+            $.magnificPopup.open({ items: img,
+                gallery: {
+                    enabled: true
+                },
+                type: 'image' // this is default type
+            });
+//        $('.rscontainer').magnificPopup({
+//            delegate: 'img', // child items selector, by clicking on it popup will open
+//            type: 'image'
+//            // other options
+//        });
+        });
+    });
+
+    $('.rateit').bind('rated reset', function (e, value) {
 //            alert(JSON.stringify(value));
             var ri = $(this);
 

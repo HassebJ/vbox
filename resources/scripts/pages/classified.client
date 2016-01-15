@@ -1,6 +1,6 @@
 $(function(){
 
-	
+
 		
 	$(".royalSlider").royalSlider({
         // options go here
