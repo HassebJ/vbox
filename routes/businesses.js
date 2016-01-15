@@ -450,6 +450,7 @@ app.get('/businesses/create', function(request, response, mysql){
 		response.data.title = 'VBOX - Create a Business';	
 		response.data.scripts = [scripts.jquery, scripts.jelq, scripts.selectize, scripts.dropzone, scripts.accounting, scripts.maps, scripts.geo, scripts.page(response)];
 		response.data.categories = new Categories('business');
+        gories('business');
 		response.finish();
 	} else {
 		app.login(request, response);

@@ -107,7 +107,7 @@ function geocoder(lat,lng){
         else if(item.category == 19)
                     pinImg='/images/bpin/hotel.png';
         else if(item.category == 20)
-                    pinImg='/images/bpin/internet.png';
+                    pinImg='/images/internet.png';
         else if(item.category == 21)
                     pinImg='/images/bpin/estate.png';
         else if(item.category == 22)
@@ -120,6 +120,8 @@ function geocoder(lat,lng){
                     pinImg='/images/bpin/services.png';
         else if(item.category == 27)
                     pinImg='/images/bpin/government.png';
+                    else if(item.category == 28)
+                                         pinImg='/images/internet.png';
 
 				console.log("PinImg:"+pinImg)
 
