@@ -65,7 +65,7 @@ function geocoder(lat,lng){
 	});
 	window.businesses.forEach(function(item){
 		console.log("sayeed:"+JSON.stringify(item));
-		var pinImg='/images/pin.png';
+		var pinImg='/images/all.png';
 		if(item.category == 0)
 			pinImg='/images/bpin/liesure.png';
 		else if(item.category == 1)
@@ -75,9 +75,9 @@ function geocoder(lat,lng){
 		else if(item.category == 3)
 					pinImg='/images/bpin/car.png';
 		else if(item.category == 4)
-					pinImg='/images/bpin/pin.png';
+					pinImg='/images/all.png';
 		else if(item.category == 5)
-					pinImg='/images/bpin/pin.png';
+					pinImg='/images/all.png';
 		else if(item.category == 6)
 					pinImg='/images/bpin/electronics.png';
 		else if(item.category == 7)
@@ -93,7 +93,7 @@ function geocoder(lat,lng){
         else if(item.category == 12)
                     pinImg='/images/bpin/footware.png';
         else if(item.category == 13)
-                    pinImg='/images/bpin/pin.png';
+                    pinImg='/images/all.png';
         else if(item.category == 14)
                     pinImg='/images/bpin/sports.png';
         else if(item.category == 15)
