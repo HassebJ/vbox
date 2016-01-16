@@ -3,6 +3,14 @@
     /*background: url(../../images/icons/list-white.png) no-repeat 33px 14px;*/
     /*background-size: 20px 20px;*/
 /*}*/
+
+
+@media only screen and (min-width:767px) {
+    #map {
+
+        position: fixed !important;
+    }
+}
 .list-blue {
     background: url(../../images/icons/list-blue.png) no-repeat 23px 14px;
     background-size: 20px 20px;
@@ -364,7 +372,9 @@ body{
 #classifieds .ad .content .info  h2{ font-size:23px; color:#444; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; max-width:70%; line-height:26px; display:inline-block; margin:0 0 5px;}
 #classifieds .ad .content .info  h2 a{ color:#444; font-size:20px; line-height:24px;}
 #classifieds .ad .seller-name{ margin:0; font-size:14px; }
-#classifieds .ad .picture img{ height:180px;}
+#classifieds .ad .picture img{
+    height:180px;
+}
 #classifieds .ad .seller-name a{ color:#00baff; max-width: 116px; display: inline-block; vertical-align: top; text-overflow:ellipsis; overflow: hidden;white-space: nowrap;}
 #classifieds .ad .seller-picture{ display:none;}
 #classifieds .ad .description{ margin:0 0 5px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; }
