@@ -16,7 +16,7 @@ app.post('/businesses/stores', function(request, response, mysql){
 	when.business(request, response, mysql, function(){
 		request.demand('name');
 		request.demand('formatted_address');
-		console.log('/businesses/stores/save', request.body);
+//		console.log('/businesses/stores/save', request.body);
 		if(request.passed){
 			var id =  uniqid();
 			var store = {

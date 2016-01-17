@@ -1,19 +1,24 @@
 
 var mailer = require("nodemailer");
 mail = mailer.createTransport("SMTP",{
-    service: "Gmail",
+    host:"mail.gandi.net",
+    port:465,
+//    secure: true,
+    secureConnection: true,
     auth: {
-        user: "veebox.io@gmail.com",
+        user: "hello@veebox.io",
         pass: "vbox@1234"
     }
 });
-//mail = nodemailer.createTransport("SMTP", {
-//	host	: "webmail.gandi.net", 	// smtp hostname
-//	port	: 25, 						// port for secure smtp
-//	debug	: true,						// display debug log
-//    auth	: {
-//        user: "hello@veebox.io",		// smtp username
-//        pass: "vbox@1234"	// smtp password
+
+//
+//mail = mailer.createTransport("SMTP",{
+//	host:"relay.mail.gandi.net", 	// smtp hostname
+//	port: 465, 						// port for secure smtp
+////	debug: true,						// display debug log
+//    auth: {
+//        user:"hello@veebox.io",		// smtp username
+//        pass:"vbox@1234"	// smtp password
 //    }
 //});
 
@@ -31,7 +36,7 @@ mail.send = function(locals, options){
                 html: html // html body
             }, function(error, response){
                 if(error){
-                    console.log(error);
+                    console.log("Nodemailer error: "  + error);
                 }else{
                     console.log("Message sent: " + response.message);
                 }

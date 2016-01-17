@@ -90,7 +90,7 @@ app.get('/businesses', function(request, response, mysql){
 			response.data.businesses = rows;
 			next();
 		});
-		console.log('sayeed'+response.data.businesses);
+//		console.log('sayeed'+response.data.businesses);
 		rows.forEach(function(row){
 //			row.category = getCategoryBus(row.category, 'business');
 			row.avatar = row.avatar 
@@ -139,7 +139,7 @@ console.log(request.params[1])
 if (rows.length>0){
 
 		response.data.business = rows[0];
-	console.log(rows[0]);
+//	console.log(rows[0]);
 	console.log("----------------------------------------");
 if (rows.length>0){	
 		response.data.business.avatar = response.data.business.avatar 
@@ -230,7 +230,7 @@ response.data.business = row;
                         response.data.posts = rows;
                         console.log('==============================================>>>>>>>>>>>>>>>>>');
 //                        console.log(posts);
-                        console.log(response.data.posts);
+//                        console.log(response.data.posts);
                         console.log(rows);
                         console.log('==============================================>>>>>>>>>>>>>>>>>');
                         nextPost();
@@ -345,8 +345,8 @@ response.data.business = row;
                         response.data.posts = rows;
                         console.log('==============================================>>>>>>>>>>>>>>>>>');
 //                        console.log(posts);
-                        console.log(response.data.posts);
-                        console.log(rows);
+//                        console.log(response.data.posts);
+//                        console.log(rows);
                         console.log('==============================================>>>>>>>>>>>>>>>>>');
                         nextPost();
                         // if any of the file processing produced an error, err would equal that error
@@ -450,7 +450,6 @@ app.get('/businesses/create', function(request, response, mysql){
 		response.data.title = 'VBOX - Create a Business';	
 		response.data.scripts = [scripts.jquery, scripts.jelq, scripts.selectize, scripts.dropzone, scripts.accounting, scripts.maps, scripts.geo, scripts.page(response)];
 		response.data.categories = new Categories('business');
-        gories('business');
 		response.finish();
 	} else {
 		app.login(request, response);
@@ -460,7 +459,7 @@ app.get('/businesses/create', function(request, response, mysql){
 
 // POST businesses/create
 app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
-	// Parse Form
+	// Parse Formss
 	var form = new formidable.IncomingForm();
 	form.keepExtensions = true;
 	form.uploadDir = app.public + "/uploads/avatars/original";
