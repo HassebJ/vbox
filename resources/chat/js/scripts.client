@@ -656,7 +656,7 @@ function connectToAp() {
 	 ad_funds = number_format(userinfo['Me'].ad_funds, 2);
 	 $("#ad_funds").text("$ " + ad_funds);
 	 if (userinfo['Me'].ad_funds <= 0 ) {
-	    showError("You don't have enough funds to make or receive a call. Please <a href='/company/deposit' target='_blank'>Deposit Funds</a> to use all features of VBOX", 0);
+	    showError("You don't have enough funds to make or receive a call.", 0);
 	 }
        }
    });
@@ -863,7 +863,7 @@ function performCall(otherEasyrtcid) {
    if (business_accounts > 0) {
       if (userinfo['Me'].ad_funds < 0.05) {
 	 //enable("makeCallButton");
-	 showError("You don't have enough funds to make or receive a call. Please <a href='/company/deposit' target='_blank'>Deposit Funds</a> to use all features of VBOX", 0);
+	 showError("You don't have enough funds to make or receive a call.", 0);
 	 return false;
       }
    }
@@ -989,7 +989,7 @@ easyrtc.setAcceptChecker(function(easyrtcid, callback) {
     document.getElementById("callAcceptButton").onclick = function() {
       if (business_accounts > 0) { 
 	 if (userinfo['Me'].ad_funds < 0.05) {
-	    showError("You don't have enough funds to receive this call. Please <a href='/company/deposit' target='_blank'>Deposit Funds</a> to use all features of VBOX", 0);
+	    showError("You don't have enough funds to receive this call.", 0);
 	    acceptTheCall(false);
 	    return false;
 	 }
