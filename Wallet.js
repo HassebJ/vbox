@@ -17,6 +17,20 @@ module.exports = function Wallet() {
           });
         });
     };
+    Wallet.prototype.useFunds = function(funds, id_user, callback){
+        console.log("=========================================using funds from "+id_user+" of "+funds+"=============================");
+        pool.getConnection(function(err, connection) {
+            connection.query("UPDATE `accounts` SET `ad_funds` = `ad_funds` - "+connection.escape(funds)+" WHERE `id` = "+connection.escape(id_user), function(err, result){
+            connection.release();
+            if (err) {
+                console.log(err);
+                callback(false);
+            }else{
+                callback(true);
+            }
+          });
+        });
+    };
     Wallet.prototype.getFunds = function(id, callback){
         console.log("=========================================getting funds=============================");
         pool.getConnection(function(err, connection) {
@@ -32,5 +46,4 @@ module.exports = function Wallet() {
         });
         
     };
-    
 }
