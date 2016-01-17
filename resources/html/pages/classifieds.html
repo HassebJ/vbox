@@ -539,7 +539,7 @@ $( document ).ready(function() {
                 content += '<a href="/classifieds/delete?id=' + ad.id + '" class="fa fa-trash-o button silver" onclick="return confirm(\'Are you sure?\')">delete</a>';
             }
             content += '</div></div>';
-            console.log(ad.seller);
+           
             if (ad.seller.id) {
                 content += '<div class="seller">';
                 if (ad.seller_type == 'business') {
