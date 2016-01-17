@@ -157,13 +157,13 @@ app.get('/classifieds', function(request, response, mysql){
             }
 		}
 		if(query.trade_type){
-			if(query.category || query.search_value) {
+//			if(query.category || query.search_value) {
 			    
 			 if (firstAnd==1) WHERE += ' AND ';
 			WHERE += 'trade_type = ' + parseInt(query.trade_type);
             firstAnd = 1;
             checkWhere = true;
-            }
+//            }
 		}
 		if(query.administrative_area_level_1_short){
 			if(query.administrative_area_level_1_short && query.administrative_area_level_1_short!="") {
@@ -182,16 +182,16 @@ app.get('/classifieds', function(request, response, mysql){
             checkWhere = true;
             }
 		}
-        if(query.classified_type) {
+        if(query.classified_type) {//private /business
             var type = query.classified_type;
             if (type === '1') {//day
                 if (firstAnd == 1) WHERE += ' AND ';
-                WHERE += "seller_type <= '" + (type) + "'";
+                WHERE += "seller_type = '" + (type) + "'";
                 firstAnd = 1;
                 checkWhere = true;
             } else {//week
                 if (firstAnd == 1) WHERE += ' AND ';
-                WHERE += "seller_type <= '" + (type) + "'";
+                WHERE += "seller_type = '" + (type) + "'";
                 firstAnd = 1;
                 checkWhere = true;
             }

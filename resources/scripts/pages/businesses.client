@@ -79,7 +79,7 @@ function geocoder(lat,lng){
 		else if(item.category == 5)
 					pinImg='/images/all.png';
 		else if(item.category == 6)
-					pinImg='/images/bpin/electronics.png';
+					pinImg='/images/phone.png';
 		else if(item.category == 7)
 					pinImg='/images/bpin/edu.png';
 		else if(item.category == 8)
@@ -116,6 +116,8 @@ function geocoder(lat,lng){
                     pinImg='/images/bpin/NGO.png';
         else if(item.category == 24)
                     pinImg='/images/bpin/bars.png';
+        else if(item.category == 25)
+                            pinImg='/images/bpin/animals.png';
         else if(item.category == 26)
                     pinImg='/images/bpin/services.png';
         else if(item.category == 27)
