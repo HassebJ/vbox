@@ -70,7 +70,51 @@
 				<li><a href="#">2013</a></li>
 				<li><a href="#">2012</a></li>
 			</ul>-->
+
+        <!--{{if this.account and this.account.id == this.user.id:}}-->
+        <!--<h2><a href="/accounts/{{-this.user.id}}">{{-this.user.full_name}}</a>'s Timeline</h2>-->
+    <!--<div class="timebox left">-->
+        <!--<img src="../../images/timearrow.png" alt="" class="arrow">-->
+        <!--<img src="../../images/timecircle.png" alt="" class="circle">-->
+
+        <!--<div class="newpost tabs">-->
+            <!--<div class="tab status active" onclick="wallField('status')"><i class="fa fa-pencil"></i> Status</div>-->
+            <!--<div class="tab url" onclick="wallField('url')"><i class="fa fa-paperclip fa-flip-horizontal"></i> URL</div>-->
+            <!--<div class="tab files" onclick="wallField('file')"><i class="fa fa-camera"></i> Photo/Video</div>-->
+        <!--</div>-->
+        <!--<div class="tabbed status">-->
+            <!--{{-@post '/posts/save', {id: 'dropform3'} }}-->
+            <!--{{-@textarea 'What is in your mind?', 'message' }}-->
+            <!--<button id="submit" type="submit">Share</button>-->
+            <!--{{-@end}}-->
+        <!--</div>-->
+        <!--<div style="display: none" class="tabbed url">-->
+            <!--{{-@post '/posts/save', {id: 'dropfor2'} }}-->
+            <!--{{-@textarea 'What is in your mind?', 'message' }}-->
+            <!--<input style="width: 100%" type="text" name="url" placeholder="URL"/>-->
+            <!--<button id="submit" type="submit">Share</button>-->
+            <!--{{-@end}}-->
+        <!--</div>-->
+        <!--<div style="display: none" class="tabbed file">-->
+            <!--{{-@post '/posts/savepic', {id: 'dropform1',enctype : 'multipart/form-data'} }}-->
+            <!--{{-@textarea 'What is in your mind?', 'message' }}-->
+            <!--<fieldset>-->
+                <!--<h3 style="margin-bottom:8px;">Upload Pictures</h3>-->
+
+                <!--<div class="input-holder file">-->
+                    <!--<input type="file" id="imgvid" name="avatar" placeholder="Avatar"/>-->
+                <!--</div>-->
+
+
+            <!--</fieldset>-->
+            <!--<button id="submit" type="submit">Share</button>-->
+            <!--{{-@end}}-->
+        <!--</div>-->
+    <!--</div>-->
+        <!--{{end}}-->
 			{{if this.account and this.account.id is this.user.id:}}
+
+
 				<div class="timebox left">
 					<img src="../../images/timearrow.png" alt="" class="arrow">
 					<img src="../../images/timecircle.png" alt="" class="circle">
@@ -112,8 +156,8 @@
 
 						
 				
-			{{end}}
-			{{if this.account and this.account.id is this.user.id:}}
+
+
 			</div>
 			{{end}}
 			
