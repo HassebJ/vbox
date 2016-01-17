@@ -725,7 +725,7 @@ ul{ list-style:none;}
 .timebox .newpost li a{  color:#868686;}
 .timebox .newpost li.active a, .timebox .newpost li a:hover{ color:#00baff;}
 .timebox input[type="text"]{ border:1px solid #ccc; padding:5px 10px; float:left; width:100%; box-shadow:none; font-size:15px; color:#333;}
-.timebox .circle{ position: absolute; top: 30px; left: -69px !important; z-index: 9;}
+.timebox .circle{ position: absolute; top: 30px; left: -69px; z-index: 9;}
 .timebox.left .circle{ left: auto; right: -67px !important; z-index: 9;}
 .timebox .avatar img{ max-width: 100%;}
 
