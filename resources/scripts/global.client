@@ -23,6 +23,7 @@ if(!$("#myID").val()){
 	socket.emit("newUserConnect", {id_user:$("#myID").val(), id_room:$("#myID").val()});	
 	socket.emit("getPeople", {id_user:$("#myID").val(), id_room:$("#myID").val()});	
 	socket.on("sendPeople", function(data){
+	console.log("----------------------data---------------------");
 		console.log(data);
 		users=data;
 		setTimeout(function(){
