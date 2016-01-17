@@ -50,7 +50,7 @@ nav {
         text-align: center;
         position: relative;
         /* min-height: 240px; */
-        padding: 7px 13% 0px;
+        /*padding: 7px 13% 0px;*/
         display: block !important;
         background: #e8e7e5;
     }
@@ -422,7 +422,7 @@ nav {
 .welcome #signup h3{ font-size: 27px; margin-top: 10px;}
 #signup input[type="text"], #signup input[type="password"], #signup-actions{margin-bottom: 12px;}
 .classifieds #map{
-    /*position: static !important;*/
+    position: static !important;
     width:100%; margin: 20px 0;}
 .businesses #map{ position: static !important; width:100%; margin: 20px 0;}
 #loginModal .modal-dialog{ margin: 225px auto 20px;}
