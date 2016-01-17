@@ -266,7 +266,7 @@ function disableImg(img, $this){
 	
     var qs = getQueryStrings();
     if (qs['r'] == null || (qs['id'] && qs['id'] != $("#myID").val()) || (!qs['id'] && qs['r'] != $("#myID").val())) {
-	 // window.location.href = site_url;
+	 window.location.href = site_url;
     }
     var userid = Math.random().toString().slice(2, 12);
     var room = id_account = qs['r'];
