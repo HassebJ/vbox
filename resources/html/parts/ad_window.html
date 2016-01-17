@@ -29,8 +29,8 @@
 					</div>
 				{{end}}
 			{{end}}
-			
-			{{if this.myID: }}
+
+            {{if this.myID: }}
                 <a class="chatIdentity button live-state offline" data-user="{{-ad.seller.id}}" href="/chat/?r={{-ad.seller.id}}&id={{-this.myID}}" >Chat</a>
 			{{else:}}
 			    <a href="javascript:void();" class="chatIdentity button live-state offline" data-user="{{-ad.seller.id}}" data-toggle="modal" data-target="#loginModal" >Chat</a>

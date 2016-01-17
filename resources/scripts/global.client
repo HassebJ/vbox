@@ -16,6 +16,10 @@ function stopSound() {
     snd.currentTime = 0;
 }	
 $( document ).ready(function() {
+if(!$("#myID").val()){
+
+//$("#myID").val(window.account.id);
+}
 	socket.emit("newUserConnect", {id_user:$("#myID").val(), id_room:$("#myID").val()});	
 	socket.emit("getPeople", {id_user:$("#myID").val(), id_room:$("#myID").val()});	
 	socket.on("sendPeople", function(data){
