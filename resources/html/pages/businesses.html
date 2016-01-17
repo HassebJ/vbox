@@ -140,7 +140,7 @@
 						   {{end}}
 						   
 						   {{if this.business.category:}}
-							<p class="info fa fa-globe"><span>{{-this.business.category}}</span></p>
+							<p class="info fa fa-tags"><span>{{-this.business.category}}</span></p>
 						   {{end}}
 						   {{if this.business.contact_email:}}
 							<p class="info fa fa-envelope"><span> {{-this.business.contact_email}}</span></p>
@@ -153,24 +153,25 @@
 				</div>
 			{{end}}
 		</div>
-		
-		{{if this.total_rows > this.businesses.length:}}
-			
-			<div class="pagination">
-				{{if this.current_page > 1:}}	
-					{{this.query.page -= 1 }}
-					<a href="?{{-querystring.stringify this.query}}" class="icon-left"><i class="fa fa-angle-left"></i></a>
-				{{end}}
-				{{for index in [this.from_pages..this.to_pages]:}}
-					{{this.query.page = parseInt(index) }}
-					<a href="?{{-querystring.stringify this.query}}" {{-if index is this.current_page then 'class="selected"'}}>{{-index}}</a>
-				{{end}}
-				{{if this.current_page != this.total_pages:}}
-					{{this.query.page = this.query.page++}}
-					<a href="?{{-querystring.stringify this.query}}" class="icon-right"><i class="fa fa-angle-right"></i></a>
-				{{end}}
-			</div>
-		{{end}}
+		{{if this.ispage && this.businesses.length <19:}}
+            {{if this.total_rows > this.businesses.length:}}
+
+                <div class="pagination">
+                    {{if this.current_page > 1:}}
+                        {{this.query.page -= 1 }}
+                        <a href="?{{-querystring.stringify this.query}}" class="icon-left"><i class="fa fa-angle-left"></i></a>
+                    {{end}}
+                    {{for index in [this.from_pages..this.to_pages]:}}
+                        {{this.query.page = parseInt(index) }}
+                        <a href="?{{-querystring.stringify this.query}}" {{-if index is this.current_page then 'class="selected"'}}>{{-index}}</a>
+                    {{end}}
+                    {{if this.current_page != this.total_pages:}}
+                        {{this.query.page = this.query.page++}}
+                        <a href="?{{-querystring.stringify this.query}}" class="icon-right"><i class="fa fa-angle-right"></i></a>
+                    {{end}}
+                </div>
+            {{end}}
+        {{end}}
 	</div>
 	{{this.part = 'content'}}
 	

@@ -48,8 +48,12 @@ function geocoder(lat,lng){
 		lng =1;
 	}
 
+    window.ispage = true;
 	var latitude = window.query && window.query.latitude ? query.latitude : lat ;
 	var longitude = window.query && window.query.longitude ? query.longitude : lng ;
+	if(! (window.query && window.query.latitude)){
+	    window.ispage = false;
+	}
 
 	console.log('map lat/long positions:', latitude, longitude);
 	var mapOptions = {
@@ -67,7 +71,7 @@ function geocoder(lat,lng){
 		console.log("sayeed:"+JSON.stringify(item));
 		var pinImg='/images/all.png';
 		if(item.category == 0)
-			pinImg='/images/bpin/liesure.png';
+			pinImg='/images/bpin/leisure.png';
 		else if(item.category == 1)
 					pinImg='/images/bpin/agri.png';
 		else if(item.category == 2)
