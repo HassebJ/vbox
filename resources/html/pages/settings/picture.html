@@ -17,7 +17,7 @@
 		<div class="break"></div>
 		<fieldset class="input-holder">
 			<br>
-			<input type="file" name="picture"  />
+			<input type="file" name="picture" id="avatars" />
 			<br><br>
 			<br>
 		</fieldset>
@@ -41,3 +41,37 @@
 		
 	</fieldset>
 {{-@end}}
+
+<script>
+    $(document).ready(function() {
+        $("#avatars").change(function () {
+            var fileInput = document.getElementById('avatars');
+            var file = fileInput.files[0];
+            if (file) {
+                var img = new Image();
+
+                img.src = window.URL.createObjectURL(file);
+
+                img.onload = function () {
+                    var width = img.naturalWidth,
+                            height = img.naturalHeight;
+
+                    window.URL.revokeObjectURL(img.src);
+
+                    if (width == 300 && height == 300) {
+//                                var formData = new FormData();
+//                                alert("Page will reload automatically once upload is complete. Press okay to begin upload.");
+                        console.log("correct picture dimensions");
+
+                    }
+                    else {
+                        alert("Picture dimensions should be 300x300 pixels.");
+                        $("#avatars").val('');
+                    }
+                };
+            }
+
+        });
+    });
+
+</script>

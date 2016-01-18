@@ -601,14 +601,6 @@
                         $.ajax({
                             url: '/businesses/cover',  //Server script to process data
                             type: 'POST',
-//                xhr: function() {  // Custom XMLHttpRequest
-//                    var myXhr = $.ajaxSettings.xhr();
-//                    if(myXhr.upload){ // Check if upload property exists
-//                        myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
-//                    }
-//                    return myXhr;
-//                },
-                            //Ajax events
                             success: function(res){
                                 location.reload(true);
                             },
