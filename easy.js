@@ -444,7 +444,8 @@ User.prototype = {
                   //socketServer.sockets.socket(userSockets[id]).emit("getMessageBlockCallback", {error: true, err: err});
                   //socket.emit("getMessageBlockCallback", {error: true, err: err});
                 }else{
-                    //console.log("===============================================");
+                    console.log("===================================================================getmessage-======================================");
+                    console.log("SELECT a.`from`, a.`message`, b.first_name, b.last_name,b.locality_long,b.country_long, b.id as id_account, b.avatar FROM `chat` as `a` left join `accounts` as `b` ON a.`from` = b.id WHERE `to` = "+ connection.escape(id) +" GROUP BY a.`from` ORDER BY a.`id` DESC LIMIT "+limit);
                    // console.log(rows);
                     //socketServer.sockets.socket(userSockets[id]).emit("getMessageBlockCallback", {error: false, rows: rows});
                     socket.emit("getMessageBlockCallback", {error: false, rows: rows});
