@@ -421,7 +421,7 @@ User.prototype = {
         
         pool.getConnection(function(err, connection) {
             //console.log("SELECT * FROM `chat` WHERE `from` = "+connection.escape(from)+" OR `from` = "+connection.escape(to) + " ORDER BY `id` DESC LIMIT 50");
-            pool.query("SELECT * FROM `chat` WHERE (`from` = "+connection.escape(data.from)+" AND `to` = "+connection.escape(data.to) + ") OR (`to` = "+connection.escape(data.from)+" AND `from` = "+connection.escape(data.to) + ") ORDER BY `id` DESC LIMIT 150", function(err, rows){
+            pool.query("SELECT * FROM `chat` WHERE (`from` = "+connection.escape(data.from)+" AND `to` = "+connection.escape(data.to) + " AND `to` != 0 AND `from` != 0) OR (`to` = "+connection.escape(data.from)+" AND `from` = "+connection.escape(data.to) + " AND `to` != 0 AND `from` != 0) ORDER BY `id` DESC LIMIT 150", function(err, rows){
                 connection.release();
                 if (err) {
                   console.log(err);
@@ -437,14 +437,13 @@ User.prototype = {
     getMessageBlock: function(id, limit){
         limit = limit * 2;
         pool.getConnection(function(err, connection) {
-            connection.query("SELECT a.`from`, a.`message`, b.first_name, b.last_name,b.locality_long,b.country_long, b.id as id_account, b.avatar FROM `chat` as `a` left join `accounts` as `b` ON a.`from` = b.id WHERE `to` = "+ connection.escape(id) +" GROUP BY a.`from` ORDER BY a.`id` DESC LIMIT "+limit, function(err, rows){
+            connection.query("SELECT a.`from`, a.`message`, b.first_name, b.last_name,b.locality_long,b.country_long, b.id as id_account, b.avatar FROM `chat` as `a` left join `accounts` as `b` ON a.`from` = b.id WHERE a.`to` = "+ connection.escape(id) +" AND a.`to` != 0 GROUP BY a.`from` ORDER BY a.`id` DESC LIMIT "+limit, function(err, rows){
                 connection.release();
-                if (err) {
+                if (err && rows.length == 0) {
                   console.log(err);
                   //socketServer.sockets.socket(userSockets[id]).emit("getMessageBlockCallback", {error: true, err: err});
                   //socket.emit("getMessageBlockCallback", {error: true, err: err});
                 }else{
-                    //console.log("===============================================");
                    // console.log(rows);
                     //socketServer.sockets.socket(userSockets[id]).emit("getMessageBlockCallback", {error: false, rows: rows});
                     socket.emit("getMessageBlockCallback", {error: false, rows: rows});
