@@ -12,7 +12,7 @@ Users.prototype = {
         socket.emit("saveAppointment", {id_user: id_user, id_visitor: id_visitor, appTime: appTime});
     },
     getMessageBlock: function(id_user, limit){
-        console.log("getting messages");
+        console.log("getting messages " + id_user);
         socket.emit("getMessageBlock", {id_user: id_user, limit: limit});
     },
     getAppointmentsBlock: function(id_user, limit){
