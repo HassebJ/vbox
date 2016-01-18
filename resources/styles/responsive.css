@@ -68,7 +68,11 @@ nav {
         font-size:17px; margin: 0 30px; display:inline-block; line-height:25px; font-weight:bold; color:#757575; padding:0 20px 5px; border-bottom:6px solid rgba(0,0,0,0);
     }
     .tabs li a:focus{ outline:none; text-decoration:none;}
-    .tabs a.active{ border-color:#00baff;}
+    .tabs a.active{
+        border-color:#00baff;
+        padding-top: 31px;
+
+    }
 
     .inner-header #logo{ background: url('/images/logo-small.png') no-repeat left center; width: 123px; height:64px; margin: 0; padding: 15px 20px 15px 0; border-right: 1px solid #d1d1d1;}
     .dropdown-menu {

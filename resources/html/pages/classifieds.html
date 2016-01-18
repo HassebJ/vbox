@@ -21,7 +21,7 @@ $( document ).ready(function() {
     $("#search input[type=hidden]").val("");
 
 
-
+    initialize();
     $('#timelineActiveId').click( function() {
         $('#storeActiveId').removeClass('active');
         $('#timelineActiveId').addClass('active');
@@ -41,6 +41,7 @@ $( document ).ready(function() {
         $("#resmap").css("display", "block");
         $("#map").addClass('posclass');
         $("#map").css("height", "557px");
+        initialize();
 
         return false;
     } );

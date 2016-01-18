@@ -30,6 +30,8 @@ $(function(){
 var map;
 window.markers = []
 
+
+
 function initialize() {
 	console.log('initialize map');
 	if (navigator.geolocation) {
@@ -205,8 +207,12 @@ filterAds(map);
 
 
 google.maps.event.addListenerOnce(map, 'idle', function(){
-google.maps.event.trigger(map, 'resize');
+//google.maps.event.trigger(map, 'resize');
 filterAds(map);
+});
+
+google.maps.event.addListenerOnce(map, 'idle', function() {
+    google.maps.event.trigger(map, 'resize');
 });
 
 	}
@@ -319,3 +325,12 @@ function drawMap() {
 		drawMap();
 	});
 }*/
+
+//$(window).on('resize',function(){
+  //  google.maps.event.trigger(map, 'resize');
+    //initialize();
+//});
+
+//google.maps.event.addListenerOnce(map, 'idle', function() {
+ //  google.maps.event.trigger(map, 'resize');
+//});
