@@ -108,7 +108,8 @@ nav {
 
 @media only screen and (max-width:1500px) {
     .timebox .circle{ left: -79px;}
-    .timebox.left .circle{ right: -80px;}
+    .timebox.right .circle{ left: -69px;}
+    .timebox.left .circle{ right: -67px;}
 }
 
 @media only screen and (min-width:992px) and ( max-width:1100px){
