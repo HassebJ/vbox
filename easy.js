@@ -421,7 +421,7 @@ User.prototype = {
         
         pool.getConnection(function(err, connection) {
             //console.log("SELECT * FROM `chat` WHERE `from` = "+connection.escape(from)+" OR `from` = "+connection.escape(to) + " ORDER BY `id` DESC LIMIT 50");
-            pool.query("SELECT * FROM `chat` WHERE (`from` = "+connection.escape(data.from)+" AND `to` = "+connection.escape(data.to) + ") OR (`to` = "+connection.escape(data.from)+" AND `from` = "+connection.escape(data.to) + ") ORDER BY `id` DESC LIMIT 150", function(err, rows){
+            pool.query("SELECT * FROM `chat` WHERE (`from` = "+connection.escape(data.from)+" AND `to` = "+connection.escape(data.to) + " AND `to` > 0 AND `from` > 0) OR (`to` = "+connection.escape(data.from)+" AND `from` = "+connection.escape(data.to) + " AND `to` > 0 AND `from` > 0) ORDER BY `id` DESC LIMIT 150", function(err, rows){
                 connection.release();
                 if (err) {
                   console.log(err);
