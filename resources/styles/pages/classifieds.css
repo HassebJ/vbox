@@ -395,27 +395,21 @@ body{
 	float: right;
 }
 .filterButton {
-    background: #00baff !important;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.1), inset 0 -2px rgba(0,0,0,0.2), inset 0 0 0 100px rgba(255,255,255,0.2) !important;
-    color: #FFF;
-    text-decoration: none;
-
-	/*background-color: transparent;*/
+    background-color: transparent;
     -moz-border-radius: 9px;
     -webkit-border-radius: 9px;
-    border-radius: 2px;
-    /*border: 1px solid #00BAFF;*/
+    border-radius: 5px;
+    border: 1px solid #00BAFF;
     display: inline-block;
     cursor: pointer;
-    /*color: #00BAFF;*/
-    /*font-family: Arial;*/
-    text-align: center;
-    font-size: 15px;
+    color: #00BAFF;
+    font-family: Arial;
+    font-size: 17px;
     padding: 11px 38px;
-    width : 100%;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.3);
-    /*text-decoration: none;*/
-    /*text-shadow: 0px 1px 0px #283966;*/
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #283966;
+    width: 100%;
+    text-align: center;
 }
 .filterButton:hover {
 	background-color:transparent;
