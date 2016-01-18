@@ -439,7 +439,7 @@ body{
 #classifieds .ad .content .info  h2 a{ color:#444; font-size:20px; line-height:24px;}
 #classifieds .ad .seller-name{ margin:0; font-size:14px; }
 #classifieds .ad .picture img{
-    height:180px;
+    height:145px;
 }
 #classifieds .ad .seller-name a{ color:#00baff; max-width: 116px; display: inline-block; vertical-align: top; text-overflow:ellipsis; overflow: hidden;white-space: nowrap;}
 #classifieds .ad .seller-picture{ display:none;}
