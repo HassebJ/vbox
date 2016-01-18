@@ -193,8 +193,14 @@ response.data.business = row;
                         mysql(sqlCount, function(rowsCount){
 				var likedislike = "Select * from likedislike where "
 				response.data.followerCount = rowsCount.length;
+                            var adCount = 'SELECT * FROM ads'
+                                + ' WHERE  seller = ' + mysql.escape(business_id)+"  OR agent = "+ mysql.escape(business_id);
+                            mysql(adCount, function(adrowcount){
+                                response.data.adCount = adrowcount.length;
+                                afterConnection();
+                            });
 
-				afterConnection();
+
 
 			});
 
