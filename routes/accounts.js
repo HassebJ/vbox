@@ -905,8 +905,14 @@ app.get(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
 					+ ' WHERE  following = ' + mysql.escape(response.data.user.id)+"  AND following_type='personal'";
 				mysql(sqlCount, function(rowsCount){
 			        response.data.followerCount = rowsCount.length;
+                    var adCount = 'SELECT * FROM ads'
+                        + ' WHERE  seller = ' + mysql.escape(response.data.user.id)+"  OR agent = "+ mysql.escape(response.data.user.id);
+                    mysql(adCount, function(adrowcount){
+                        response.data.adCount = adrowcount.length;
+                        afterUser();
+                    });
 
-					afterUser();
+
 
 				});
 
