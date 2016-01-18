@@ -24,6 +24,20 @@
         /*position: fixed !important;*/
     /*}*/
 /*}*/
+@media only screen and (min-width:755px) {
+
+    .navbar {
+        /*position: relative;*/
+        max-height: 64px !important;
+        /*margin-bottom: 20px;*/
+        /*border: 1px solid transparent;*/
+    }
+    .inner-header #navbar #menu li .link.business {
+        /*background: url(../../images/businessic1.png) no-repeat 14px 23px;*/
+        height: 64px !important;
+    }
+
+}
 
 
 @media only screen and (max-width:755px) {
