@@ -72,64 +72,64 @@ function geocoder(lat,lng){
 	window.businesses.forEach(function(item){
 		console.log("sayeed:"+JSON.stringify(item));
 		var pinImg='/images/all.png';
-		if(item.category == 0)
-			pinImg='/images/bpin/leisure.png';
-		else if(item.category == 1)
+		if(item.categoryid == 0)
+                    pinImg='/images/bpin/leisure.png';
+		else if(item.categoryid == 1)
 					pinImg='/images/bpin/agri.png';
-		else if(item.category == 2)
+		else if(item.categoryid == 2)
 					pinImg='/images/bpin/electronics.png';
-		else if(item.category == 3)
+		else if(item.categoryid == 3)
 					pinImg='/images/bpin/car.png';
-		else if(item.category == 4)
+		else if(item.categoryid == 4)
 					pinImg='/images/all.png';
-		else if(item.category == 5)
+		else if(item.categoryid == 5)
 					pinImg='/images/all.png';
-		else if(item.category == 6)
+		else if(item.categoryid == 6)
 					pinImg='/images/phone.png';
-		else if(item.category == 7)
+		else if(item.categoryid == 7)
 					pinImg='/images/bpin/edu.png';
-		else if(item.category == 8)
+		else if(item.categoryid == 8)
 					pinImg='/images/bpin/electronics.png';
-		else if(item.category == 9)
+		else if(item.categoryid == 9)
                     pinImg='/images/bpin/services.png';
-        else if(item.category == 10)
+        else if(item.categoryid == 10)
                     pinImg='/images/bpin/finance.png';
-        else if(item.category == 11)
+        else if(item.categoryid == 11)
                     pinImg='/images/bpin/food.png';
-        else if(item.category == 12)
+        else if(item.categoryid == 12)
                     pinImg='/images/bpin/footware.png';
-        else if(item.category == 13)
+        else if(item.categoryid == 13)
                     pinImg='/images/all.png';
-        else if(item.category == 14)
+        else if(item.categoryid == 14)
                     pinImg='/images/bpin/sports.png';
-        else if(item.category == 15)
+        else if(item.categoryid == 15)
                     pinImg='/images/bpin/Shopping.png';
-        else if(item.category == 16)
+        else if(item.categoryid == 16)
                     pinImg='/images/bpin/health.png';
-        else if(item.category == 17)
+        else if(item.categoryid == 17)
                     pinImg='/images/bpin/services.png';
-        else if(item.category == 18)
+        else if(item.categoryid == 18)
                     pinImg='/images/bpin/furniture.png';
-        else if(item.category == 19)
+        else if(item.categoryid == 19)
                     pinImg='/images/bpin/hotel.png';
-        else if(item.category == 20)
+        else if(item.categoryid == 20)
                     pinImg='/images/internet.png';
-        else if(item.category == 21)
+        else if(item.categoryid == 21)
                     pinImg='/images/bpin/estate.png';
-        else if(item.category == 22)
+        else if(item.categoryid == 22)
                     pinImg='/images/bpin/media.png';
-        else if(item.category == 23)
+        else if(item.categoryid == 23)
                     pinImg='/images/bpin/NGO.png';
-        else if(item.category == 24)
+        else if(item.categoryid == 24)
                     pinImg='/images/bpin/bars.png';
-        else if(item.category == 25)
-                            pinImg='/images/bpin/animals.png';
-        else if(item.category == 26)
+        else if(item.categoryid == 25)
+                    pinImg='/images/bpin/animals.png';
+        else if(item.categoryid == 26)
                     pinImg='/images/bpin/services.png';
-        else if(item.category == 27)
+        else if(item.categoryid == 27)
                     pinImg='/images/bpin/government.png';
-                    else if(item.category == 28)
-                                         pinImg='/images/internet.png';
+        else if(item.categoryid == 28)
+                    pinImg='/images/internet.png';
 
 				console.log("PinImg:"+pinImg)
 
