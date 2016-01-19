@@ -312,8 +312,18 @@ response.data.business = row;
 						+ ' AND business_employees.store = ' + mysql.escape(request.query.store)
 						+ ' AND accounts.id = business_employees.account AND confirmed = 1', 
 					function(rows){
-						rows.forEach(function(row){ row = app.accounts.user(row) });
+						rows.forEach(function(row){
+                            row = app.accounts.user(row)
+                            if(!row.contact_number || row.contact_number == "" || row.contact_number == null){
+                                mysql.accounts.get('id', row.id, function(accounts){
+                                    account = accounts[0];
+                                    row.contact_number = account.contact_number;
+                                })
+                            }
+                        });
+
 						response.data.employees = rows;
+
 						response.data.subpage = 'store';
 						next();
 					});

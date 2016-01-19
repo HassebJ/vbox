@@ -2,6 +2,13 @@ body{
 	background: #E9EAED;
 }
 
+@media only screen and (max-width:755px) {
+    .staff_container .ins {
+        width: 100% !important;
+
+    }
+}
+
 .add-comments {
     padding: 15px !important;
     background: #F2F2F2;

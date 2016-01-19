@@ -41,6 +41,10 @@
 
 
 @media only screen and (max-width:755px) {
+    /*.staff_container .ins {*/
+        /*width: 100% !important;*/
+
+    /*}*/
 
     .tabs {
         position: absolute;
