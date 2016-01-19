@@ -528,18 +528,25 @@
 	$(document).ready(function(){
         $("#deletebiz").click(function() {
             event.preventDefault();
-            $.ajax({
-                url: '/businesses/delete', //your server side script
-                data: { id:  $("#deletebiz").attr('name')}, //our data
-                type: 'POST',
-                success: function (data) {
-                    window.location.href = "/";
+            if (confirm('Are you sure you want to delete this business')) {
+                $.ajax({
+                    url: '/businesses/delete', //your server side script
+                    data: { id:  $("#deletebiz").attr('name')}, //our data
+                    type: 'POST',
+                    success: function (data) {
+                        window.location.href = "/";
 //                    location.reload(true);
-                },
-                error: function (jxhr, msg, err) {
-                    location.reload(true);
-                }
-            });
+                    },
+                    error: function (jxhr, msg, err) {
+                        location.reload(true);
+                    }
+                });
+                // Save it!
+            } else {
+                // Do nothing!
+            }
+
+
         });
 
         $(".comment_submit").click(function() {
