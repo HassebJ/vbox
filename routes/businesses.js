@@ -314,12 +314,13 @@ response.data.business = row;
 					function(rows){
 						rows.forEach(function(row){
                             row = app.accounts.user(row)
-                            if(!row.contact_number || row.contact_number == "" || row.contact_number == null){
+//                            if(!row.contact_number || row.contact_number == "" || row.contact_number == null){
                                 mysql.accounts.get('id', row.id, function(accounts){
                                     account = accounts[0];
-                                    row.contact_number = account.contact_number;
+                                    if(account)
+                                        row.contact_number = account.contact_number;
                                 })
-                            }
+//                            }
                         });
 
 						response.data.employees = rows;
