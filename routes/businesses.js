@@ -488,14 +488,26 @@ app.post('/businesses/delete', function(request, response, mysql){
                 if(business){
                     // check if the ad seller is the session seller
                     if(response.head.account.id == business.account){
-                        if(response.head.account.business.id == business.id) {
-                            response.head.account.business = undefined;
+
+                        if(accounts && accounts.business) {
+                            if (accounts.business.id == business.id) {
+//                                response.head.account.business = undefined;
+                                accounts = undefined;
+                            }
                         }
+                        response.cookies.delete('business');
+                        response.cookies.delete('busid');
                         // remove ad from the database
                         mysql.businesses.delete('id', id, function(){
-                            response.redirect('/');
-                        });
+                            mysql.stores.delete('business', business.id, function(){
+                                response.error();
+//                                response.finish();
+                                mysql.end();
+                            })
 
+                        });
+                        response.error();
+//                        response.finish();
                         // else not authorized
                     } else {
                         request.error('account', 'not authorized');
