@@ -27,8 +27,8 @@
 					{{currentId = if this.account.business then this.account.business.id else this.account.id}}
 					<div class="actions">
 						{{if ad.seller.id is currentId :}}
-							<!--<a href="/classifieds/{{-ad.id}}/edit" class="fa fa-edit button">edit</a>
-							<a href="/classifieds/delete?id={{-ad.id}}" class="fa fa-trash-o button silver" onclick="return confirm('Are you sure?')">delete</a>-->
+							<a href="/classifieds/{{-ad.id}}/edit" class="fa fa-edit button">edit</a>
+							<a href="/classifieds/delete?id={{-ad.id}}" class="fa fa-trash-o button silver" onclick="return confirm('Are you sure?')">delete</a>
 						{{end}}
 					</div>
 				{{end}}
