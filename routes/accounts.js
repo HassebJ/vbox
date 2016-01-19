@@ -880,7 +880,23 @@ app.get(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
 		if(user_id == response.head.account.id){
 			response.data.user = response.head.account;
 			response.data.connection = 'you';
-			afterUser();
+//            var nextPostz = new Next(1, next);
+            var sqlCount = 'SELECT * FROM follows'
+                + ' WHERE  following = ' + mysql.escape(response.data.user.id)+"  AND following_type='personal'";
+            mysql(sqlCount, function(rowsCount){
+                response.data.followerCount = rowsCount.length;
+                var adCount = 'SELECT * FROM ads'
+                    + ' WHERE  seller = ' + mysql.escape(response.data.user.id);//+"  OR agent = "+ mysql.escape(response.data.user.id);
+                mysql(adCount, function(adrowcount){
+                    response.data.adCount = adrowcount.length;
+                    afterUser();
+//                    nextPostz();
+                });
+
+
+
+            });
+
 		} else {
 			mysql.accounts.get('id', user_id, function(rows){
 				response.data.user = rows[0] ? app.accounts.user(rows[0]) : false ;
@@ -906,7 +922,7 @@ app.get(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
 				mysql(sqlCount, function(rowsCount){
 			        response.data.followerCount = rowsCount.length;
                     var adCount = 'SELECT * FROM ads'
-                        + ' WHERE  seller = ' + mysql.escape(response.data.user.id)+"  OR agent = "+ mysql.escape(response.data.user.id);
+                        + ' WHERE  seller = ' + mysql.escape(response.data.user.id);//+"  OR agent = "+ mysql.escape(response.data.user.id);
                     mysql(adCount, function(adrowcount){
                         response.data.adCount = adrowcount.length;
                         afterUser();
@@ -951,7 +967,25 @@ app.get(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
 					});
 					response.data.ads = rows;
 				});
-			} else if (response.data.subpage == 'wall') {
+			} else if(response.data.subpage == 'me'){
+                var nextPostz = new Next(1, next);
+                var sqlCount = 'SELECT * FROM follows'
+                    + ' WHERE  following = ' + mysql.escape(response.data.user.id)+"  AND following_type='personal'";
+                mysql(sqlCount, function(rowsCount){
+                    response.data.followerCount = rowsCount.length;
+                    var adCount = 'SELECT * FROM ads'
+                        + ' WHERE  seller = ' + mysql.escape(response.data.user.id);//+"  OR agent = "+ mysql.escape(response.data.user.id);
+                    mysql(adCount, function(adrowcount){
+                        response.data.adCount = adrowcount.length;
+                        nextPostz();
+                    });
+
+
+
+                });
+
+            }
+            else if (response.data.subpage == 'wall') {
 				// LIMIT
 				var limit_count = response.data.limit_count = 10;
 				var page = request.query.page ? (request.query.page-1)*limit_count : 0 ;

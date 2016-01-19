@@ -176,7 +176,19 @@ response.data.business = row;
 		// check connection
 		if(response.head.account && response.head.account.business && business_id == response.head.account.business.id){
 			response.data.connection = 'you';
-			afterConnection();
+            var sqlCount = 'SELECT * FROM follows'
+                + ' WHERE following = ' + mysql.escape(business_id);
+            mysql(sqlCount, function(rowsCount) {
+                var likedislike = "Select * from likedislike where "
+                response.data.followerCount = rowsCount.length;
+                var adCount = 'SELECT * FROM ads'
+                    + ' WHERE  seller = ' + mysql.escape(business_id);//+"  OR agent = "+ mysql.escape(business_id);
+                mysql(adCount, function (adrowcount) {
+                    response.data.adCount = adrowcount.length;
+                    afterConnection();
+                });
+            });
+//			afterConnection();
 		} else {
 			var sql = 'SELECT * FROM follows'
 				+ ' WHERE follower = ' + mysql.escape(follower) 
@@ -194,7 +206,7 @@ response.data.business = row;
 				var likedislike = "Select * from likedislike where "
 				response.data.followerCount = rowsCount.length;
                             var adCount = 'SELECT * FROM ads'
-                                + ' WHERE  seller = ' + mysql.escape(business_id)+"  OR agent = "+ mysql.escape(business_id);
+                                + ' WHERE  seller = ' + mysql.escape(business_id);//+"  OR agent = "+ mysql.escape(business_id);
                             mysql(adCount, function(adrowcount){
                                 response.data.adCount = adrowcount.length;
                                 afterConnection();
