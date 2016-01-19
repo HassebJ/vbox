@@ -775,7 +775,7 @@ a.button:hover{ background: #36A95C; !important;}
 .description_container{ margin:0 auto; width:42%;}
 .description_container h2{ font-size:30px; padding:0 0 10px;}
 .description_container  li{ font-size:15px; float:left; width:100%; color:#9d9d9d; line-height:18px; padding:6px 0;}
-.description_container  li span{ color:#636361; float:left; width:42%; padding:0 2% 0 0;}
+.description_container  li span{ color:#636361; float:left; width:46%; padding:0 2% 0 0;}
 .description_container  li strong{ float:right; width:55%; font-weight:normal;}
 .description_container ul li img{ vertical-align:top; margin:0 0 0;}
 
