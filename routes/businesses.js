@@ -464,6 +464,51 @@ app.get('/businesses/create', function(request, response, mysql){
 	}
 });
 
+app.post('/businesses/delete', function(request, response, mysql){
+    console.log('in delete business');
+    var id = request.body.id;
+    if(isset(id)){
+        // check if session user has access to the file
+        if(response.head.account.id){
+            // get comment from mysql
+            mysql.businesses.get('id', id, function(comments){
+                // get the comment
+                var business = comments[0];
+                if(business){
+                    // check if the ad seller is the session seller
+                    if(response.head.account.id == business.account){
+                        if(response.head.account.business.id == business.id) {
+                            response.head.account.business = undefined;
+                        }
+                        // remove ad from the database
+                        mysql.businesses.delete('id', id, function(){
+                            response.redirect('/');
+                        });
+
+                        // else not authorized
+                    } else {
+                        request.error('account', 'not authorized');
+                        response.error();
+                        mysql.end();
+                    }
+                } else {
+                    request.error('business', 'not found');
+                    response.error();
+                    mysql.end();
+                }
+            });
+        } else {
+            request.error('account', 'not found')
+            response.error();
+            mysql.end();
+        }
+    } else {
+        request.error('id', 'missing')
+        response.error();
+        mysql.end();
+    }
+});
+
 
 // POST businesses/create
 app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){

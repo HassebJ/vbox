@@ -42,6 +42,9 @@
 						{{end}}</p>
 		</div>
 		<ul class="links">
+            {{if this.account && this.account.id is this.business.account:}}
+                <button id="deletebiz" name="{{-this.business.id}}" style="margin-right: 10px;">Delete</button>
+            {{end}}
 			<!--li><a href="#" class="btn btn-default lightblue">Chat</a></li-->
 			<!--<li><a href="#" class="btn btn-default green"><i class="fa fa-plus"></i> Follow</a></li>-->
 			{{if this.loginUser:}}
@@ -523,6 +526,21 @@
 	
 	
 	$(document).ready(function(){
+        $("#deletebiz").click(function() {
+            event.preventDefault();
+            $.ajax({
+                url: '/businesses/delete', //your server side script
+                data: { id:  $("#deletebiz").attr('name')}, //our data
+                type: 'POST',
+                success: function (data) {
+                    window.location.href = "/";
+//                    location.reload(true);
+                },
+                error: function (jxhr, msg, err) {
+                    location.reload(true);
+                }
+            });
+        });
 
         $(".comment_submit").click(function() {
             event.preventDefault();
