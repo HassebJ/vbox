@@ -165,16 +165,16 @@ socketServer.on('connection', function (socket) {
 		var toCharge = configs.charges.charge;
 		wallet = new Wallet();
 		wallet.getFunds(data.id_user, function(funds){
-			if (funds.funds > toCharge) {
+			if (funds.funds >= toCharge) {
 				wallet.useFunds(toCharge, data.id_user, function(charged){
 					console.log("====================charged successfully from "+data.id_user+"=====================");
 					if(charged) { socket.emit("chargeUserCB", {charged: true}); }
-					else{ socket.emit("chargeUserCB", {charged: false, error: "System was unable to charge your account."});}
+					else{ socket.emit("chargeUserCB", {charged: false, graced:true, error: "System was unable to charge your account."});}
 				});
 			}
 			else{
 				console.log("====================could not charge, insufficient funds. "+data.id_user+"=====================");
-				socket.emit("chargeUserCB", {charged: false, error: "You don't have sufficient funds."});}
+				socket.emit("chargeUserCB", {charged: false, graced:true, error: "You don't have sufficient funds."});}
 		});
 	});
     socket.on("isBusinessAccount", function(data){
