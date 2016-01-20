@@ -161,7 +161,7 @@ socketServer.on('connection', function (socket) {
         });
     });
     socket.on("chargeUser", function(data){
-		console.log("=====================attempting to charge"+data.id_user+"=====================");
+		console.log("=====================attempting to charge "+data.id_user+"=====================");
 		var toCharge = configs.charges.charge;
 		wallet = new Wallet();
 		wallet.getFunds(data.id_user, function(funds){
@@ -172,7 +172,9 @@ socketServer.on('connection', function (socket) {
 					else{ socket.emit("chargeUserCB", {charged: false, error: "System was unable to charge your account."});}
 				});
 			}
-			else{ socket.emit("chargeUserCB", {charged: false, error: "You don't have sufficient funds."});}
+			else{
+				console.log("====================could not charge, insufficient funds. "+data.id_user+"=====================");
+				socket.emit("chargeUserCB", {charged: false, error: "You don't have sufficient funds."});}
 		});
 	});
     socket.on("isBusinessAccount", function(data){
@@ -201,7 +203,6 @@ socketServer.on('connection', function (socket) {
     
     socket.on("getChatHistory", function(data){
         userObj = new User();
-       // console.log(data.userinfo);
         userObj.getChatHistory(data);
         return;
     });
@@ -303,7 +304,6 @@ function getUsersInRoom(id_room){
     var room_info = socketServer.of('').clients(id_room);
     users = [];
     for (var clientId in room_info) {
-     // console.log(room_info[clientId]);
       var socket_id = room_info[clientId].id;
       users.push(people[socket_id]);
     }
@@ -377,7 +377,6 @@ User.prototype = {
               console.log(err);
               socket.emit("saveUserChatCallback", {error: true, err: err});
             }else{
-                console.log(result.insertId);
                 socket.emit("saveUserChatCallback", {error: false, insertID: result.insertId});
             }
           });
