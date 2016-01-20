@@ -1,11 +1,10 @@
 var async = require('async');
 
 app.get('/', function(request, response, mysql){
-    console.log("----------------------------------------------------")
 	var user = response.head.account.business ? response.head.account.business.id : response.head.account.id ;
 	if(response.head.account.business) {
 
-        console.log(response.head.account.business.address)
+        
 		var url = response.head.account.business.address;		
 		response.redirect(url);	
 	} else if(response.head.account){
