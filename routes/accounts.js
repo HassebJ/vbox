@@ -69,12 +69,8 @@ console.log("This is correct page = " +user_id)
 
 }) */
 app.post(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
-	console.log('resulttttttt==============================>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-	console.log(mysql);
-	console.log('resulttttttt==============================>>>>>>>>>>>>>>>>>>>>>>>>>>>');
 				
 	var user_id = request.params[1];
-	console.log('response.head.account.avatarName=',user_id);
 	if(isset(user_id)){
 		var next = new Next(1, finish);
 		
@@ -338,7 +334,6 @@ app.accounts.on('login', function(request, response, mysql){
 		response.data.scripts = [scripts.page(response)];
 		response.finish();
 	} else {
-		console.log("user Login ------------------------------------>");
 		var url = request.body.redirect_url || 'home';
 		if(response.head.account) {
 			url = request.body.redirect_url || response.head.account.id;			
@@ -579,13 +574,11 @@ app.get(fbservice.redirect, function(req, res, mysql){
         // 3. get token
         fbservice.access_token(req.query.code, function(access_token_error, access_token_body){
             var access_token = qs.parse(access_token_body).access_token;
-            console.log("access token" + access_token);
             if(access_token){
                 request('https://graph.facebook.com/v2.0/me?fields=first_name,last_name,gender,locale,email&access_token='+access_token,
                     function(error, http, me_body){
                         req.error = error;
                         if(me_body){
-                            console.log("user body" + me_body);
 //                            console.log(me_body.email);
                             var user = JSON.parse(me_body);
 //                            console.log("json" + user.email);
@@ -756,7 +749,6 @@ app.get('/accounts/removePicture', function(request, response, mysql){
 	if(response.head.account.id){
 
 		// delete old avatar
-		console.log('response.head.account.avatarName=',response.head.account.avatarName)
 		if(response.head.account.avatarName){
 			var source = app.public+'/uploads/profiles';
 			var next = new Next(2, function(){
@@ -774,21 +766,21 @@ app.get('/accounts/removePicture', function(request, response, mysql){
 
 app.post.simple('/accounts/savePicture', function(request, response){
 	app.upload('/uploads/profiles/original', request, response, function(mysql){
-		console.log('request.body.files', request.body.files)
+		//console.log('request.body.files', request.body.files)
 		if(request.body.files && request.body.files.picture && request.body.files.picture.size){
 			var source = app.public+'/uploads/profiles/original/';
 
 			var avatar = request.body.files.picture.path.split(source)[1];
 			
-			console.log({id: response.head.account.id, avatar: avatar});
+			//console.log({id: response.head.account.id, avatar: avatar});
 			
 			var next = new Next(2, finish);
 			
 			// delete old avatar
-			console.log('response.head.account.avatarName=',response.head.account.avatarName)
+			//console.log('response.head.account.avatarName=',response.head.account.avatarName)
 			if(response.head.account.avatarName){
 				var source = app.public+'/uploads/profiles';
-				console.log('REMOVE FILE', source+'/original/'+response.head.account.avatarName)
+				//console.log('REMOVE FILE', source+'/original/'+response.head.account.avatarName)
 				fs.unlink(source+'/original/'+response.head.account.avatarName, next);
 			} else {
 				next();
@@ -830,7 +822,6 @@ app.get('/accounts/forgotPassword', function(request, response, mysql){
 
 // POST businesses/savePicture
 app.post.simple('/accounts/cover', function(request, response){
-    console.log("chicks");
     app.upload('/uploads/avatars/original', request, response, function(mysql){
 //        console.log('request.body.files', request)
         if(request.body.files && request.body.files.picture && request.body.files.picture.size){
@@ -871,7 +862,7 @@ app.post.simple('/accounts/cover', function(request, response){
 app.get(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
     var posts  = [];
 	var user_id = request.params[1];
-	console.log('user id=',user_id);
+	//console.log('user id=',user_id);
 	if(isset(user_id)){
 		var next = new Next(1, finish);
 		
@@ -1015,11 +1006,6 @@ app.get(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
 
                     }, function(err){
                         response.data.posts = rows;
-                        console.log('==============================================>>>>>>>>>>>>>>>>>');
-                        console.log(posts);
-                        console.log(response.data.posts);
-                        console.log(rows);
-                        console.log('==============================================>>>>>>>>>>>>>>>>>');
                         nextPost();
                         // if any of the file processing produced an error, err would equal that error
 
@@ -1028,10 +1014,7 @@ app.get(/^\/accounts\/([^\/]+)\/?$/i, function(request, response, mysql){
 
 
 				});
-				console.log('==============================================');
-				console.log(limit_count);
-				console.log(mysql.posts);
-				console.log('==============================================');
+				
 			} else {
 				app.notFoundHandler(request, response);
 			}
