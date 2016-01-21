@@ -125,7 +125,7 @@
                                                 <input type="hidden" name="busid" value="{{-this.business.id}}" />
                                                 {{end}}
                                             </div>
-											<!--<strong>Click here <br>OR <br>Drag and drop files</strong>-->
+											<!--<strong>Click here <br>OR <br>Drag and drop files-->
 										<!--</div>		-->
 									
 								</fieldset>
@@ -431,15 +431,15 @@
 		<div class="description_container maintab" style="display:none">
 			<h2>Business info</h2>
 			<ul>
-				<!--<li><span><img src="../../images/calendr.png" alt=""> Start Date</span> <strong> &lt;!&ndash;17 February 2010&ndash;&gt;</strong></li>-->
-				<li><span> Short Description</span> <strong>{{-this.business.description}}</strong></li>
-				<li><span> Category</span> <strong>{{-this.business.category}}</strong></li>
-				<li><span><i class="fa fa-phone"></i> Telephone no.</span> <strong>{{-this.business.contact_number}}</strong></li>
-				<li><span><i class="fa fa-globe"></i>  Website</span> <strong>www.vbox.com</strong></li>
-				<li><span><i class="fa fa-envelope"></i>  Email</span> <strong>{{-this.business.contact_email}}</strong></li>
-				<li><span><i class="fa fa-map-marker"></i> Physical Address</span> <strong>{{if this.business.formatted_address:}}
+				<!--<li><span><img src="../../images/calendr.png" alt=""> Start Date</span> <strong> &lt;!&ndash;17 February 2010&ndash;&gt;</li>-->
+				<li><span> Short Description</span> {{-this.business.description}}</li>
+				<li><span> Category</span> {{-this.business.category}}</li>
+				<li><span><i class="fa fa-phone"></i> Telephone no.</span> {{-this.business.contact_number}}</li>
+				<li><span><i class="fa fa-globe"></i>  Website</span> {{-this.business.website}}</li>
+				<li><span><i class="fa fa-envelope"></i>  Email</span> {{-this.business.contact_email}}</li>
+				<li><span><i class="fa fa-map-marker"></i> Physical Address</span> {{if this.business.formatted_address:}}
 							{{-this.business.formatted_address}}
-						{{end}}</strong></li>
+						{{end}}</li>
 				
 			</ul>
             <h2>VBOX Info</h2>
