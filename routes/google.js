@@ -22,7 +22,7 @@ gpservice.oauth = new OAuth2(options.id, options.secret, gpservice.redirectPath)
 gpservice.response = options.response || '/auth/google/response';
 
 // generate a url that asks permissions for Google+ and Google Calendar scopes
-gpservice.scopes = ['email'];
+gpservice.scopes = ['email', 'profile'];
 if(options.scope){
     options.scope.split(',').forEach(function(scope){
         gpservice.scopes.push('https://www.googleapis.com/auth/'+scope.trim());
