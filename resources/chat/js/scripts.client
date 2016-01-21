@@ -1004,15 +1004,23 @@ var callTimeOut;
 function startCharging(){
    if(business_accounts > 0){
       console.log("charging");
-      showSuccess("Your account is charged $ 0.05", 3000);
       socket.emit("chargeUser", {id_user: id_user});
       callTimeOut = setTimeout(startCharging, 60000);
    }
 }
 socket.on("chargeUserCB", function(data){
       if (!data.charged) {
-	 showError(data.error + " Your call will be disconnected in 10 seconds. <a href='/company/deposit' target='_blank'>Deposit Funds</a>", 0);
-	 setTimeout(function(){ clearTimeout(callTimeOut); }, 10000);
+	 if(data.graced){
+	    showError(data.error + " Your call will be disconnected in 10 seconds.", 5);
+	    setTimeout(function(){ clearTimeout(callTimeOut); hangup(); }, 10000);
+	 }
+	 else{
+	    showError("You don't have enough funds to make this call", 5);
+	    clearTimeout(callTimeOut); hangup();
+	 }
+      }
+      else{
+      showSuccess("Your account is charged $ 0.05", 3000);
       }
    });
 function stopCharging(){

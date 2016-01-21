@@ -2,9 +2,10 @@
 <div class="comment">
 	<a href="/accounts/{{-comment.author.id}}" class="avatar">
         {{if comment.author is false:}}
-        <img src="/uploads/profiles/original/no-profile.png" alt="">
+		    <img src="/uploads/profiles/original/no-profile.png" alt="">
         {{else:}}
-        <img src="{{-comment.author.avatar()}}" alt="">
+            <img src="{{-comment.author.avatar()}}" alt="">
+
 	</a>
 	<div class="comment-contents">
 		<div class="top">

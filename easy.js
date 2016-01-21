@@ -75,18 +75,13 @@ socketServer.on('connection', function (socket) {
     });
 	
 	socket.on('sendInvitation', function(data){
-		console.log("emitting for [[[[[[[[[[[[[[[[[[[[[[[" + data.destinationID + "]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]");
 		socketServer.sockets.in(data.destinationID).emit('sendInvitationCallback', {data: data});
 	});	
 	
 	socket.on('getPeople', function(data){
-		console.log("emitting for [[[[[[[[[[[[[[[[[[[[[[[people]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]");
-		console.log(userIds);
 		socket.emit('sendPeople', userIds);
 	});
 	socket.on('getUserDetails', function(data){
-		//console.log("saaaaaaaaaaaaaaaaaaaaaaaaaaaalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalllllllllllllllllllllllllllllllllll");
-		console.log(people);
 		if(people.indexOf(data.sourceID))
         socketServer.sockets.in(data.destinationID).emit('userInfo', {name: "ibraheem"});
 	});
@@ -102,7 +97,6 @@ socketServer.on('connection', function (socket) {
 			socketServer.sockets.in(data.id_room).emit('newUserConnectCallback', {id_user: data.id_user, users: users});
 			socket.on('disconnect', function(){
 			socket.leave(data.id_room);
-			console.log(socket.id + "disconnected");
 			id_user_left = people[socket.id];
 			userIds.splice(userIds.indexOf(id_user_left),1);
 			delete people[socket.id];
@@ -140,8 +134,6 @@ socketServer.on('connection', function (socket) {
     socket.on('getUsersInfo',function(data){
         
         ids = data.ids;
-        console.log("getting users info");
-        //console.log(ids);
         if (!data.callback) {
             callback = "getUsersInfoCallback";
         }
@@ -154,19 +146,14 @@ socketServer.on('connection', function (socket) {
             where += "`id` = '"+id+"' OR ";
         });
         where = where.replace(/( OR )$/g, '');
-       // console.log("fetching user info");
         userObj = new User();
         pool.getConnection(function(err, connection) {
             connection.query("SELECT * FROM `"+userObj.table+"` " + where, function(err, rows, fields){
                 connection.release();
                 if (err) {
-                //  console.log(err);
                   socket.emit(callback, {error: true, err: err});
                   return;
                 }else{
-                  //  console.log(callback);
-                   // console.log(rows);
-                  // console.log(ids);
                     socket.emit(callback, {error: false, rows: rows, ids: ids, data:data});
                     return;
                 }
@@ -174,18 +161,20 @@ socketServer.on('connection', function (socket) {
         });
     });
     socket.on("chargeUser", function(data){
-		console.log("=====================attempting to charge"+data.id_user+"=====================");
+		console.log("=====================attempting to charge "+data.id_user+"=====================");
 		var toCharge = configs.charges.charge;
 		wallet = new Wallet();
 		wallet.getFunds(data.id_user, function(funds){
-			if (funds.funds > toCharge) {
+			if (funds.funds >= toCharge) {
 				wallet.useFunds(toCharge, data.id_user, function(charged){
 					console.log("====================charged successfully from "+data.id_user+"=====================");
 					if(charged) { socket.emit("chargeUserCB", {charged: true}); }
-					else{ socket.emit("chargeUserCB", {charged: false, error: "System was unable to charge your account."});}
+					else{ socket.emit("chargeUserCB", {charged: false, graced:true, error: "System was unable to charge your account."});}
 				});
 			}
-			else{ socket.emit("chargeUserCB", {charged: false, error: "You don't have sufficient funds."});}
+			else{
+				console.log("====================could not charge, insufficient funds. "+data.id_user+"=====================");
+				socket.emit("chargeUserCB", {charged: false, graced:true, error: "You don't have sufficient funds."});}
 		});
 	});
     socket.on("isBusinessAccount", function(data){
@@ -196,8 +185,6 @@ socketServer.on('connection', function (socket) {
 		      socket.emit("isBusinessAccountCB", {error: true, err: err});
 		      return;
 		    }else{
-			console.log("---------------------------------------isBusinessAccount-----------------------");
-			console.log(rows);
 			socket.emit("isBusinessAccountCB", {error: false, count: rows[0].count, data:data});
 			return;
 		    }
@@ -205,7 +192,6 @@ socketServer.on('connection', function (socket) {
 	    });
 	});
     socket.on("getUserTimeSlotDates", function(data){
-        console.log("getUserTimeSlotDates");
         userObj = new User();
         userObj.getUserTimeSlotDates(data.id_account, data.month);
     });
@@ -217,8 +203,6 @@ socketServer.on('connection', function (socket) {
     
     socket.on("getChatHistory", function(data){
         userObj = new User();
-        console.log("getChatHistory ======================================");
-       // console.log(data.userinfo);
         userObj.getChatHistory(data);
         return;
     });
@@ -320,11 +304,9 @@ function getUsersInRoom(id_room){
     var room_info = socketServer.of('').clients(id_room);
     users = [];
     for (var clientId in room_info) {
-     // console.log(room_info[clientId]);
       var socket_id = room_info[clientId].id;
       users.push(people[socket_id]);
     }
-    console.log(users);
     return users;
 }
 
@@ -343,7 +325,6 @@ function User(id) {
 User.prototype = {
     constructor: User,
     getFullName : function(id){
-        console.log("getting name");
         pool.getConnection(function(err, connection) {
             connection.query("SELECT `full_name` FROM `"+this.table+"` WHERE `id` = '"+id+"'", function(err, rows, fields){
             connection.release();
@@ -358,7 +339,6 @@ User.prototype = {
         
     },
     getUserTimeSlotDates : function(id_user, month){
-        console.log("getting timeslot dates");
 	sdate = month+"-01";
 	edate = month+"-31";
 	data = [];
@@ -397,7 +377,6 @@ User.prototype = {
               console.log(err);
               socket.emit("saveUserChatCallback", {error: true, err: err});
             }else{
-                console.log(result.insertId);
                 socket.emit("saveUserChatCallback", {error: false, insertID: result.insertId});
             }
           });
@@ -411,7 +390,6 @@ User.prototype = {
               console.log(err);
               socket.emit("saveAppointmentCallback", {error: true, err: err});
             }else{
-                console.log("Appointment Saved ");
                 socket.emit("saveAppointmentCallback", {error: false, insertID: result.insertId});
             }
           });
@@ -428,7 +406,6 @@ User.prototype = {
                   socket.emit("getChatHistoryCallback", {error: true, err: err});
                 }else{
                     //console.log(rows);
-                    console.log("sending callback for message called for " + data.from);
                     socket.emit("getChatHistoryCallback", {error: false, rows: rows, data: data});
                 }
             });
@@ -497,7 +474,6 @@ User.prototype = {
                   socket.emit("getUserInfoCallback", {error: true, err: err});
                 }else{
                     //console.log(rows);
-                    console.log("sending callback");
                     socket.emit("getUserInfoCallback", {error: false, rows: rows});
                 }
             });
