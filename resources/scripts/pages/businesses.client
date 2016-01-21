@@ -77,7 +77,7 @@ function geocoder(lat,lng){
 		else if(item.categoryid == 1)
 					pinImg='/images/bpin/agri.png';
 		else if(item.categoryid == 2)
-					pinImg='/images/bpin/electronics.png';
+					pinImg='/images/bpin/Entertainment.png';
 		else if(item.categoryid == 3)
 					pinImg='/images/bpin/car.png';
 		else if(item.categoryid == 4)
@@ -183,7 +183,7 @@ var markers; // your markers
 var markerId="";
 for (var i=0; i<window.markers.length; i++){
 
-    if( map.getBounds().contains(window.markers[i].getPosition()) ){
+    if( !map.getBounds().contains(window.markers[i].getPosition()) ){
 		console.log(window.markers[i].id);
 		markerId += "."+window.markers[i].id+" , ";
         // code for showing your object, associated with markers[i]
@@ -211,9 +211,6 @@ google.maps.event.addListenerOnce(map, 'idle', function(){
 filterAds(map);
 });
 
-google.maps.event.addListenerOnce(map, 'idle', function() {
-    google.maps.event.trigger(map, 'resize');
-});
 
 	}
 
@@ -325,12 +322,3 @@ function drawMap() {
 		drawMap();
 	});
 }*/
-
-//$(window).on('resize',function(){
-  //  google.maps.event.trigger(map, 'resize');
-    //initialize();
-//});
-
-//google.maps.event.addListenerOnce(map, 'idle', function() {
- //  google.maps.event.trigger(map, 'resize');
-//});
