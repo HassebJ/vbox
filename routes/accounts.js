@@ -782,7 +782,8 @@ app.post.simple('/accounts/savePicture', function(request, response){
 			if(response.head.account.avatarName){
 				var source = app.public+'/uploads/profiles';
 				//console.log('REMOVE FILE', source+'/original/'+response.head.account.avatarName)
-				fs.unlink(source+'/original/'+response.head.account.avatarName, next);
+//				fs.unlink(source+'/original/'+response.head.account.avatarName, next);
+                next();
 			} else {
 				next();
 			}

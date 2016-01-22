@@ -784,7 +784,8 @@ app.get('/classifieds/delete', function(request, response, mysql){
 								});
 								pictures.forEach(function(picture){
 									var path = app.public + '/uploads/pictures';
-									fs.unlink(path+'/original/'+picture.source, picNext);
+//									fs.unlink(path+'/original/'+picture.source, picNext);
+                                    picNext();
 								});
 							} else {
 								next();
@@ -856,7 +857,8 @@ app.post('/classifieds/removePicture', function(request, response, mysql){
 						mysql.ad_pictures.delete('id', picture.id, next);
 						
 						// remove file from file system
-						fs.unlink(app.public+'/uploads/pictures/original/'+picture.source, next);
+//						fs.unlink(app.public+'/uploads/pictures/original/'+picture.source, next);
+                        next();
 						
 						// finish
 						function finish(){
