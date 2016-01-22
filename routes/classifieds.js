@@ -331,12 +331,19 @@ app.get('/classifieds', function(request, response, mysql){
 				
 				// get employee
 				mysql.business_employees.get('id',row.agent, function(employees){
+
 					row.agent = employees[0];
 					// get employee account
-					mysql.accounts.get('id', row.agent.account, function(accounts){
-						row.agent.account = app.accounts.user(accounts[0]);
-						businessNext();
-					});
+                    if (row.agent){
+                        mysql.accounts.get('id', row.agent.account, function(accounts){
+                            row.agent.account = app.accounts.user(accounts[0]);
+                            businessNext();
+                        });
+                    }
+                    else{
+                        businessNext();
+                    }
+
 				});
 			} else { // private seller
 				mysql.accounts.get('id', row.seller, function(rows){
