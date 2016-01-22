@@ -1,5 +1,4 @@
-
-var mailer = require("nodemailer");
+mailer = require("nodemailer");
 mail = mailer.createTransport("SMTP",{
     host:"mail.gandi.net",
     port:465,
