@@ -751,10 +751,11 @@ app.get('/accounts/removePicture', function(request, response, mysql){
 		// delete old avatar
 		if(response.head.account.avatarName){
 			var source = app.public+'/uploads/profiles';
-			var next = new Next(2, function(){
+			var next = new Next(1, function(){
 				response.redirect('back');
 			})
-			fs.unlink(source+'/original/'+response.head.account.avatarName, next);
+//			fs.unlink(source+'/original/'+response.head.account.avatarName, next);
+
 			mysql.accounts.save({id: response.head.account.id, avatar: null }, next)
 		} else {
 			response.redirect('back');
