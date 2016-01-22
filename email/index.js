@@ -2,6 +2,7 @@ mailer = require("nodemailer");
 mail = mailer.createTransport("SMTP",{
     host:"mail.gandi.net",
     port:465,
+    debug: true,
 //    secure: true,
     secureConnection: true,
     auth: {

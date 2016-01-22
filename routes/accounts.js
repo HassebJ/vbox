@@ -350,7 +350,7 @@ app.accounts.on('create', function(request, response, mysql){
 	request.demand('contact_number');
 	request.demand('email');
 	request.demand('password');
-	request.demand('gender');
+//	request.demand('gender');
 	
 //	console.log(request.body);
 	mysql.accounts.get('email', request.body.email, function(rows){
