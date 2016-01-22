@@ -64,7 +64,7 @@
 							{{if this.account.business:}}
 								<div class="dropdown-toggle"  type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 									<div class="avatar-head ">
-													<span class="profile-helper"></span><img src="{{-this.account.business.avatar}}" alt="" />
+													<span class="profile-helper"></span><img src="{{-this.account.business.avatar}}" alt="/uploads/pictures/original/no-profile.png" />
 														
 												</div>
 										<span id="busname">{{-this.account.business.name}}</span>
@@ -74,7 +74,7 @@
 														
 								<div class="dropdown-toggle"  type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 									<div class="avatar-head">
-										<span class="profile-helper"></span><img src="{{-this.account.avatar(30)}}" alt="" />
+										<span class="profile-helper"></span><img src="{{-this.account.avatar(30)}}" alt="/uploads/pictures/original/no-profile.png"/>
 										
 									</div>									
 									<span>{{-this.account.first_name + ' ' + this.account.last_name.substr(0, 1) + '.' }}</span>
@@ -107,7 +107,7 @@
 									{{if this.account.business:}}
 										<a href="/businesses/use/none" class="item">
 											<div class="avatar-head">
-												<span class="profile-helper"></span><img src="{{-this.account.avatar(30)}}" alt="" />
+												<span class="profile-helper"></span><img src="{{-this.account.avatar(30)}}" alt="/uploads/pictures/original/no-profile.png" />
 											</div>
 											<span>{{-this.account.first_name + ' ' + this.account.last_name}}</span>
 										</a>

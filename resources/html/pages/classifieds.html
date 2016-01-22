@@ -527,7 +527,7 @@ $( document ).ready(function() {
 			else
 				content += '<img src="/uploads/pictures/original/no-ad.png" alt="picture"/>';
 
-            content += '</a><div class="content"><div class="info"><a href="/accounts/' + ad.seller.id + '"><span class="profile-pic"><img src="/uploads/profiles/original/'+ad.seller.avatarName+'" alt=""></span></a><h2><a href="/classifieds/' + ad.id + '">' + ad.title + '</a></h2>';
+            content += '</a><div class="content"><div class="info"><a href="/accounts/' + ad.seller.id + '"><span class="profile-pic"><img src="/uploads/profiles/original/'+ad.seller.avatarName+'" alt="/uploads/pictures/original/no-profile.png"></span></a><h2><a href="/classifieds/' + ad.id + '">' + ad.title + '</a></h2>';
             if (ad.description) {
                 content += '<div class="description">' + ad.description.substr(0, 90)
                 if (ad.description.length > 90) {

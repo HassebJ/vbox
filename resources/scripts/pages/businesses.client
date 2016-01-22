@@ -183,7 +183,7 @@ var markers; // your markers
 var markerId="";
 for (var i=0; i<window.markers.length; i++){
 
-    if( !map.getBounds().contains(window.markers[i].getPosition()) ){
+    if( map.getBounds().contains(window.markers[i].getPosition()) ){
 		console.log(window.markers[i].id);
 		markerId += "."+window.markers[i].id+" , ";
         // code for showing your object, associated with markers[i]

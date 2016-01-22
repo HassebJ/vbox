@@ -93,7 +93,8 @@ app.get('/businesses', function(request, response, mysql){
 //		console.log('sayeed'+response.data.businesses);
 		rows.forEach(function(row){
             row.categoryid = row.category;
-                row.category = getCategoryBus(row.category, 'business');
+            row.category = getCategoryBus(row.category, 'business');
+
 
 			row.avatar = row.avatar 
 				? '/uploads/avatars/original/'+row.avatar 
