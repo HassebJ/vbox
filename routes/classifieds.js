@@ -310,7 +310,10 @@ app.get('/classifieds', function(request, response, mysql){
 			if(row.seller_type == 1){ // business seller
 				var businessNext = new Next(2, function()
 				{
-					row.seller.online = row.agent.account.online;
+                    if(row.agent){
+                        row.seller.online = row.agent.account.online;
+                    }
+
 					rowNext();
 				});
 				mysql.businesses.get('id', row.seller, function(rows)
@@ -1028,8 +1031,7 @@ function Ad(request, response){
 	ad.seller_type = response.head.account.business ? 1 : 0 ;
 	ad.seller = ad.seller_type 
 		? response.head.account.business.id : response.head.account.id ;
-//	ad.agent = ad.seller_type
-//		? request.body.contact_details : response.head.account.id ;
+	ad.agent = ad.seller_type		? request.body.contact_details : response.head.account.id ;
 	
 	// Fields
 	var fields = [];
