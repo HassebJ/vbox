@@ -289,7 +289,8 @@ app.accounts.extend = function(request, response, mysql, callback){
     else{
 //        console.log(accounts);
         response.data.account.business = accounts.business;
-        if (response.data.account.business.avatar.indexOf('uploads') < 0){
+
+        if (response.data.account.business.avatar && response.data.account.business.avatar.indexOf('uploads') < 0){
             response.data.account.business.avatar = '/uploads/avatars/original/'+ response.data.account.business.avatar;
 
         }
