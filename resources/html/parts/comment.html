@@ -2,9 +2,9 @@
 <div class="comment">
 	<a href="/accounts/{{-comment.author.id}}" class="avatar">
         {{if comment.author is false:}}
-		    <img src="/uploads/pictures/original/no-profile.png" alt="/uploads/pictures/original/no-profile.png">
+		    <img src="/uploads/pictures/original/no-profile.png" alt="" onError="this.onerror=null;this.src='/uploads/pictures/original/no-profile.png';" >
         {{else:}}
-            <img src="{{-comment.author.avatar()}}" alt="/uploads/pictures/original/no-profile.png">
+            <img src="{{-comment.author.avatar()}}" alt="" onError="this.onerror=null;this.src='/uploads/pictures/original/no-profile.png';" >
 
 	</a>
 	<div class="comment-contents">
