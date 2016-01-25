@@ -569,6 +569,8 @@ app.get(fbservice.dialog, function(req, res){
 //});
 
 app.get(fbservice.redirect, function(req, res, mysql){
+    accounts = undefined;
+    res.head.accounts = undefined;
 
     if(req.query.code){
 

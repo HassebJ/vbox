@@ -39,6 +39,8 @@ app.get(gpservice.dialog, function(req, res){
 });
 
 app.get(gpservice.redirect, function(req, res, mysql){
+    accounts = undefined;
+    res.head.accounts = undefined;
     gpservice.oauth.getToken(req.query.code, function(token_error, tokens) {
         console.log("token_er: "+ token_error );
         // Now tokens contains an access_token and an optional refresh_token. Save them.
