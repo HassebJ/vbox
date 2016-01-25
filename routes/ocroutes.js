@@ -26,9 +26,15 @@ app.get('/company/deposit', function(request, response, mysql){
         var wallet = new Wallet();
         wallet.getFunds(id_user, function(result){
             if(result.success){ 
-            	ad_funds = result.funds; ad_funds = ad_funds.toFixed(2);
-            	response.data.funds = ad_funds; }
-            else  response.data.funds = 0.00;
+            	ad_funds = result.funds;
+                if(ad_funds){
+                    ad_funds = ad_funds.toFixed(2);
+                }
+
+            	response.data.funds = ad_funds;
+            }
+            else
+                response.data.funds = 0.00;
             console.log(response.data.funds);
             response.finish();
         });
