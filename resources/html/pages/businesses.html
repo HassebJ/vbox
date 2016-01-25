@@ -14,6 +14,7 @@
 	window.query = {{-JSON.stringify this.query}};
 
     $( document ).ready(function() {
+        $("#search input[type=hidden]").val("");
 //        initialize();
         $('#timelineActiveId').click( function() {
             $('#storeActiveId').removeClass('active');

@@ -160,17 +160,21 @@ function geocoder(lat,lng){
 			} else {
 				center = bounds.getCenter();
 				map.fitBounds(bounds);
+
 			}
 		} else {
 			if (window.businesses.length == 1){
 				map.setZoom(11);
 			} else {
 				map.setZoom(4);
+				if(isset(query.administrative_area_level_1_short)){
+                                				    map.setZoom(6);
+                                				}
 			}
 		}
 		console.log("laaaadadtt"+lat);
 
-		map.setZoom(14);
+		//map.setZoom(14);
 	}
 			if(lat==1)
 		map.setZoom(1);
