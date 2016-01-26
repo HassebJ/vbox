@@ -100,7 +100,7 @@ app.get('/businesses', function(request, response, mysql){
     }
 	
 	// SELECT / ORDER
-//	var HAVING = '';
+	var HAVING = '';
 	console.log(query);
 	if(query && query.latitude && query.longitude){
 		var SELECT = ', (3959 * acos(cos(radians('+query.latitude+')) * cos(radians(latitude)) * cos( radians(longitude) - radians('+query.longitude+')) + sin(radians('+query.latitude+')) * sin(radians(latitude)))) AS distance FROM businesses ';
@@ -119,6 +119,7 @@ app.get('/businesses', function(request, response, mysql){
 	} else {
 		var SELECT = 'FROM businesses';
 		var ORDER = 'ORDER BY time_created DESC';
+//        if(!HAVING)
 	}	
 
 	var next = new Next(2, finish);
