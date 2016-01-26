@@ -32,18 +32,72 @@ app.get('/businesses', function(request, response, mysql){
 	
 	// WHERE
 	var WHERE = '';
+    WHERE += 'WHERE ';
+    var checkWhere = false;
+    var firstAnd = 0;
 	if(query.category || query.search_value){
-		WHERE += 'WHERE ';
+
+
 		if(query.search_value){
 			var value = mysql.escape('%'+query.search_value+'%');
 			WHERE += 'name LIKE ' + value;
+
+            firstAnd = 1;
+            checkWhere = true;
 		}
 		
 		if(query.category){
-			if(query.search_value) WHERE += ' AND ';
+			if(query.search_value)
+                if (firstAnd==1) WHERE += ' AND ';
 			WHERE += 'category = ' + parseInt(query.category);
+
+            firstAnd = 1;
+            checkWhere = true;
 		}
 	}
+    if(query.administrative_area_level_1_short){
+        if(query.administrative_area_level_1_short && query.administrative_area_level_1_short!="") {
+            if (firstAnd==1) WHERE += ' AND ';
+            WHERE += "administrative_area_level_1_short = '" + (query.administrative_area_level_1_short)+"'";
+            firstAnd = 1;
+            checkWhere = true;
+        }
+    }
+    if(query.administrative_area_level_1_long){
+        if(query.administrative_area_level_1_long && query.administrative_area_level_1_long!="") {
+
+            if (firstAnd==1) WHERE += ' AND ';
+            WHERE += "administrative_area_level_1_long = '" + (query.administrative_area_level_1_long)+"'";
+            firstAnd = 1;
+            checkWhere = true;
+        }
+    }
+    if(query.administrative_area_level_2_short){
+        if(query.administrative_area_level_2_short && query.administrative_area_level_2_short!="") {
+            if (firstAnd==1) WHERE += ' AND ';
+            WHERE += "administrative_area_level_2_short = '" + (query.administrative_area_level_2_short)+"'";
+            firstAnd = 1;
+            checkWhere = true;
+        }
+    }
+    if(query.administrative_area_level_2_long){
+        if(query.administrative_area_level_2_long && query.administrative_area_level_2_long!="") {
+
+            if (firstAnd==1) WHERE += ' AND ';
+            WHERE += "administrative_area_level_2_long = '" + (query.administrative_area_level_2_long)+"'";
+            firstAnd = 1;
+            checkWhere = true;
+        }
+    }
+    if(query.country_short){
+        if(query.country_short && query.country_short!="") {
+
+            if (firstAnd==1) WHERE += ' AND ';
+            WHERE += "country_short = '" + (query.country_short)+"'";
+            firstAnd = 1;
+            checkWhere = true;
+        }
+    }
 	
 	// SELECT / ORDER
 //	var HAVING = '';
@@ -68,6 +122,9 @@ app.get('/businesses', function(request, response, mysql){
 	}	
 
 	var next = new Next(2, finish);
+    if (checkWhere == false){
+        WHERE='';
+    }
 	var original_sql = 'SELECT * ' + SELECT +' '+ WHERE +' '+HAVING+' '+ ORDER +' '+ LIMIT;
 	var count_sql = 'SELECT COUNT(*) FROM ( SELECT id ' + SELECT +' '+ WHERE +' '+HAVING + ') AS count';
 	console.log('\n\noriginal_sql: ', original_sql);
@@ -724,8 +781,8 @@ app.get(/^\/businesses\/use\/([^\/]+)$/i, function(request, response, mysql){
 //                            response.bus = {};
 //                            response.bus = rows[0];
 //                            response.data = accounts.business;
-                            response.cookies.set('business', session, { httpOnly: true });
-                            response.cookies.set('busid', rows[0].busid, { httpOnly: true });
+//                            response.cookies.set('business', session, { httpOnly: true });
+//                            response.cookies.set('busid', rows[0].busid, { httpOnly: true });
 
                             response.redirect('back');
 //                            response.end();
