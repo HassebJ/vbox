@@ -185,24 +185,29 @@ console.log(map);
 var bounds = new google.maps.LatLngBounds();
 var markers; // your markers
 var markerId="";
-for (var i=0; i<window.markers.length; i++){
+var noresults = 0;
+for (var i = 0; i<window.markers.length; i++){
 
     if( map.getBounds().contains(window.markers[i].getPosition()) ){
 		console.log(window.markers[i].id);
 		markerId += "."+window.markers[i].id+" , ";
         // code for showing your object, associated with markers[i]
+    }else{
+     noresults ++;
     }
 
 }
 	 markerId = markerId.replace(/,\s*$/, '');
 	console.log(markerId);
+
+//$('.flt').isotope({ filter: '.dummy' });
 	$('.flt').isotope({
 		filter: markerId
-		//filter: function() {
-          //        var name = $(this).find('.name').text();
-            //      return name.match( /ium$/ );
-              //  }
+
 	});
+	if(window.markers.length == noresults){
+	    $('.flt').isotope({ filter: '.dummy' });
+	}
 }
 google.maps.event.addListener(map,'bounds_changed',function(){
 filterAds(map);
