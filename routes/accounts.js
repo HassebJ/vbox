@@ -281,6 +281,7 @@ app.login = function(request, response){
 //}
 
 app.accounts.extend = function(request, response, mysql, callback){
+    isNone = false;
 //    console.log(response.data);
     response.data = {};
     response.data.account = response.head.account;
@@ -316,6 +317,10 @@ app.accounts.extend = function(request, response, mysql, callback){
         mysql.businesses.get('account',response.head.account.id,function(businesses){
             if(businesses && businesses.length) {
                 response.data.account.businesses = businesses;
+            }
+            if(isNone){
+                response.head.account.business = undefined;
+                response.data.account.business = undefined;
             }
 
             next();
