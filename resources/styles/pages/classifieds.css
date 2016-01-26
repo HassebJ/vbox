@@ -481,7 +481,7 @@ body{
 .gm-style .ad-window .picture img, .gm-style .ad-window .picture{ width: 100%; float: left; height: 145px;}
 .gm-style .ad-window .picture .price{ color: #FFF;  position: absolute; left: 0; text-shadow:none; font-size: 16px; border-radius: 0 5px 0 5px; top: 0; padding: 6px 10px;
       background: #00BAFF; }
-.gm-style .ad-window .info{ margin: 0; float: left; padding: 10px; }
+.gm-style .ad-window .info{ margin: 0; float: left; padding: 10px; max-width: inherit;}
 .gm-style .ad-window .info h2{ margin-top: 0; width: 65%; font-size: 20px; overflow: hidden; text-overflow:ellipsis; white-space: nowrap; font-weight: 400; color: #444;}
 .gm-style .ad-window .info h2 a{ color: #444;}
 .gm-style .ad-window .info .description{ color: #8C9FAA; font-size: 16px; line-height: 17px;  overflow: hidden; text-overflow:ellipsis; white-space: nowrap; max-width: 225px;}
