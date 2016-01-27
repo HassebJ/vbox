@@ -205,7 +205,7 @@ for (var i = 0; i<window.markers.length; i++){
 		filter: markerId
 
 	});
-	if(window.markers.length == noresults && window.businesses.length != 0){
+	if(window.markers.length == noresults && document.getElementById('search_value').value == ''){
 	    $('.flt').isotope({ filter: '.dummy' });
 	}
 }
