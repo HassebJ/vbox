@@ -156,13 +156,16 @@ console.log(map);
 var bounds = new google.maps.LatLngBounds();
 var markers; // your markers
 var markerId="";
+var noresults = 0;
 for (var i=0; i<window.markers.length; i++){
 
     if( map.getBounds().contains(window.markers[i].getPosition()) ){
 		console.log(window.markers[i].id);
 		markerId += "."+window.markers[i].id+" , ";
         // code for showing your object, associated with markers[i]
-    }
+    }else{
+          noresults ++;
+         }
 
 }
 	 markerId = markerId.replace(/,\s*$/, '');
