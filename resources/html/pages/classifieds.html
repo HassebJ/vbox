@@ -65,8 +65,8 @@
             });
         });
 
-        window.ads = {{-JSON.stringify this.data.ads.filter (item) -> item.avatar = if (item.seller_type is 'business') then item.seller.avatar else item.seller.avatar }};
-    window.filterAds = {{-JSON.stringify this.data.ads.filter (item) -> item.avatar = if (item.seller_type is 'business') then item.seller.avatar else item.seller.avatar }};
+   window.ads = {{-JSON.stringify this.data.ads.each (item) -> item.avatar = if (item.seller_type is 'business') then item.seller.avatar else item.seller.avatar }};
+   window.filterAds = {{-JSON.stringify this.data.ads.each (item) -> item.avatar = if (item.seller_type is 'business') then item.seller.avatar else item.seller.avatar }};
 
     //window.ads = {{-JSON.stringify this.data.ads }};
     //window.filterAds = {{-JSON.stringify this.data.ads }};
