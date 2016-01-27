@@ -727,12 +727,12 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 //                    response.data.scripts = [scripts.maps, scripts.geo, scripts.page(response)];
 
 
-                    response.finish();
+//                    response.finish();
 
                     function redir(){
-//                        response.redirect('/'+business.address);
+                        response.redirect('/'+business.address);
                     }
-					function finish(){ console.log("chexk:"); }
+					function finish(){ console.log("chexk:");  response.redirect('/'+business.address);}
 					
 				} catch (error) {	
 					console.log(error);
