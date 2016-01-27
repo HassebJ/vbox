@@ -722,7 +722,7 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 					mysql.business_employees.save(employee, redir);
 //                    response.data.page = 'create_business';
 //                    response.data.title = 'VBOX - Create a Business';
-                    response.head.account.business = business;
+//                    response.head.account.business = business;
                     response.data.inputs = request.body;
 //                    response.data.scripts = [scripts.maps, scripts.geo, scripts.page(response)];
 
