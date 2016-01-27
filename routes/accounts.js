@@ -1,6 +1,7 @@
 var request = require('request');
 var async = require('async');
 var qs = require('querystring');
+isNone = false;
 
 
 
@@ -281,7 +282,7 @@ app.login = function(request, response){
 //}
 
 app.accounts.extend = function(request, response, mysql, callback){
-    isNone = false;
+
 //    console.log(response.data);
     response.data = {};
     response.data.account = response.head.account;

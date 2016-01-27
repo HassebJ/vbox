@@ -760,6 +760,7 @@ app.get(/^\/businesses\/use\/([^\/]+)$/i, function(request, response, mysql){
 		if(response.head.account.id){
 			console.log(request.params[1]);
 			if(request.params[1] != 'none'){
+                isNone = false;
 				var query = 
 						'SELECT'
 					+	' business_employees.id AS busid,'
