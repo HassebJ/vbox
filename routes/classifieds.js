@@ -127,25 +127,28 @@ app.get('/classifieds', function(request, response, mysql){
             checkWhere = true;
 		}
 		if(query.PriceEndText){
-			if(query.category || query.search_value) 
-			if(checkPrice){
-				if (firstAnd==1) WHERE += ' AND ';
-				WHERE += ' price <= ' + (query.PriceEndText);
-			}else{
-				if (firstAnd==1) WHERE += ' AND ';
-				WHERE += ' price <= ' + (query.PriceEndText);
-			}
-            //WHERE += ' AND ';
-			//WHERE += ' price <= ' + (query.PriceEndText);
-			/*if(firstAnd==1){
-				WHERE += ' AND ';
-				WHERE += ' price <= ' + (query.PriceEndText);
-				
-			}else{
-				WHERE += ' price <= ' + (query.PriceEndText);
-			}*/
-            firstAnd = 1;
-            checkWhere = true;
+            if(query.PriceEndText != '1000000'){
+                if(query.category || query.search_value)
+                    if(checkPrice){
+                        if (firstAnd==1) WHERE += ' AND ';
+                        WHERE += ' price <= ' + (query.PriceEndText);
+                    }else{
+                        if (firstAnd==1) WHERE += ' AND ';
+                        WHERE += ' price <= ' + (query.PriceEndText);
+                    }
+                //WHERE += ' AND ';
+                //WHERE += ' price <= ' + (query.PriceEndText);
+                /*if(firstAnd==1){
+                 WHERE += ' AND ';
+                 WHERE += ' price <= ' + (query.PriceEndText);
+
+                 }else{
+                 WHERE += ' price <= ' + (query.PriceEndText);
+                 }*/
+                firstAnd = 1;
+                checkWhere = true;
+            }
+
 		}
 		if(query.country_short){
 			if(query.country_short && query.country_short!="") {

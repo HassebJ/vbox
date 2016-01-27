@@ -214,8 +214,8 @@
                         <div class="col-md-12 col-sm-12">
                             <label class="control-label col-xs-12 col-md-3 col-lg-2 col-sm-3" for="amount">Price</label>
                             <div class="col-md-9 col-xs-12 col-lg-10 col-sm-9 range">
-                                <div class="start_dis"><span>$</span><span id="spanPrice">5</span></div>
-                                <div class="end_dis"><span>$</span><span id="spanPriceEnd">1000000</span></div>
+                                <div class="start_dis"><span>$</span><span id="spanPrice">0</span></div>
+                                <div class="end_dis"><span>$</span><span id="spanPriceEnd">+1000000</span></div>
                                 <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget- ui-corner-all"></div>
                             </div>
                         </div>
@@ -653,12 +653,12 @@ $(document).ready(function () {
     $('#slider').slider({
         range: true,
         min: 0,
-        max: 100000000,
-        values: [ 0, 100000000 ],
+        max: 1000000,
+        values: [ 0, 1000000 ],
         slide: function(event, ui) {
 
             $('.ui-slider-handle:eq(0) .price-range-min').html('$' + ui.values[ 0 ]);
-            $('.ui-slider-handle:eq(1) .price-range-max').html('$' + ui.values[ 1 ]);
+            $('.ui-slider-handle:eq(1) .price-range-max').html('$+' + ui.values[ 1 ]);
             $('.price-range-both').html('<i>$' + ui.values[ 0 ] + ' - </i>$' + ui.values[ 1 ] );
 
             //
@@ -672,7 +672,11 @@ $(document).ready(function () {
                 $("#Price").val(ui.values[0]);
                 $("#PriceEndText").val(ui.values[1]);
                 $("#spanPrice").text(ui.values[0]);
-                $("#spanPriceEnd").text(ui.values[1]);
+                if(ui.values[1] == 1000000){
+                    $("#spanPriceEnd").text('+' + ui.values[1]);
+                }else {
+                    $("#spanPriceEnd").text(ui.values[1]);
+                }
             }
 
 
