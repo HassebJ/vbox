@@ -898,7 +898,7 @@ app.get('/businesses/removePicture', function(request, response, mysql){
 		if(response.head.account.business.avatar){
 			var source = app.public+'/uploads/avatars';
 			var next = new Next(1, function(){
-				response.redirect('back');
+				response.redirect('/businesses/use/'+response.head.account.business.id);
 			})
 //			fs.unlink(source+'/original/'+response.head.account.business.avatar, next);
             //next();
@@ -939,7 +939,7 @@ app.post.simple('/businesses/savePicture', function(request, response){
 			mysql.businesses.save({id: response.head.account.business.id, avatar: avatar}, next);
 			
 			function finish(){
-				response.redirect('/businesses/settings/logo?success=true');
+				response.redirect('/businesses/use/'+response.head.account.business.id);
 			}
 			
 		} else {

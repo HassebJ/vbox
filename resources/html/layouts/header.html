@@ -84,7 +84,7 @@
 
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 							{{if this.account.business:}}
-
+                            <input type="hidden" id="buzid" value="{{-this.account.business.id}}" />
 								<li  class="title">Business Menu</li>
 								<li><a href="/{{-this.account.business.address}}?show=wall" class="item">Profile</a></li>
 								<li><a style="text-transform:none;" href="/classifieds/mine" class="item">ADs</a></li>
@@ -103,6 +103,7 @@
 							
 							{{if this.account.businesses and this.account.businesses.length:}}
 								<div class="businesses">
+
 									<div class="label">Use vbox as:</div>
 									{{if this.account.business:}}
 										<a href="/businesses/use/none" class="item">

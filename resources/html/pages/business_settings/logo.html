@@ -22,6 +22,7 @@
 		<a href="/businesses/removePicture" class="button silver fa fa-minus-circle" style="margin-left: 10px;">Remove Logo</a>
 		<br><br><br>
 		<div class="break"></div>
+
 		<div class="avatar">
 			<img src="{{-this.account.business.avatar}}" alt="picture"/>
 		</div>
@@ -37,3 +38,16 @@
 		
 	</fieldset>
 {{-@end}}
+<script>
+    function qs(key) {
+        key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
+        var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
+        return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+    }
+    $(document).ready(function() {
+//        if(qs('success') == 'true'){
+//            window.location.href = "/businesses/use/"+$('#buzid').val();
+//        }
+
+    });
+</script>
