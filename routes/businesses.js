@@ -897,12 +897,12 @@ app.get('/businesses/removePicture', function(request, response, mysql){
 
 		if(response.head.account.business.avatar){
 			var source = app.public+'/uploads/avatars';
-			var next = new Next(2, function(){
+			var next = new Next(1, function(){
 				response.redirect('back');
 			})
 //			fs.unlink(source+'/original/'+response.head.account.business.avatar, next);
-            next();
-			mysql.businesses.save({id: response.head.account.business.id, avatar: null }, next)
+            //next();
+			mysql.businesses.save({id: response.head.account.business.id, avatar: 'how5.png' }, next)
 		} else {
 			response.redirect('back');
 		}
@@ -922,18 +922,18 @@ app.post.simple('/businesses/savePicture', function(request, response){
 			
 			console.log({id: response.head.account.id, avatar: avatar});
 			
-			var next = new Next(2, finish);
+			var next = new Next(1, finish);
 			
 			// delete old avatar
-			console.log('response.head.account.avatarName=',response.head.account.avatarName)
-			if(response.head.account.avatarName){
-				var source = app.public+'/uploads/avatars';
-				console.log('REMOVE FILE', source+'/original/'+response.head.account.avatarName)
-//				fs.unlink(source+'/original/'+response.head.account.avatarName, next);
-                next();
-			} else {
-				next();
-			}
+//			console.log('response.head.account.avatarName=',response.head.account.avatarName)
+//			if(response.head.account.avatarName){
+//				var source = app.public+'/uploads/avatars';
+//				console.log('REMOVE FILE', source+'/original/'+response.head.account.avatarName)
+////				fs.unlink(source+'/original/'+response.head.account.avatarName, next);
+//                next();
+//			} else {
+//				next();
+//			}
 			
 			// save new avatar
 			mysql.businesses.save({id: response.head.account.business.id, avatar: avatar}, next);
