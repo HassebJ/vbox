@@ -8,7 +8,11 @@
     </a>
     {{end}}
     <div class="info">
-        <a href="/accounts/' + ad.seller.id + '"><span class="profile-pic"><img src="/uploads/profiles/original/{{-ad.seller.avatarName}}" alt=""></span></a>
+        {{if ad.seller_type is 'business':}}
+            <a href="/accounts/{{-ad.seller.id}}"><span class="profile-pic"><img src="/uploads/avatars/original/{{-ad.seller.avatarName}}" alt=""></span></a>
+        {{else:}}
+            <a href="/accounts/{{-ad.seller.id}}"><span class="profile-pic"><img src="/uploads/profiles/original/{{-ad.seller.avatarName}}" alt=""></span></a>
+        {{end}}
         <h2><a href="/classifieds/{{-ad.id}}">{{-ad.title}}</a></h2>
 
         {{if ad.description:}}

@@ -319,11 +319,14 @@ app.get('/classifieds', function(request, response, mysql){
 
 					rowNext();
 				});
-				mysql.businesses.get('id', row.seller, function(rows)
+				mysql.businesses.get('id', row.seller, function(businesses)
 				{
 					//console.log(row.seller.avatar );
+                    row.seller = businesses[0];
 					row.seller_type = 'business';
-					row.seller.avatar = row.seller.avatar ? '/uploads/avatars/original/'+row.seller.avatar : '/images/no-business-profile.png';
+//					row.seller.avatar = businesses[0].avatarName;
+                    row.seller.avatarName = businesses[0].avatar;
+					//row.seller.avatar ? '/uploads/avatars/original/'+row.seller.avatar : '/images/no-business-profile.png';
 					//~ if(typeof rows[0].avatar != undefined)
 					//~ {
 						//~ //row.seller_type = '/uploads/avatars/original/'+row.seller.avatar;

@@ -524,10 +524,15 @@ function loadAdsDiv(ad) {
     if (ad.pictures.length > 0) {
         content += '<img src="/uploads/pictures/original/' + ad.pictures[0].source + '" alt="picture"/>';
     }
-    else
+    else {
         content += '<img src="/uploads/pictures/original/no-ad.png" alt="picture"/>';
-
-    content += '</a><div class="content"><div class="info"><a href="/accounts/' + ad.seller.id + '"><span class="profile-pic"><img src="/uploads/profiles/original/'+ad.seller.avatarName+'" alt=""></span></a><h2><a href="/classifieds/' + ad.id + '">' + ad.title + '</a></h2>';
+    }
+//    alert(ad.seller_type);
+    if(ad.seller_type == 'business'){
+        content += '</a><div class="content"><div class="info"><a href="/accounts/' + ad.seller.id + '"><span class="profile-pic"><img src="/uploads/avatars/original/' + ad.seller.avatarName + '" alt=""></span></a><h2><a href="/classifieds/' + ad.id + '">' + ad.title + '</a></h2>';
+    }else {
+        content += '</a><div class="content"><div class="info"><a href="/accounts/' + ad.seller.id + '"><span class="profile-pic"><img src="/uploads/profiles/original/' + ad.seller.avatarName + '" alt=""></span></a><h2><a href="/classifieds/' + ad.id + '">' + ad.title + '</a></h2>';
+    }
     if (ad.description) {
         content += '<div class="description">' + ad.description.substr(0, 90)
         if (ad.description.length > 90) {
