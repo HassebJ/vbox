@@ -220,7 +220,7 @@ console.log("-------------------------- HIT LIKE DISLIKE -----------------------
 	else{
 	++totalDislike;
 		}
-var sqlupdate = "INSERT INTO likedislike (`cateType`,`cateId`,`userId`,`likeDislike`) VALUES ('"+request.body.referType+"',"+request.body.referId+","+response.head.account.id+","+request.body.hitLike+")";
+var sqlupdate = "INSERT INTO likedislike (`cateType`,`cateId`,`userId`,`likeDislike`) VALUES ('"+request.body.referType+"',"+request.body.referId+",'"+response.head.account.id+"',"+request.body.hitLike+")";
    mysql(sqlupdate);
 	}
 
@@ -248,32 +248,31 @@ console.log("POST ID _ "+request.query.postId)
 	var totalLike = 0;
 	var totalDislike = 0;
 	if (true){
-	var sql = "Select * from likedislike where cateType='POST' and cateId="+request.query.postId;
-	mysql(sql,function(data){
-	if (data.length>0){
-		for (var i = 0;i<data.length;i++){
-		if (data[i].likeDislike==-1){
-		++totalDislike;
-		}
-		else{
+        var sql = "Select * from likedislike where cateType='POST' and cateId="+request.query.postId;
+        mysql(sql,function(data){
+            if (data.length>0){
+                for (var i = 0;i<data.length;i++){
+                    if (data[i].likeDislike == -1){
+                    ++totalDislike;
+                    }
+                    else{
+                        ++totalLike;
+                    }
 
-		++totalLike;
-		}
-
-		}
-}
-	result = {
-	totalLike:totalLike,
-	totalDislike:totalDislike,
-	postId:request.query.postId
-	}
-	response.data.totalLike = (result);
-    response.end(JSON.stringify(result));
-	})	
+                }
+            }
+            result = {
+                totalLike:totalLike,
+                totalDislike:totalDislike,
+                postId:request.query.postId
+            }
+            response.data.totalLike = (result);
+            response.end(JSON.stringify(result));
+        })
 	}
 	else{
-	response.error();
-	mysql.end();
+        response.error();
+        mysql.end();
 	
 	}
 
