@@ -92,10 +92,43 @@ app.get('/classifieds', function(request, response, mysql){
 	var WHERE = '';
 	var checkWhere = false;
 	var checkPrice = false;
-
+//    WHERE += 'WHERE ';
+//
+//    if(query.Price){
+//        checkPrice = true;
+////			if(query.category || query.search_value)
+//        if (firstAnd==1) WHERE += ' AND ';
+//        WHERE += ' price >= ' + (query.Price);
+//        firstAnd = 1;
+//        checkWhere = true;
+//    }
+//    if(query.PriceEndText){
+//        if(query.PriceEndText != '1000000'){
+////                if(query.category || query.search_value)
+//            if(checkPrice){
+//                if (firstAnd==1) WHERE += ' AND ';
+//                WHERE += ' price <= ' + (query.PriceEndText);
+//            }else{
+//                if (firstAnd==1) WHERE += ' AND ';
+//                WHERE += ' price <= ' + (query.PriceEndText);
+//            }
+//            //WHERE += ' AND ';
+//            //WHERE += ' price <= ' + (query.PriceEndText);
+//            /*if(firstAnd==1){
+//             WHERE += ' AND ';
+//             WHERE += ' price <= ' + (query.PriceEndText);
+//
+//             }else{
+//             WHERE += ' price <= ' + (query.PriceEndText);
+//             }*/
+//            firstAnd = 1;
+//            checkWhere = true;
+//        }
+//
+//    }
 
 	if(query.category || query.trade_type){
-		WHERE += 'WHERE ';
+        WHERE += 'WHERE ';
         var firstAnd = 0;
 		if(query.search_value){
 			var value = mysql.escape("%"+query.search_value+"%");
@@ -120,7 +153,7 @@ app.get('/classifieds', function(request, response, mysql){
         }
 		if(query.Price){
 			checkPrice = true;
-			if(query.category || query.search_value) 
+//			if(query.category || query.search_value)
             if (firstAnd==1) WHERE += ' AND ';
 			WHERE += ' price >= ' + (query.Price);
             firstAnd = 1;
@@ -128,7 +161,7 @@ app.get('/classifieds', function(request, response, mysql){
 		}
 		if(query.PriceEndText){
             if(query.PriceEndText != '1000000'){
-                if(query.category || query.search_value)
+//                if(query.category || query.search_value)
                     if(checkPrice){
                         if (firstAnd==1) WHERE += ' AND ';
                         WHERE += ' price <= ' + (query.PriceEndText);
