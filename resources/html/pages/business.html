@@ -348,7 +348,11 @@
 												{{end}}
 											</p>
 										</div>
-										<a style="font-size: medium; background-color: #9C9C9C" href="/chat/?r={{-employee.id}}&id={{-this.account.id}}">Chat</a>
+                                        {{if this.account:}}
+										    <a style="font-size: medium; background-color: #9C9C9C" href="/chat/?r={{-employee.id}}&id={{-this.account.id}}">Chat</a>
+                                        {{else:}}
+                                        <a href="javascript:void();" style="font-size: medium; background-color: #9C9C9C" data-user={{-employee.id}} data-toggle="modal" data-target="#loginModal"  >Chat</a>
+                                        {{end}}
 									</div>
 								</div>
 							</div>

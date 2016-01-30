@@ -607,9 +607,9 @@ app.post.simple('/classifieds/place', function(request, response){
 //    consol.log(request);
 	app.upload('/uploads/pictures/original', request, response, function(mysql){
 		// Demands
-		request.demand('title');
-		request.demand('formatted_address');
-		request.demand('category');
+//		request.demand('title');
+//		request.demand('formatted_address');
+//		request.demand('category');
 
 		// Passed
 		if(request.passed){
@@ -1073,6 +1073,16 @@ function Ad(request, response){
 	ad.seller = ad.seller_type 
 		? response.head.account.business.id : response.head.account.id ;
 	ad.agent = ad.seller_type		? request.body.contact_details : response.head.account.id ;
+
+    if(ad.seller_type == null){
+        ad.seller_type = 0;
+    }
+    if(ad.seller == null){
+        ad.seller = response.head.account.id;
+    }
+    if(ad.agent == null){
+        ad.agent = response.head.account.id;
+    }
 	
 	// Fields
 	var fields = [];
