@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-md-3">&nbsp;</div>
                     <div class="col-md-7">
-                        <div class="alert-danger payment-errors"></div>
+                        <div class="alert-danger payment-errors alert" style="font-size:14px; display:none;"></div>
                         {{-this.msg}}
                         <div id="credit_card_success" class="alert alert-success nodisplay">
                             You have successfully deposited an amount of <span id="amount_deposited"></span>
@@ -190,7 +190,7 @@
 
         if (response.error) {
             // Show the errors on the form
-            $form.find('.payment-errors').text(response.error.message);
+            $('.payment-errors').show().text(response.error.message);
             $form.find('button').prop('disabled', false);
         } else {
             // response contains id and card, which contains additional card details
