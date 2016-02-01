@@ -321,8 +321,9 @@
 			<div class="wrap">
 				<div class="breadcrum-blue">
 					<ul>
-						<li><a href="#">{{-this.business.name}}</a></li>
-						<li><a href="#">Staff</a></li>
+						<li><a>{{-this.business.name}}</a></li>
+                        <li><a>{{-this.storename}}</a></li>
+						<li><a>Staff</a></li>
 					</ul>
 				</div>
 				<div class="top">
@@ -348,8 +349,11 @@
 												{{end}}
 											</p>
 										</div>
-                                        {{if this.account:}}
-										    <a style="font-size: medium; background-color: #9C9C9C" href="/chat/?r={{-employee.id}}&id={{-this.account.id}}">Chat</a>
+
+                                        {{if this.account and employee.online:}}
+										    <a style="font-size: medium; background-color: green" href="/chat/?r={{-employee.id}}&id={{-this.account.id}}">Chat</a>
+                                        {{else if this.account:}}
+                                            <a style="font-size: medium; background-color: #9C9C9C" href="/chat/?r={{-employee.id}}&id={{-this.account.id}}">Chat</a>
                                         {{else:}}
                                         <a href="javascript:void();" style="font-size: medium; background-color: #9C9C9C" data-user={{-employee.id}} data-toggle="modal" data-target="#loginModal"  >Chat</a>
                                         {{end}}

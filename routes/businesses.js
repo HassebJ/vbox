@@ -393,13 +393,17 @@ response.data.business = row;
 //                            if(!row.contact_number || row.contact_number == "" || row.contact_number == null){
                                 mysql.accounts.get('id', row.id, function(accounts){
                                     account = accounts[0];
-                                    if(account)
+                                    if(account) {
                                         row.contact_number = account.contact_number;
+
+                                    }
                                 })
 //                            }
                         });
 
 						response.data.employees = rows;
+                        response.data.employees.storeaaaa = response.data.store.name;
+                        response.data.storename = response.data.store.name;
 
 						response.data.subpage = 'store';
 						next();
