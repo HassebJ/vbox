@@ -418,8 +418,11 @@ app.accounts.on('create', function(request, response, mysql){
 						 
 					auth.success = function(user){
 						Auth.login(response, user.session);
-						response.redirect('/');
-						mysql.end();
+                        mysql.accounts.update('id', user.id, { online:1 }, function() {
+                            response.redirect('/');
+                            mysql.end();
+                        });
+
 					};
 					auth.failed	= function(){
 						response.redirect('/accounts/login?login_failed');
@@ -609,8 +612,10 @@ app.get(fbservice.redirect, function(req, res, mysql){
 
                                     auth.success = function(user){
                                         Auth.login(res, user.session);
-                                        res.redirect('/');
-                                        mysql.end();
+                                        mysql.accounts.update('id', user.id, { online:1 }, function() {
+                                            res.redirect('/');
+                                            mysql.end();
+                                        });
                                     };
                                     auth.failed	= function(){
                                         res.redirect('/accounts/login?login_failed');
@@ -646,8 +651,10 @@ app.get(fbservice.redirect, function(req, res, mysql){
 
                                             auth.success = function(user){
                                                 Auth.login(res, user.session);
-                                                res.redirect('/');
-                                                mysql.end();
+                                                mysql.accounts.update('id', user.id, { online:1 }, function() {
+                                                    res.redirect('/');
+                                                    mysql.end();
+                                                });
                                             };
                                             auth.failed	= function(){
                                                 res.redirect('/accounts/login?login_failed');

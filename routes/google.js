@@ -72,8 +72,10 @@ app.get(gpservice.redirect, function(req, res, mysql){
 
                                 auth.success = function(user){
                                     Auth.login(res, user.session);
-                                    res.redirect('/');
-                                    mysql.end();
+                                    mysql.accounts.update('id', user.id, { online:1 }, function() {
+                                        res.redirect('/');
+                                        mysql.end();
+                                    });
                                 };
                                 auth.failed	= function(){
                                     res.redirect('/accounts/login?login_failed');
@@ -101,8 +103,10 @@ app.get(gpservice.redirect, function(req, res, mysql){
 
                                 auth.success = function(user){
                                     Auth.login(res, user.session);
-                                    res.redirect('/');
-                                    mysql.end();
+                                    mysql.accounts.update('id', user.id, { online:1 }, function() {
+                                        res.redirect('/');
+                                        mysql.end();
+                                    });
                                 };
                                 auth.failed	= function(){
                                     res.redirect('/accounts/login?login_failed');
