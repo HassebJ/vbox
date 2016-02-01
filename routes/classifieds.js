@@ -950,10 +950,12 @@ function extend_classified(ad, mysql, callback){
 
 		// get business
 		mysql.businesses.get('id', ad.seller, function(businesses){
-			ad.business = businesses[0];
-			ad.business.avatar = ad.business.avatar 
-				? '/uploads/avatars/original/'+ad.business.avatar 
-				: '/images/no-business-profile.png';
+            if (businesses[0]) {
+                ad.business = businesses[0];
+                ad.business.avatar = ad.business.avatar
+                    ? '/uploads/avatars/original/' + ad.business.avatar
+                    : '/images/no-business-profile.png';
+            }
 			nextSeller();
 		});
 		
