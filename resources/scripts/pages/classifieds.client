@@ -139,7 +139,9 @@ function geocoder(lat,lng){
 		} else {
 			if (window.ads.length == 1){
 				map.setZoom(11);
-			} else {
+			}else if(window.query.administartive_area_level_1_short != "") {
+             	map.setZoom(10);
+            } else {
 				map.setZoom(4);
 			}
 		}
