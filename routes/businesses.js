@@ -403,15 +403,17 @@ response.data.business = row;
 
 						response.data.employees = rows;
                         if(response.data.store){
+                            response.data.storename = response.data.store.name;
                             next()
                         }
                         else{
                             mysql.stores.get('id', request.query.store, function(rows){
                                 response.data.store = rows[0];
+                                response.data.storename = response.data.store.name;
                                 next();
                             });
                         }
-                        response.data.storename = response.data.store.name;
+
                         //alkdjasdlkasd
 						response.data.subpage = 'store';
 						next();
