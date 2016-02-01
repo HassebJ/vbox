@@ -374,7 +374,7 @@ response.data.business = row;
 				
 				
 				if(request.query.store){
-					var next = new Next(2, finish);
+					var next = new Next(3, finish);
 					
 					// get selected store
 					mysql.stores.get('id', request.query.store, function(rows){
@@ -402,9 +402,17 @@ response.data.business = row;
                         });
 
 						response.data.employees = rows;
-                        response.data.employees.storeaaaa = response.data.store.name;
+                        if(response.data.store){
+                            next()
+                        }
+                        else{
+                            mysql.stores.get('id', request.query.store, function(rows){
+                                response.data.store = rows[0];
+                                next();
+                            });
+                        }
                         response.data.storename = response.data.store.name;
-
+                        //alkdjasdlkasd
 						response.data.subpage = 'store';
 						next();
 					});
