@@ -112,6 +112,7 @@ app.get('/classifieds', function(request, response, mysql){
 //                if (firstAnd==1) WHERE += ' AND ';
 //                WHERE += ' price <= ' + (query.PriceEndText);
 //            }
+    //asdadfas
 //            //WHERE += ' AND ';
 //            //WHERE += ' price <= ' + (query.PriceEndText);
 //            /*if(firstAnd==1){
