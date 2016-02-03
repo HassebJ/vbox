@@ -370,7 +370,6 @@ User.prototype = {
         });
     },
     saveUserChat: function(from, to, text){
-    	console.log("INSERT INTO `chat`(`from`, `to`, `message`) VALUES("+connection.escape(from)+", "+connection.escape(to)+", "+connection.escape(text)+");
         pool.getConnection(function(err, connection) {
             connection.query("INSERT INTO `chat`(`from`, `to`, `message`) VALUES("+connection.escape(from)+", "+connection.escape(to)+", "+connection.escape(text)+")", function(err, result){
             connection.release();
