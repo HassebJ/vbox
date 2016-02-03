@@ -27,7 +27,7 @@ app.upload = function(uploadDir, request, response, callback){
 			response.data.errors['upload'] = err;
 			for(index in files){
 				console.log('\n#FIES -> unlink', files[index].path);
-				fs.unlinkSync(files[index].path);
+//				fs.unlinkSync(files[index].path);
 			}
 			if(!response.onAbort){
 				response.error();

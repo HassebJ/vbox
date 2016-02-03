@@ -637,7 +637,7 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 			
 			for(index in files){
 				console.log('\n#FIES -> unlink', files[index].path);
-				fs.unlinkSync(files[index].path);
+//				fs.unlinkSync(files[index].path);
 			}
 		}
 		app.db(function(mysql){

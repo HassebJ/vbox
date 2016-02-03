@@ -418,7 +418,8 @@ app.get('/accounts/removePicture', function(request, response, mysql){
 			var next = new Next(2, function(){
 				response.redirect('back');
 			})
-			fs.unlink(source+'/original/'+response.head.account.avatarName, next);
+//			fs.unlink(source+'/original/'+response.head.account.avatarName, next);
+            next();
 			mysql.accounts.save({id: response.head.account.id, avatar: null }, next)
 		} else {
 			response.redirect('back');
@@ -445,7 +446,8 @@ app.post.simple('/accounts/savePicture', function(request, response){
 			if(response.head.account.avatarName){
 				var source = app.public+'/uploads/profiles';
 				console.log('REMOVE FILE', source+'/original/'+response.head.account.avatarName)
-				fs.unlink(source+'/original/'+response.head.account.avatarName, next);
+//				fs.unlink(source+'/original/'+response.head.account.avatarName, next);
+                next()
 			} else {
 				next();
 			}
