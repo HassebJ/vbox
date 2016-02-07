@@ -462,7 +462,7 @@ socket.on("getMessageBlockCallback", function(data){
 	rows.forEach(function(row){
 	    var location = (row.locality_long) ? row.locality_long + ", " : "";
 	    location += (row.locality_long) ? row.country_long : "";
-	    html += '<div class="app-div"><a href="javascript: void(0)" onclick="loadMsgHistory('+row.id_account+')">'
+	    html += '<div class="app-div"><a href="javascript: void(0)" onclick="loadMsgHistory(\"'+row.id_account+'\")">'
 			+'<div class="profile-img">'
 				  +'<img src="'+avatars_path+row.avatar+'">'
 			+'</div>'
