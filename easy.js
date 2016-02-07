@@ -414,8 +414,7 @@ User.prototype = {
     getMessageBlock: function(id, limit){
         limit = limit * 2;
         pool.getConnection(function(err, connection) {
-        	console.log("SELECT a.`from`, a.`message`, b.first_name, b.last_name,b.locality_long,b.country_long, b.id as id_account, b.avatar FROM `chat` as `a` left join `accounts` as `b` ON a.`from` = b.id WHERE a.`to` = "+ connection.escape(id) +" AND a.`to` != 0 GROUP BY a.`from` ORDER BY a.`id` DESC LIMIT "+limit);
-            connection.query("SELECT a.`from`, a.`message`, b.first_name, b.last_name,b.locality_long,b.country_long, b.id as id_account, b.avatar FROM `chat` as `a` left join `accounts` as `b` ON a.`from` = b.id WHERE a.`to` = "+ connection.escape(id) +" AND a.`to` != 0 GROUP BY a.`from` ORDER BY a.`id` DESC LIMIT "+limit, function(err, rows){
+            connection.query("SELECT a.`from`, a.`message`, b.first_name, b.last_name,b.locality_long,b.country_long, b.id as id_account, b.avatar FROM `chat` as `a` left join `accounts` as `b` ON a.`from` = b.id WHERE a.`to` = "+ connection.escape(id) +" AND a.`to` != '0' GROUP BY a.`from` ORDER BY a.`id` DESC LIMIT "+limit, function(err, rows){
                 connection.release();
                 if (err && rows.length == 0) {
                   console.log(err);
