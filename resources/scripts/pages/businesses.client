@@ -83,7 +83,7 @@ function geocoder(lat,lng){
 		else if(item.categoryid == 4)
 					pinImg='/images/all.png';
 		else if(item.categoryid == 5)
-					pinImg='/images/clothing.png';
+					pinImg='/images/bpin/clothing.png';
 		else if(item.categoryid == 6)
 					pinImg='/images/phone.png';
 		else if(item.categoryid == 7)
