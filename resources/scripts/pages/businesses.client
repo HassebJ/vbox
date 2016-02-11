@@ -73,7 +73,7 @@ function geocoder(lat,lng){
 		console.log("sayeed:"+JSON.stringify(item));
 		var pinImg='/images/all.png';
 		if(item.categoryid == 0)
-                    pinImg='/images/bpin/leisure.png';
+                    pinImg='/images/bpin/activelife.png';
 		else if(item.categoryid == 1)
 					pinImg='/images/bpin/agri.png';
 		else if(item.categoryid == 2)
@@ -81,7 +81,7 @@ function geocoder(lat,lng){
 		else if(item.categoryid == 3)
 					pinImg='/images/bpin/car.png';
 		else if(item.categoryid == 4)
-					pinImg='/images/all.png';
+					pinImg='/images/bpin/beautyspa.png';
 		else if(item.categoryid == 5)
 					pinImg='/images/bpin/clothing.png';
 		else if(item.categoryid == 6)
@@ -91,7 +91,7 @@ function geocoder(lat,lng){
 		else if(item.categoryid == 8)
 					pinImg='/images/bpin/electronics.png';
 		else if(item.categoryid == 9)
-                    pinImg='/images/bpin/services.png';
+                    pinImg='/images/bpin/eventservices.png';
         else if(item.categoryid == 10)
                     pinImg='/images/bpin/finance.png';
         else if(item.categoryid == 11)
@@ -125,7 +125,7 @@ function geocoder(lat,lng){
         else if(item.categoryid == 25)
                     pinImg='/images/bpin/animals.png';
         else if(item.categoryid == 26)
-                    pinImg='/images/bpin/services.png';
+                    pinImg='/images/bpin/professionalservices.png';
         else if(item.categoryid == 27)
                     pinImg='/images/bpin/government.png';
         else if(item.categoryid == 28)
