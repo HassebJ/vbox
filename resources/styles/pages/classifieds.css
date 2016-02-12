@@ -425,7 +425,7 @@ body{
 .wrap .form-horizontal button{ font-size:15px;}
 #classifieds .ad{ width:50%; min-height:315px;}
 
-#classifieds .ad .seller{ padding:0; background:none; border:none;}
+#classifieds .ad .seller{ padding:0; background:#e7e7e7; border:none;}
 #classifieds .filter{ float:left; width:100%; }
 .filter h1{  cursor:pointer; border-radius: 6px; display: inline-block; font-size: 27px; margin:0; text-shadow:1px 1px 0 rgba(0, 0, 0, 0.2)}
 .ads ad {
