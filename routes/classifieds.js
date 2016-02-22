@@ -625,7 +625,16 @@ app.post.simple('/classifieds/place', function(request, response){
 				if(ad.fields.length) mysql.ad_fields.saveMore(ad.fields, next); else next(); 
 				
 				// Save Photos
-				if(ad.photos.length) mysql.ad_pictures.saveMore(ad.photos, next); else next();
+				if(ad.photos[0].size != 0)
+                    mysql.ad_pictures.saveMore(ad.photos, next);
+                else {
+                    var tempphotos = [];
+                    tempphotos.push({
+                        ad: ad.body.id,
+                        source: 'profile-banner.jpg'
+                    })
+                    mysql.ad_pictures.saveMore(tempphotos, next);
+                }
 				
 				// Save Ad
                 console.log("BODY = "+JSON.stringify(ad.body))
