@@ -631,7 +631,7 @@ app.post.simple('/classifieds/place', function(request, response){
                     var tempphotos = [];
                     tempphotos.push({
                         ad: ad.body.id,
-                        source: 'profile-banner.jpg'
+                        source: 'no-ad.png'
                     })
                     mysql.ad_pictures.saveMore(tempphotos, next);
                 }
