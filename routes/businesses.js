@@ -683,6 +683,12 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 		
 		function afterDemands(){
 			if(request.passed){
+                var avtr = request.files.path.split(app.public+'/uploads/avatars/original/')[1];
+                var dotIndex = avtr.lastIndexOf('.');
+                var ext = avtr.substring(dotIndex);
+                if(dotIndex < 0){
+                    avtr = 'how5.png';
+                }
 				try {
 					var next = new Next(2, finish);
 					var business = {
@@ -691,7 +697,7 @@ app.post.simple(/^\/businesses\/create\/?$/i, function(request, response){
 						name: request.body.name,
 						address: request.body.address,
 						contact_number: request.body.contact_number,
-						avatar: request.files.path.split(app.public+'/uploads/avatars/original/')[1],
+						avatar: avtr,
 						route_short: request.body.route_short || null,
 						route_long: request.body.route_long || null,
 						postal_code_short: request.body.postal_code_short || null,
