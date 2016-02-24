@@ -523,10 +523,15 @@ function loadAdsDiv(ad) {
     var content = '<div class="ad '+ad.id+'">';
     content += '<div class="in"><a href="/classifieds/' + ad.id + '" class="picture"><div class="price">' + ad.formatted_price + '</div>';
     if (ad.pictures.length > 0) {
-        content += '<img src="/uploads/pictures/original/' + ad.pictures[0].source + '" alt="picture"/>';
+        if(ad.pictures[0].source == "no-ad-1.png"){
+            content += '<img src="/uploads/pictures/original/no-ad-2.png" alt="picture"/>';
+        }else{
+            content += '<img src="/uploads/pictures/original/' + ad.pictures[0].source + '" alt="picture"/>';
+        }
+
     }
     else {
-        content += '<img src="/uploads/pictures/original/no-ad.png" alt="picture"/>';
+        content += '<img src="/uploads/pictures/original/no-ad-2.png" alt="picture"/>';
     }
 //    alert(ad.seller_type);
     if(ad.seller_type == 'business'){
