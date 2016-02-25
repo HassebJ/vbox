@@ -49,6 +49,7 @@ $(function(){
 
 var map;
 window.markers = []
+window.markcount = 0;
 
 function initialize() {
 	console.log('initialize map');
@@ -171,12 +172,18 @@ for (var i=0; i<window.markers.length; i++){
 
 }
 	 markerId = markerId.replace(/,\s*$/, '');
+
+     	$('.ads').isotope({
+             		filter: markerId
+             	});
+
 	console.log(markerId);
-	$('.ads').isotope({
-		filter: markerId
-	});
+
 	if(window.markers.length == noresults && document.getElementById('search_value').value == ''){
-    	    $('.ads').isotope({ filter: '.dummy' });
+            	 if(window.innerWidth  > 760){
+                    $('.ads').isotope({ filter: '.dummy' });
+                 }
+
     	}
 }
 google.maps.event.addListener(map,'bounds_changed',function(){
