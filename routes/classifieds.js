@@ -338,6 +338,16 @@ app.get('/classifieds', function(request, response, mysql){
 	mysqlCountRows(request, response, mysql, count_sql, next);
 	
 	mysql(original_sql, function(rows){
+        for(var i = 0 ; i<rows.length; i++){
+            if (rows[i].seller == null){
+                rows.splice(i, 1);
+            }
+
+
+        }
+
+
+
 		var rowNext = new Next(rows.length*2, function(){
 			response.data.ads = rows;
 			next();
