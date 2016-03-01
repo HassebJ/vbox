@@ -559,6 +559,7 @@ app.get(/^\/classifieds\/([^\/]+)\/pictures\/?$/i, function(request, response, m
 	if(request.params[1]){
 		// get ad pictures
 		mysql.ad_pictures.get('ad', request.params[1], function(pictures){
+            pictures.splice(pictures.indexOf('no-ad-1.png'), 1);
 			response.success({pictures:pictures});
 		});
 	} else {

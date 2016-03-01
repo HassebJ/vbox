@@ -758,6 +758,26 @@ a.button:hover{ background: #36A95C; !important;}
 .timebox .commentbox  small{ float:right; font-size:14px; color:#c6c6c6;  margin:-7px 0 0;}
 .timebox button{ padding:6px 15px; margin:10px 0 0;}
 
+.ad .picture img{ max-height: 175px;}
+.ad h2 a{ font-size: 20px;}
+
+.ad .live-state{background: #00baff url("../../images/chat.png") no-repeat scroll 13px 9px / 12px auto;
+    border-radius: 0;
+    bottom: 15px;
+    box-shadow: none;
+    padding: 6px 15px 6px 31px; font-size: 12px;}
+h2{ margin: 0; line-height: 20px; max-width: 70%; }
+h2 a{ text-overflow:ellipsis; overflow: hidden; white-space: nowrap; max-width: 100%; display: inline-block;}
+.ad .in .picture{ position: relative;}
+.ad .seller-picture{ position: absolute; z-index: 99; right: 10px; bottom: -30px; width: 75px; border:2px solid #fff; height: 75px; border-radius: 50%;}
+.ad .seller-picture img{ height: 73px !important; width: 73px;}
+.ad .seller-picture .profile-helper{ display: none;}
+.ad .seller{ border: none; background: none;}
+.ad{ width: 25%;}
+.ad .content .info{ padding: 10px 8px; border:none;}
+.ad .description{ text-overflow:ellipsis; overflow: hidden; white-space: nowrap;}
+.ad .seller-name a{  text-overflow:ellipsis; overflow: hidden; white-space: nowrap; max-width: 154px; display: inline-block; vertical-align: top;}
+
 .classified_container{ padding:0 3%;}
 .classified_container .box{ width:22.5%; margin:0 1%; position:relative;}
 .classified_container .box .rate{ position:absolute; left:0; top:0; font-size:18px; color:#fff; font-weight:bold; line-height:25px; padding:5px 10px; background:#00baff;}
@@ -772,7 +792,7 @@ a.button:hover{ background: #36A95C; !important;}
 .classified_container .classi-details span small{ color:#adadad; font-size:14px;}
 .classified_container .classi-details .btn{ background:#00baff url("../../images/chat.png") no-repeat scroll 8px 9px; background-size:12px auto; margin:-5px 0 0; padding:5px 10px 5px 26px; border-radius:4px; color:#fff; border:none;}
 
-.description_container{ margin:0 auto; width:42%;}
+.description_container{ margin:0 auto; width:54%; padding-left: 45px;}
 .description_container h2{ font-size:30px; padding:0 0 10px;}
 .description_container  li{ font-size:15px; float:left; width:100%; color:#9d9d9d; line-height:18px; padding:6px 0;}
 .description_container  li span{ color:#636361; float:left; width:46%; padding:0 2% 0 0;}

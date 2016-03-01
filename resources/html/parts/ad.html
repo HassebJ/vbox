@@ -3,8 +3,14 @@
 <div class="ad">
 	<div class="in">
 		<a href="/classifieds/{{-ad.id}}" class="picture">
-			{{if ad.pictures.length:}}
-				<img src="/uploads/pictures/original/{{-ad.pictures[0].source}}" alt="picture"/>
+			{{if ad.pictures.length > 0:}}
+                {{if ad.pictures[0].source == "no-ad-1.png":}}
+                <img src="/uploads/pictures/original/no-ad-2.png" alt="picture"/>
+                {{else:}}
+                <img src="/uploads/pictures/original/{{-ad.pictures[0].source}}" alt="picture"/>
+                {{end}}
+            {{else:}}
+                <img src="/uploads/pictures/original/no-ad-2.png" alt="picture"/>
 			{{end}}
 			
 
