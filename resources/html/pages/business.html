@@ -445,9 +445,9 @@
 				<li><span><i class="fa fa-phone"></i> Telephone no.</span> {{-this.business.contact_number}}</li>
 				<li><span><i class="fa fa-globe"></i>  Website</span> {{-this.business.website}}</li>
 				<li><span><i class="fa fa-envelope"></i>  Email</span> {{-this.business.contact_email}}</li>
-				<li><span><i class="fa fa-map-marker"></i> Physical Address</span> {{if this.business.formatted_address:}}
+				<li class="col-lg-12"><span class="col-lg-6"><i class="fa fa-map-marker"></i> Physical Address</span><span style="color: #9d9d9d;" class="col-lg-6"> {{if this.business.formatted_address:}}
 							{{-this.business.formatted_address}}
-						{{end}}</li>
+						{{end}}</span></li>
 				
 			</ul>
             <h2>VBOX Info</h2>

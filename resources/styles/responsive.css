@@ -192,6 +192,8 @@ nav {
     .follow{ padding:4px 10px; float: right !important; display: inline-block;     margin-bottom: 102px;}
 }
 
+
+
 @media only screen and (max-width:767px) {
 	
 	.mobile-menu {
@@ -348,7 +350,8 @@ nav {
 .top_section .head ul{ margin: 0;}
 .top_section .head ul li img{ width: 15px;}
 .top_section button.choose-recipient{ background: #00baff url("../../images/chat.png") no-repeat scroll 14px 9px; background-size: 15px auto;
-       min-width: 85px;  padding: 4px 3px 7px 22px;}
+       min-width: 85px;  padding: 4px 3px 7px 22px;
+float:right;}
 .top_section .live-chat-button{ right: 15px;
     /*bottom: 140px;*/
     top: 190px;
@@ -359,6 +362,7 @@ nav {
     font-size: 13px;  margin: 0 10px 0 0;
     padding: 4px 11px 6px 33px;
     margin: 3px 270px 0 0;
+    float:left;
 }
     .map-container{ margin: 0;}
 .map-container #map{ width: 100% !important;}
