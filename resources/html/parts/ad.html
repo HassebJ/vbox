@@ -52,7 +52,13 @@
 						</div>
 					{{end}}
 
+                    {{if ad.seller.online:}}
 						<a class="chatIdentity button live-state offline" data-user="' + ad.seller.id + '" href="/chat/?r={{-this.account.id}}&id=' + ad.seller.id + '" >Chat</a>
+                    {{else if this.account:}}
+                        <a class="chatIdentity button live-state offline" data-user="' + ad.seller.id + '" href="/chat/?r={{-this.account.id}}&id=' + ad.seller.id + '" >Chat</a>
+                    {{else:}}
+                        <a href="javascript:void();" class="chatIdentity button live-state offline" data-user="' + ad.seller.id + '" data-toggle="modal" data-target="#loginModal"  >Chat</a>
+                    {{end}}
 				</div>
 			{{end}}
 		</div>

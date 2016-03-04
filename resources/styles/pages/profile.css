@@ -772,7 +772,7 @@ ul{ list-style:none;}
 
 .classified_container .ad .seller-picture{ width: 75px; border-radius: 50%; height: 75px; border:2px solid #fff; position: absolute; z-index: 99; right: 10px; bottom:-35px;}
 .classified_container .ad .seller-picture img{ height: 75px;}
-.classified_container .ad .content .info{ padding: 10px 10px 0;}
+.classified_container .ad .content .info{ padding: 10px 10px 0; border-bottom: none !important;}
 .classified_container .ad .content .info h2{ font-size: 20px; max-width: 73%; overflow: hidden; text-overflow:ellipsis; white-space: nowrap; padding: 0 0 5px; line-height: 24px; color: #444;}
 .classified_container .ad .content .info h2 a{ color: #444; }
 .classified_container .ad .seller{ border:none; background: none; padding: 0 10px 7px;}

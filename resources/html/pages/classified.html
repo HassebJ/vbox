@@ -121,11 +121,13 @@
 	<div class="live-chat-button">
 		<a class="paypal-btn" onclick="alert('Coming Soon.');">Buy Now</a>
 
-			{{if this.account: }}
+            {{if this.ad.seller.online:}}
+                <a href="/chat/?r={{-this.ad.seller.id}}&id={{-this.account.id}}"><button class="choose-recipient button chatIdentity " data-user="{{-this.ad.seller.id}}"  >Chat</button></a>
+            {{else if this.account: }}
                 <a href="/chat/?r={{-this.ad.seller.id}}&id={{-this.account.id}}"><button class="choose-recipient button chatIdentity " data-user="{{-this.ad.seller.id}}"  >Chat</button></a>
 			{{else:}}
 			    <a href="javascript:void();"><button class="choose-recipient button chatIdentity " data-toggle="modal" data-target="#loginModal" >Chat</button></a>
-				{{end}}
+            {{end}}
 </div>
 </div>
 

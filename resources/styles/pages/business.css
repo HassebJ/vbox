@@ -9,6 +9,11 @@ body{
     }
 }
 
+.ad .live-state:hover {
+    box-shadow: none;
+    background: #00baff url("../../images/chat.png") no-repeat scroll 13px 9px / 12px auto;
+}
+
 .add-comments {
     padding: 15px !important;
     background: #F2F2F2;
