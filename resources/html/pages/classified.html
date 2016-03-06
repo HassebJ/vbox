@@ -11,9 +11,20 @@
 				<span><i class="fa fa-map-marker"></i> {{-this.ad.seller.formatted_address}}</span>
 			</div>
 			<div class="follow-sec">
-				<a href="#" class="flwbtn"><i class="fa fa-plus"></i> Follow</a>
+
+                    {{if this.connection is 'stranger':}}
+                        <a href="/posts/follow?id={{-this.ad.seller.id}}&type=personal" class="flwbtn"><i class="fa fa-plus"></i> follow</a>
+                    {{else if this.connection is 'following':}}
+                        <a href="/posts/follow?id={{-this.ad.seller.id}}&type=personal" class="silver flwbtn"><i class="fa fa-minus"></i>Unfollow</a>
+                    {{else if this.connection is 'you':}}
+                        <div class="silver flwbtn">You</div>
+                    {{end}}
+
+
+
+				<!--<a href="#" class="flwbtn"><i class="fa fa-plus"></i> Follow</a>-->
 				<!--<p>0 Following <span class="pull-right">0 followers</span></p>-->
-				<p><span class="pull-right">0 followers</span></p>
+				<p><span class="pull-right">{{-this.followerCount}} followers</span></p>
 				
 			</div>
 			

@@ -750,7 +750,7 @@ app.post('/classifieds/edit', function(request, response, mysql){
 	
 	} else {
 		response.data.ad = new Ad(request, response);
-		extend_classified(response.data.ad.body, mysql, function(){
+		extend_classified(response, response.data.ad.body, mysql, function(){
 			classified_editor(request, response, mysql, function(){
 				response.data.inputs = response.data.ad.body;
 				response.data.errors = request.errors;
@@ -948,7 +948,7 @@ app.post('/classifieds/removePicture', function(request, response, mysql){
 	}
 });
 
-function extend_classified(ad, mysql, callback){
+function extend_classified(response, ad, mysql, callback){
 	var next = new Next(3, callback);
 		
 	// get ad pictures
@@ -992,11 +992,44 @@ function extend_classified(ad, mysql, callback){
 		
 	// get personal seller info
 	} else {
+
+
 		// get employee account
 		mysql.accounts.get('id', ad.seller, function(accounts){
-			ad.seller = app.accounts.user(accounts[0]);	
-			console.log('#ad.seller', ad.seller);			
-			next();
+			ad.seller = app.accounts.user(accounts[0]);
+
+			console.log('#ad.seller', ad.seller);
+            if(response.head.account.id == ad.seller.id){
+                response.data.connection = 'you';
+                var sqlCount = 'SELECT * FROM follows'
+                    + ' WHERE following = ' + mysql.escape(ad.seller.id);
+                mysql(sqlCount, function(rowsCount) {
+                    response.data.followerCount = rowsCount.length;
+                    next();
+
+                });
+            } else {
+                var sql = 'SELECT * FROM follows'
+                    + ' WHERE follower = ' + mysql.escape(response.head.account.id)
+                    + ' AND following = ' + mysql.escape(ad.seller.id);
+                mysql(sql, function(rows){
+                    if(rows && rows.length){
+                        response.data.connection = 'following';
+                    } else {
+                        response.data.connection = 'stranger';
+
+                    }
+                    var sqlCount = 'SELECT * FROM follows'
+                        + ' WHERE following = ' + mysql.escape(ad.seller.id);
+                    mysql(sqlCount, function(rowsCount){
+                        response.data.followerCount = rowsCount.length;
+                        next();
+                    });
+
+
+                });
+            }
+
 		});
 		/*
 		mysql.accounts.get('id', ad.agent, function(accounts){
@@ -1014,7 +1047,7 @@ function get_classified(id, request, response, mysql, callback){
 		mysql.ads.get('id', id, function(ads){
 			var ad = ads[0];
 			if(ad){
-				extend_classified(ad, mysql, function(){
+				extend_classified(response, ad, mysql, function(){
 					response.data.ad = ad;
 					callback();
 				});
