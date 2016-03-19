@@ -37,16 +37,21 @@
 		<ul class="links">
 			<!--<li><a href="#" class="btn btn-default lightblue">Chat</a></li>
 			<li><a href="#" class="btn btn-default green"><i class="fa fa-plus"></i> Follow</a></li>-->
-			{{if this.connection is 'stranger':}}
-						
-						<li>
-						<a class="chatIdentity btn btn-default lightblue" data-user="{{-this.user.id}}" href="/chat/?r={{-this.user.id}}&id={{-this.account.id}}" >Chat</a></li>
-						<a href="/posts/follow?id={{-this.user.id}}&type=personal" class="follow button"><i class="fa fa-plus"></i> follow</a>
-					{{else if this.connection is 'following':}}
-						<a href="/posts/follow?id={{-this.user.id}}&type=personal" class="silver follow button">unfollow</a>
-					{{else if this.connection is 'you':}}
-						<div class="silver follow button">you</div>
-					{{end}}
+            {{if this.account.id:}}
+            <li>
+                <a class="chatIdentity btn btn-default lightblue" data-user="{{-this.user.id}}" href="/chat/?r={{-this.user.id}}&id={{-this.account.id}}" >Chat</a></li>
+            {{else:}}
+            <li>
+                <a class="chatIdentity btn btn-default lightblue" data-toggle="modal" data-target="#loginModal"  href="javascript:void();" >Chat</a></li>
+            {{end}}
+            {{if this.connection is 'stranger':}}
+
+                <a href="/posts/follow?id={{-this.user.id}}&type=personal" class="follow button"><i class="fa fa-plus"></i> follow</a>
+            {{else if this.connection is 'following':}}
+                <a href="/posts/follow?id={{-this.user.id}}&type=personal" class="silver follow button"><i class="fa fa-minus"></i> unfollow</a>
+            {{else if this.connection is 'you':}}
+                <div class="silver follow button">you</div>
+            {{end}}
 		</ul>
 		<ul class="tabs">
 			<a id="timelineActiveId" class="active" href="/accounts/{{-this.user.id}}?show=wall">Timeline</a>
