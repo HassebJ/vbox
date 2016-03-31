@@ -2,17 +2,20 @@ module.exports = function Configs() {
     if (process.env.NODE_ENV === 'development'){
         Configs.prototype.domain = 'devbox.example.com';
         Configs.prototype.port = '80';
+        Configs.prototype.password = '12345';
+
 
     }else{
         Configs.prototype.domain = 'www.veebox.io'; //whatever is the ip of the server it is hosted on
         Configs.prototype.port = '4040';
+        Configs.prototype.password = 'vbox@1234';
     }
 
     Configs.prototype.mysql = {
         connectionLimit : 10,
         host     : 'localhost',
         user     : 'root',
-        password : 'vbox@1234',
+        password : Configs.prototype.password,
         database : 'vbox'
     };
     Configs.prototype.paypal= {

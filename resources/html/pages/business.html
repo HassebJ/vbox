@@ -77,7 +77,7 @@
 		{{else:}}
 		<div class="timeline_container maintab wlogin">
 		{{end}}
-			<h2><a href="/{{-this.business.address}}">{{-this.business.name}}</a>'s Timeline</h2>
+			<h2><a style="overflow: visible;" href="/{{-this.business.address}}">{{-this.business.name}}</a>'s Timeline</h2>
 			<!--ul class="year-tabs">
 				<li class="active"><a href="#">2015</a></li>
 				<li><a href="#">2014</a></li>
@@ -267,6 +267,8 @@
 						<script>
 							window.stores = {{-JSON.stringify this.stores}};
 							window.business_address = '{{-this.business.address}}';
+                            window.empl = {{-JSON.stringify this.employees}};
+                            console.log("empl: " + window.empl);
 						</script>
 						
 						<div class="stores">
@@ -440,8 +442,8 @@
 			<h2>Business info</h2>
 			<ul>
 				<!--<li><span><img src="../../images/calendr.png" alt=""> Start Date</span> <strong> &lt;!&ndash;17 February 2010&ndash;&gt;</li>-->
-				<li><span class="fa fa-info"> Short Description</span> {{-this.business.description}}</li>
-				<li><span class="fa fa-tags">Category</span> {{-this.business.category}}</li>
+				<li><span><i class="fa fa-info"></i> Short Description</span> {{-this.business.description}}</li>
+				<li><span><i class="fa fa-tags"></i> Category</span> {{-this.business.category}}</li>
 				<li><span><i class="fa fa-phone"></i> Telephone no.</span> {{-this.business.contact_number}}</li>
 				<li><span><i class="fa fa-globe"></i>  Website</span> {{-this.business.website}}</li>
 				<li><span><i class="fa fa-envelope"></i>  Email</span> {{-this.business.contact_email}}</li>
