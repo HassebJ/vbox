@@ -580,12 +580,12 @@ function loadAdsDiv(ad) {
     if (ad.seller.online ) {
         content += '<a class="chatIdentity button live-state offline" data-user="' + ad.seller.id + '" href="/chat/?r=' + ad.seller.id + '&id={{-this.account.id}}" >Chat</a>';
     }
-    else if ( ad.seller_type == "business") {
-        if (ad.agent.account.online == 1) {
-            alert(JSON.stringify(ad));
-            content += '<a style="background-color: rgb(0, 186, 255) !important;" class="chatIdentity button live-state offline" data-user="' + ad.seller.id + '" href="/chat/?r=' + ad.seller.id + '&id={{-this.account.id}}" >Chat</a>';
-        }
-    }
+//    else if ( ad.seller_type == "business") {
+//        if (ad.agent.account.online == 1) {
+//            alert(JSON.stringify(ad));
+//            content += '<a style="background-color: rgb(0, 186, 255) !important;" class="chatIdentity button live-state offline" data-user="' + ad.seller.id + '" href="/chat/?r=' + ad.seller.id + '&id={{-this.account.id}}" >Chat</a>';
+//        }
+//    }
     else {
         if($('#myID').val())
             content += '<a class="chatIdentity button live-state offline" data-user="' + ad.seller.id + '" href="/chat/?r=' + ad.seller.id + '&id={{-this.account.id}}" >Chat</a>';

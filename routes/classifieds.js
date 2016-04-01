@@ -359,9 +359,9 @@ app.get('/classifieds', function(request, response, mysql){
 				{
                     if(row.agent){
                         row.seller.online = row.agent.account.online;
-                        row.seller.jugar = 1;
+//                        row.seller.jugar = 1;
                     }
-                    row.seller.jugar = 1;
+//                    row.seller.jugar = 1;
 
 					rowNext();
 				});
