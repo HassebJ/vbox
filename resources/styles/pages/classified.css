@@ -432,6 +432,8 @@ li, .author, p {
 .map-container .map-info ul li p a{ background-color: #00BBFF; display:inline-block; padding:3px 10px; color: #FFF; border-radius: 3px; margin:0 10px 10px 0;}
 button.choose-recipient{ display:inline-block !important; background:url(../../images/chat.png) no-repeat 19px 14px #9C9C9C !important; background-size:15px !important; padding:10px 20px 10px 31px; min-width:108px;!important}
 button.choose-recipient:hover{ display:inline-block !important; background:url(../../images/chat.png) no-repeat 19px 14px #9C9C9C !important; background-size:15px !important; padding:10px 20px 10px 31px; min-width:108px;!important}
+button.choose-recipients{ display:inline-block !important; background:url(../../images/chat.png) no-repeat 19px 14px #9C9C9C ; background-size:15px !important; padding:10px 20px 10px 31px; min-width:108px;!important}
+button.choose-recipients:hover{ display:inline-block !important; background:url(../../images/chat.png) no-repeat 19px 14px #9C9C9C ; background-size:15px !important; padding:10px 20px 10px 31px; min-width:108px;!important}
 .description-sec{ float: left; width: 100%;}
 .description-sec h4{ font-size: 26px; line-height: 30px; padding:0 0 10px;}
 .follow-sec{ text-align:center;}
