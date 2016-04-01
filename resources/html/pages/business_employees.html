@@ -68,7 +68,7 @@
 							<i class="fa fa-phone"></i>
 							{{-this.input 'Contact Number', 'contact_number', 'text'}}
 						</div-->
-						{{if this.account.business.role == 0 or this.account.id == employee.account:}}
+						{{if this.account.businessg || this.account.id == employee.account:}}
 							<div class="detail actions">
 								<button type="submit" class="">Save</button>
 
