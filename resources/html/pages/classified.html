@@ -135,9 +135,9 @@
 		<a class="paypal-btn" onclick="alert('Coming Soon.');">Buy Now</a>
 
             {{if this.ad.agent.account.online:}}
-                <a href="/chat/?r={{-this.ad.seller.id}}&id={{-this.account.id}}"><button style="background-color: rgb(0, 186, 255) !important;" class="choose-recipients button chatIdentity " data-user="{{-this.ad.seller.id}}"  >Chat</button></a>
+                <a href="/chat/?r={{-this.ad.seller}}&id={{-this.account.id}}"><button style="background-color: rgb(0, 186, 255) !important;" class="choose-recipients button chatIdentity " data-user="{{-this.ad.seller.id}}"  >Chat</button></a>
             {{else if this.account: }}
-                <a href="/chat/?r={{-this.ad.seller.id}}&id={{-this.account.id}}"><button class="choose-recipient button chatIdentity " data-user="{{-this.ad.seller.id}}"  >Chat</button></a>
+                <a href="/chat/?r={{-this.ad.seller}}&id={{-this.account.id}}"><button class="choose-recipient button chatIdentity " data-user="{{-this.ad.seller.id}}"  >Chat</button></a>
                 <!--<a style="background-color: #9C9C9C;" href="/chat/?r={{-this.ad.seller.id}}&id={{-this.account.id}}"><button class="choose-recipient button chatIdentity " data-user="{{-this.ad.seller.id}}"  >Chat</button></a>-->
 			{{else:}}
 			    <a href="javascript:void();"><button class="choose-recipient button chatIdentity " data-toggle="modal" data-target="#loginModal" >Chat</button></a>
