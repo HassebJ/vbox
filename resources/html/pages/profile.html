@@ -37,10 +37,10 @@
 		<ul class="links">
 			<!--<li><a href="#" class="btn btn-default lightblue">Chat</a></li>
 			<li><a href="#" class="btn btn-default green"><i class="fa fa-plus"></i> Follow</a></li>-->
-            {{if this.account.id:}}
+            {{if this.user.online:}}
             <li>
-                <a class="chatIdentity btn btn-default lightblue" data-user="{{-this.user.id}}" href="/chat/?r={{-this.user.id}}&id={{-this.account.id}}" >Chat</a></li>
-            {{else:}}
+                <a style="background-color: rgb(0, 186, 255) !important;" class="chatIdentity btn btn-default lightblue" data-user="{{-this.user.id}}" href="/chat/?r={{-this.user.id}}&id={{-this.account.id}}" >Chat</a></li>
+            {{else if this.account.id:}}
             <li>
                 <a class="chatIdentity btn btn-default lightblue" data-toggle="modal" data-target="#loginModal"  href="javascript:void();" >Chat</a></li>
             {{end}}

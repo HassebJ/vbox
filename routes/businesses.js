@@ -346,13 +346,17 @@ response.data.business = row;
 					rows.forEach(function(row){
 						// get seller informations
 						if(row.seller_type == 1){ // business seller
-							mysql.businesses.get('id', row.seller, function(rows){
-								row.seller = rows[0];
+							mysql.businesses.get('id', row.seller, function(biz){
+								row.seller = biz[0];
 								row.seller_type = 'business';
-								row.seller.avatar = row.seller.avatar 
-									? '/uploads/avatars/original/'+row.seller.avatar 
-									: '/images/no-business-profile.png';
-								rowNext();
+                                row.seller.avatar = row.seller.avatar
+                                    ? '/uploads/avatars/original/'+row.seller.avatar
+                                    : '/images/no-business-profile.png';
+                                mysql.accounts.get('id', row.acc, function(acc){
+                                    row.seller.online = app.accounts.user(acc[0]).online;
+                                    rowNext();
+                                });
+
 							});
 						} else { // private seller
 							mysql.accounts.get('id', row.seller, function(rows){

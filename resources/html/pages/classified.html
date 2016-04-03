@@ -53,7 +53,9 @@
 			{{end}}-->
 			
 		{{else:}}
-			<img src="{{-this.ad.agent.account.avatar(100)}}" /><br>
+            {{if this.ad.agent:}}
+			    <img src="{{-this.ad.agent.account.avatar(100)}}" /><br>
+            {{end}}
 			
 			<div class="field">
 				<b>Agent</b> 
@@ -132,7 +134,7 @@
 	<div class="live-chat-button">
 		<a class="paypal-btn" onclick="alert('Coming Soon.');">Buy Now</a>
 
-            {{if this.ad.seller.online:}}
+            {{if this.ad.agent.account.online:}}
                 <a href="/chat/?r={{-this.ad.seller.id}}&id={{-this.account.id}}"><button style="background-color: rgb(0, 186, 255) !important;" class="choose-recipients button chatIdentity " data-user="{{-this.ad.seller.id}}"  >Chat</button></a>
             {{else if this.account: }}
                 <a href="/chat/?r={{-this.ad.seller.id}}&id={{-this.account.id}}"><button class="choose-recipient button chatIdentity " data-user="{{-this.ad.seller.id}}"  >Chat</button></a>

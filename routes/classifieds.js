@@ -359,10 +359,7 @@ app.get('/classifieds', function(request, response, mysql){
 				{
                     if(row.agent){
                         row.seller.online = row.agent.account.online;
-//                        row.seller.jugar = 1;
                     }
-//                    row.seller.jugar = 1;
-
 					rowNext();
 				});
 				mysql.businesses.get('id', row.seller, function(businesses)
@@ -373,6 +370,10 @@ app.get('/classifieds', function(request, response, mysql){
                         row.seller_type = 'business';
 //					row.seller.avatar = businesses[0].avatarName;
                         row.seller.avatarName = businesses[0].avatar;
+                        mysql.accounts.get('id', row.acc, function(acc){
+                            row.seller.online = app.accounts.user(acc[0]).online;
+                            businessNext();
+                        });
                     }
 					//row.seller.avatar ? '/uploads/avatars/original/'+row.seller.avatar : '/images/no-business-profile.png';
 					//~ if(typeof rows[0].avatar != undefined)
@@ -383,7 +384,7 @@ app.get('/classifieds', function(request, response, mysql){
 					//~ {
 						//~ row.seller_type = '/images/no-business-profile.png';
 					//~ }
-					businessNext();
+
 				});
 				
 				// get employee
@@ -450,7 +451,10 @@ console.log(">>>>>>>>>>>>>>>>>>>>>>>> GET ADS <<<<<<<<<<<<<<<<<<<<<<<<<<")
 					row.seller.avatar = row.seller.avatar 
 						? '/uploads/avatars/original/'+row.seller.avatar 
 						: '/images/no-business-profile.png';
-					rowNext();
+                    mysql.accounts.get('id', row.acc, function(acc){
+                        row.seller.online = app.accounts.user(acc[0]).online;
+                        rowNext();
+                    });
 				});
 			} else { // private seller
 				mysql.accounts.get('id', row.seller, function(accounts){
@@ -983,13 +987,19 @@ function extend_classified(response, ad, mysql, callback){
 		
 		// get employee
 		mysql.business_employees.get('id', ad.agent, function(employees){
+
 			ad.agent = employees[0];
 			console.log('#ad.agent', ad.agent);
 			// get employee account
-			mysql.accounts.get('id', ad.agent.account, function(accounts){
-				ad.agent.account = app.accounts.user(accounts[0]);
-				nextSeller();
-			});
+            if(ad.agent){
+                mysql.accounts.get('id', ad.agent.account, function(accounts){
+                    ad.agent.account = app.accounts.user(accounts[0]);
+                    nextSeller();
+                });
+            }else{
+                nextSeller();
+            }
+
 		});
 		
 	// get personal seller info
@@ -1132,7 +1142,9 @@ function Ad(request, response){
 	ad.seller_type = response.head.account.business ? 1 : 0 ;
 	ad.seller = ad.seller_type 
 		? response.head.account.business.id : response.head.account.id ;
-	ad.agent = ad.seller_type		? request.body.contact_details : response.head.account.id ;
+    ad.agent = ad.seller_type		? request.body.contact_details : response.head.account.id ;
+	ad.acc = response.head.account.id ;
+
 
     if(ad.seller_type == null){
         ad.seller_type = 0;
