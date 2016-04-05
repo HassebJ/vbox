@@ -56,7 +56,13 @@
 			<div class="right media-menu-top">
 				
 				<!--<a id="place-ad" href="/classifieds/place" class="link {{-if this.page is 'classifieds_place' then 'selected'}}"><i class="fa fa-pencil-square-o"></i>place an ad</a>-->
-				{{if this.account:}}
+
+                {{if this.page is 'verified':}}
+                    <ul class="login-section nav navbar-nav">
+                        <li><a href="javascript:void();" class="link remback" data-toggle="modal" data-target="#loginModal">login</a></li>
+                        <li><a href="/accounts/signup" class="link signup remback">Sign Up</a></li>
+                    </ul>
+				{{else if this.account:}}
 				
 					<div class="dropdown-holder dropdown link dropdown-opener">
 						
