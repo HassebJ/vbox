@@ -8,17 +8,17 @@
 
     .top_section button.choose-recipient{ background: #00baff url("../../images/chat.png") no-repeat scroll 14px 9px; background-size: 15px auto;
         min-width: 85px;
-        float:right !important;    margin-top: -27px !important; padding:10px 3px 2px 22px !important;}
+        float:right !important;    margin-top: -38px !important; padding:10px 3px 2px 22px !important;}
     .top_section button.choose-recipient:hover{ background: #00baff url("../../images/chat.png") no-repeat scroll 14px 9px; background-size: 15px auto;
         min-width: 85px;
-        float:right !important;    margin-top: -27px !important; padding:10px 3px 2px 22px !important;}
+        float:right !important;    margin-top: -38px !important; padding:10px 3px 2px 22px !important;}
 
          .top_section button.choose-recipients{ background: #00baff url("../../images/chat.png") no-repeat scroll 14px 9px; background-size: 15px auto;
         min-width: 85px;
-        float:right !important;    margin-top: -27px !important; padding:10px 3px 2px 22px !important;}
+        float:right !important;    margin-top: -38px !important; padding:10px 3px 2px 22px !important;}
     .top_section button.choose-recipients:hover{ background: #00baff url("../../images/chat.png") no-repeat scroll 14px 9px; background-size: 15px auto;
         min-width: 85px;
-        float:right !important;    margin-top: -27px !important; padding:10px 3px 2px 22px !important;}
+        float:right !important;    margin-top: -38px !important; padding:10px 3px 2px 22px !important;}
 
 }
 
