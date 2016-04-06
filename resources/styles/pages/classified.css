@@ -22,6 +22,22 @@
 
 }
 
+@media only screen and (min-width:471px) and (max-width:670px){
+
+    .rsDefault .rsThumbsHor {
+        width: 60% !important;
+        height: 72px;
+        margin-left: 50px !important;
+    }
+
+    .top_section .paypal-btn {
+        /*margin-right:346px !important;*/
+        margin: 3px 346px 0 0 !important;
+    }
+
+
+}
+
 
 
 /*@media only screen and (max-width:470px){*/
