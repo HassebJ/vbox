@@ -34,10 +34,20 @@
             {{end}}
             {{end}}
 
-            {{if this.myID: }}
-            <a class="chatIdentity button live-state offline" data-user="{{-ad.seller.id}}" href="/chat/?r={{-ad.seller.id}}&id={{-this.myID}}" >Chat</a>
+            {{if ad.seller.online:}}
+                {{if this.myID:}}
+                    <a style="background-color: rgb(0, 186, 255); !important" class="chatIdentity button live-state offline" data-user="{{-ad.seller.id}}" href="/chat/?r={{-this.myID}}&id={{-ad.seller.id}}" >Chat</a>
+                {{else:}}
+                    <a style="background-color: rgb(0, 186, 255); !important" href="javascript:void();" class="chatIdentity button live-state offline" data-user="' + ad.seller.id + '" data-toggle="modal" data-target="#loginModal"  >Chat</a>
+                {{end}}
+
+            {{else if this.myID:}}
+            <a style="background-color: #9C9C9C; !important" class="chatIdentity button live-state offline" data-user="{{-ad.seller.id}}" href="/chat/?r={{-this.myID}}&id={{-ad.seller.id}}" >Chat</a>
             {{else:}}
-            <a href="javascript:void();" class="chatIdentity button live-state offline" data-user="{{-ad.seller.id}}" data-toggle="modal" data-target="#loginModal" >Chat</a>
+            <a style="background-color: #9C9C9C; !important" href="javascript:void();" class="chatIdentity button live-state offline" data-user="' + ad.seller.id + '" data-toggle="modal" data-target="#loginModal"  >Chat</a>
+            {{end}}
+
+
         </div>
 
     </div>
