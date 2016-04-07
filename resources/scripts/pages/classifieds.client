@@ -94,7 +94,7 @@ function geocoder(lat,lng){
 		else if(item.category >=14 && item.category <=18)
 					pinImg='/images/phone.png';
 		else if(item.category >=19 && item.category <=25)
-					pinImg='/images/home.png';
+					pinImg='/images/bpin/clothing.png';
 		else if(item.category >=26 && item.category <=31)
 					pinImg='/images/food.png';
 		else if(item.category >=32 && item.category <=40)
