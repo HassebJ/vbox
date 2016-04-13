@@ -13,7 +13,7 @@
 #content .top .button{
 	margin: 5px 0;
 }
-.radio label::before{ margin: 7px 5px 0 -5px;}
+.radio label::before{ margin: 2px 5px 0 -5px;}
 
 .actions button:before, .actions .button:before{
 	margin-right: 5px;
