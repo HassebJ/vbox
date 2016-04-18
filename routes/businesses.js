@@ -346,18 +346,57 @@ response.data.business = row;
 					rows.forEach(function(row){
 						// get seller informations
 						if(row.seller_type == 1){ // business seller
-							mysql.businesses.get('id', row.seller, function(biz){
-								row.seller = biz[0];
-								row.seller_type = 'business';
-                                row.seller.avatar = row.seller.avatar
-                                    ? '/uploads/avatars/original/'+row.seller.avatar
-                                    : '/images/no-business-profile.png';
-                                mysql.accounts.get('id', row.acc, function(acc){
-                                    row.seller.online = app.accounts.user(acc[0]).online;
-                                    rowNext();
-                                });
+                            var businessNext = new Next(2, function()
+                            {
+                                if(row.agent){
+                                    row.seller.online = row.agent.account.online;
+                                }
+                                rowNext();
+                            });
+                            mysql.businesses.get('id', row.seller, function(businesses)
+                            {
+                                //console.log(row.seller.avatar );
+                                if(businesses[0]) {
+                                    row.seller = businesses[0];
+                                    row.seller_type = 'business';
+                                    row.seller.avatar = row.seller.avatar
+                                        ? '/uploads/avatars/original/'+row.seller.avatar
+                                        : '/images/no-business-profile.png';
+//					row.seller.avatar = businesses[0].avatarName;
+                                    row.seller.avatarName = businesses[0].avatar;
+                                    mysql.accounts.get('id', row.acc, function(acc){
+                                        row.seller.online = app.accounts.user(acc[0]).online;
+                                        businessNext();
+                                    });
+                                }
+                                //row.seller.avatar ? '/uploads/avatars/original/'+row.seller.avatar : '/images/no-business-profile.png';
+                                //~ if(typeof rows[0].avatar != undefined)
+                                //~ {
+                                //~ //row.seller_type = '/uploads/avatars/original/'+row.seller.avatar;
+                                //~ row.seller_type = '/images/no-business-profile.png';
+                                //~ }else
+                                //~ {
+                                //~ row.seller_type = '/images/no-business-profile.png';
+                                //~ }
 
-							});
+                            });
+
+                            // get employee
+                            mysql.business_employees.get('id',row.agent, function(employees){
+
+                                row.agent = employees[0];
+                                // get employee account
+                                if (row.agent){
+                                    mysql.accounts.get('id', row.agent.account, function(accounts){
+                                        row.agent.account = app.accounts.user(accounts[0]);
+                                        businessNext();
+                                    });
+                                }
+                                else{
+                                    businessNext();
+                                }
+
+                            });
 						} else { // private seller
 							mysql.accounts.get('id', row.seller, function(rows){
 								row.seller = app.accounts.user(rows[0]);
