@@ -848,7 +848,7 @@ textarea#message{ width:100%; height:30px;  resize:none; box-shadow:none; border
     font-weight: bold;
     margin: 0 0 20px;
 }
-.staff_container .ins{ width: 25%; float: left; border:2px solid #dddddd; border-radius: 5px;}
+.staff_container .ins{margin-left: 22px; width: 25%; float: left; border:2px solid #dddddd; border-radius: 5px;}
 .staff_container .ins .picture img{ width: 96px; height: 96px; border-radius: 50%; }
 .staff_container .ins .top{ background: url("../../images/staffbg.jpg") no-repeat scroll 0 0; background-size: 100% auto;
     border-radius: 4px 4px 0 0;  color: #ffffff;  height: 120px;  position: relative;}
